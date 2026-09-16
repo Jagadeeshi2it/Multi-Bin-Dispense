@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<template id="__bundler_thumbnail" data-bg-color="#095192">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#095192"/>
+    <rect x="330" y="200" width="540" height="400" rx="20" fill="#FFFFFF"/>
+    <rect x="378" y="252" width="300" height="28" rx="7" fill="#095192"/>
+    <rect x="378" y="300" width="180" height="16" rx="5" fill="#BCC3CD"/>
+    <rect x="378" y="364" width="444" height="44" rx="6" fill="#EEF1F6"/>
+    <rect x="378" y="424" width="444" height="36" rx="6" fill="#F8FAFC"/>
+    <rect x="378" y="472" width="444" height="36" rx="6" fill="#F8FAFC"/>
+    <rect x="378" y="520" width="444" height="36" rx="6" fill="#F8FAFC"/>
+    <circle cx="402" cy="382" r="9" fill="#095192"/>
+    <rect x="666" y="556" width="156" height="0" fill="none"/>
+  </svg>
+</template>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body { margin: 0; background: #FFFFFF; font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; color: #25282A; }
+  a { color: #095192; }
+  a:hover { color: #073C6E; }
+  input { font-family: inherit; }
+  @keyframes toastIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes sheetIn { from { transform: translateX(24px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+</style>
+</helmet>
+<div style="width: 100%; height: 100dvh; min-height: 620px; background: #FFFFFF; position: relative; overflow: hidden; display: flex">
+
+  <!-- LEFT RAIL -->
+  <div style="width: 76px; flex: 0 0 76px; background: #095192; display: flex; flex-direction: column">
+    <div style="height: 56px; flex: 0 0 56px; background: #073C6E; display: flex; align-items: center; justify-content: center">
+      <div style="width: 32px; height: 32px; border-radius: 4px; background: #FFFFFF; color: #095192; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; letter-spacing: -0.4px">IQ</div>
+    </div>
+    <div style="flex: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column">
+      <sc-for list="{{ rail }}" as="n" hint-placeholder-count="9">
+        <div style="flex: 0 0 56px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; cursor: pointer; position: relative; background: {{ n.bg }}">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="{{ n.color }}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ n.d }}"></path></svg>
+          <div style="font-size: 10px; line-height: 1.1; color: {{ n.color }}">{{ n.label }}</div>
+          <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: {{ n.mark }}"></div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="padding: 10px 0 14px; display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 0 0 auto">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#BFD5E8" stroke-width="1.6"><path d="M4 4h16v13H4z M8 21h8"></path></svg>
+      <div style="font-size: 10px; color: #BFD5E8; text-align: center; line-height: 1.15">Resource<br>center</div>
+    </div>
+  </div>
+
+  <!-- MAIN COLUMN -->
+  <div style="flex: 1; min-width: 0; display: flex; flex-direction: column">
+
+    <div style="height: 56px; flex: 0 0 56px; border-bottom: 1px solid #DADEE3; display: flex; align-items: center; padding: 0 20px; gap: 16px; background: #FFFFFF; overflow: hidden">
+      <div style="flex: 1 1 auto; min-width: 0; display: flex; align-items: center; gap: 28px; overflow: hidden">
+        <div style="display: flex; align-items: center; gap: 8px; color: #095192; font-size: 15px; font-weight: 600; min-width: 0; flex: 0 1 auto">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#095192" stroke-width="1.6" style="flex: 0 0 17px"><path d="M4 4h16v16H4z M4 9h16 M9 9v11"></path></svg>
+          <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap">AIQ Demo Practice</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px; color: #095192; font-size: 15px; font-weight: 600; min-width: 0; flex: 0 1 auto">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#095192" stroke-width="1.6" style="flex: 0 0 17px"><path d="M12 21s7-6.2 7-11a7 7 0 10-14 0c0 4.8 7 11 7 11z M12 12.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg>
+          <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap">Dev Oncology Clinic-Frisco</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px; color: #095192; font-size: 15px; font-weight: 600; min-width: 0; flex: 0 1 auto">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#095192" stroke-width="1.6" style="flex: 0 0 17px"><path d="M3 5h18v11H3z M8 20h8 M12 16v4"></path></svg>
+          <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap">Anil-MedOrderStation Station-Virtual</span>
+        </div>
+      </div>
+      <div style="flex: 0 1 auto; min-width: 0; text-align: right; line-height: 1.4">
+        <div style="font-size: 14px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">Jagadeesh Radhakrishnan</div>
+        <div style="font-size: 13px; color: #757575; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">jagadeesh@allygpo.com</div>
+      </div>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#095192" stroke-width="1.6" style="flex: 0 0 20px"><path d="M15 4h4v16h-4 M10 8l4 4-4 4 M14 12H3"></path></svg>
+    </div>
+
+    <!-- ============ CONFIGURE STEP BACKGROUND ============ -->
+    <sc-if value="{{ isConfigure }}" hint-placeholder-val="{{ true }}">
+    <div style="flex: 1; min-height: 0; display: flex; flex-direction: column">
+      <div style="padding: 12px 24px; font-size: 24px; font-weight: 600; letter-spacing: -0.3px; flex: 0 0 auto">Dispense</div>
+      <div style="background: #F8FAFC; border-top: 1px solid #E3E8ED; border-bottom: 1px solid #E3E8ED; padding: 14px 24px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)) auto; gap: 16px 32px; align-items: center; flex: 0 0 auto">
+        <div>
+          <div style="font-size: 13px; color: #757575; margin-bottom: 6px">Patient name</div>
+          <div style="font-size: 15px"><span style="color: #757575">Last</span> &nbsp;<span style="font-weight: 600">Geidt</span></div>
+          <div style="font-size: 15px; margin-top: 4px"><span style="color: #757575">First</span> &nbsp;<span style="font-weight: 600">Ann</span></div>
+        </div>
+        <div>
+          <div style="font-size: 13px; color: #757575; margin-bottom: 6px">Patient details</div>
+          <div style="font-size: 15px"><span style="color: #757575">ID</span> &nbsp;<span style="font-weight: 600">8475825283402</span></div>
+          <div style="font-size: 15px; margin-top: 4px"><span style="color: #757575">DOB</span> &nbsp;<span style="font-weight: 600">06/03/1996</span></div>
+        </div>
+        <div>
+          <div style="font-size: 13px; color: #095192; text-decoration: underline; margin-bottom: 6px; cursor: pointer; font-weight: 600">Diagnosis — view details</div>
+          <div style="font-size: 15px"><span style="color: #757575">Primary</span> &nbsp;<span style="font-weight: 600">C18.9</span></div>
+          <div style="font-size: 15px; margin-top: 4px"><span style="color: #757575">Secondary</span> &nbsp;<span style="font-weight: 600">K12.31</span></div>
+        </div>
+        <div>
+          <div style="font-size: 13px; color: #757575; margin-bottom: 6px">Physician details</div>
+          <div style="font-size: 15px"><span style="color: #757575">Physician</span> &nbsp;<span style="font-weight: 600">Edison, Himanshu</span></div>
+          <div style="font-size: 15px; margin-top: 4px"><span style="color: #757575">Service date</span> &nbsp;<span style="font-weight: 600">07/27/2026</span></div>
+        </div>
+        <div style="padding: 8px 12px; border: 1px solid #095192; border-radius: 4px; display: flex; align-items: center; justify-self: end; cursor: pointer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#095192" stroke-width="1.8"><path d="M9 5l7 7-7 7"></path></svg>
+        </div>
+      </div>
+
+      <div style="flex: 1; min-height: 0; display: flex; flex-wrap: wrap">
+        <div style="flex: 1 1 480px; min-width: 380px; border-right: 1px solid #E3E8ED; display: flex; flex-direction: column; min-height: 0">
+          <div style="padding: 18px 24px 12px; font-size: 21px; font-weight: 600; flex: 0 0 auto">Find product</div>
+          <div style="padding: 0 24px 12px; display: flex; flex: 0 0 auto">
+            <div style="display: flex; flex: 1; max-width: 640px; height: 46px; border: 1px solid #BCC3CD; border-radius: 4px; overflow: hidden">
+              <input value="{{ searchText }}" onChange="{{ onSearch }}" placeholder="Search by product name or NDC" style="flex: 1; min-width: 0; border: none; outline: none; padding: 0 14px; font-size: 15px; color: #25282A">
+              <div onClick="{{ onClearSearch }}" style="flex: 0 0 40px; display: flex; align-items: center; justify-content: center; cursor: pointer">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5B6B7B" stroke-width="1.7"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+              </div>
+              <div style="flex: 0 0 56px; background: #095192; display: flex; align-items: center; justify-content: center; cursor: pointer">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2"><path d="M11 18a7 7 0 100-14 7 7 0 000 14M16.2 16.2L21 21"></path></svg>
+              </div>
+            </div>
+          </div>
+          <div style="flex: 1; min-height: 0; overflow: auto; padding: 4px 24px 24px; display: flex; flex-direction: column; gap: 16px">
+            <sc-for list="{{ products }}" as="p" hint-placeholder-count="3">
+              <div onClick="{{ p.onOpen }}" style="border: 1px solid #E3E8ED; border-radius: 8px; overflow: hidden; cursor: {{ p.cursor }}">
+                <div style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: {{ p.headBg }}; flex-wrap: wrap">
+                  <span style="font-size: 17px; font-weight: 600; color: {{ p.titleColor }}">{{ p.name }}</span>
+                  <sc-for list="{{ p.tags }}" as="t" hint-placeholder-count="1">
+                    <span style="background: #E9F1F8; color: #095192; font-size: 11px; font-weight: 600; letter-spacing: 0.6px; padding: 4px 8px; border-radius: 4px">{{ t }}</span>
+                  </sc-for>
+                  <div style="flex: 1"></div>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{ p.chevron }}" stroke-width="1.8" style="flex: 0 0 18px"><path d="M9 5l7 7-7 7"></path></svg>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 24px; padding: 16px; background: {{ p.bodyBg }}">
+                  <div style="font-size: 15px; color: {{ p.bodyColor }}"><span style="color: #757575">NDC</span> &nbsp;<span style="font-weight: 600">{{ p.ndc }}</span></div>
+                  <div style="font-size: 15px; color: {{ p.bodyColor }}"><span style="color: #757575">Inventory</span> &nbsp;<span style="font-weight: 600">{{ p.inventory }}</span></div>
+                  <div style="font-size: 15px; color: {{ p.bodyColor }}"><span style="color: #757575">Inventory type</span> &nbsp;<span style="font-weight: 600">{{ p.invType }}</span></div>
+                  <div style="font-size: 15px; color: {{ p.bodyColor }}"><span style="color: #757575">Dose type</span> &nbsp;<span style="font-weight: 600">{{ p.doseType }}</span></div>
+                </div>
+              </div>
+            </sc-for>
+            
+          </div>
+        </div>
+
+        <div style="flex: 1 1 480px; min-width: 380px; display: flex; flex-direction: column; min-height: 0">
+          <div style="padding: 18px 24px 12px; font-size: 21px; font-weight: 600; flex: 0 0 auto">Configured for dispense ({{ configuredCount }})</div>
+          <div style="flex: 1; min-height: 0; overflow: auto; padding: 4px 24px 24px">
+            <sc-if value="{{ nothingConfigured }}" hint-placeholder-val="{{ true }}">
+              <div style="border: 1px dashed #BCC3CD; border-radius: 8px; min-height: 300px; display: flex; align-items: center; justify-content: center; padding: 24px">
+                <span style="font-size: 17px; color: #8A949E">Select and configure a product to add to dispense</span>
+              </div>
+            </sc-if>
+            <sc-if value="{{ hasConfigured }}" hint-placeholder-val="{{ false }}">
+              <div style="border: 1px solid #E3E8ED; border-radius: 8px; overflow: hidden">
+                <div style="display: flex; align-items: center; gap: 10px; padding: 14px 16px; background: #F8FAFC; border-bottom: 1px solid #E3E8ED; flex-wrap: wrap">
+                  <span style="font-size: 18px; font-weight: 600">Leucovorin calcium 200 mg vial</span>
+                  <span style="background: #E9F1F8; color: #095192; font-size: 11px; font-weight: 600; letter-spacing: 0.6px; padding: 4px 8px; border-radius: 4px">MDV</span>
+                  <span style="background: #E9F1F8; color: #095192; font-size: 11px; font-weight: 600; letter-spacing: 0.6px; padding: 4px 8px; border-radius: 4px">CLIMATE</span>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px 24px; padding: 18px 16px">
+                  <div><div style="font-size: 13px; color: #5B6B7B">NDC</div><div style="font-size: 15px; font-weight: 600; margin-top: 6px">2502181430</div></div>
+                  <div><div style="font-size: 13px; color: #5B6B7B">Inventory type</div><div style="font-size: 15px; font-weight: 600; margin-top: 6px">Purchased</div></div>
+                  <div><div style="font-size: 13px; color: #5B6B7B">Dose type</div><div style="font-size: 15px; font-weight: 600; margin-top: 6px">MDV</div></div>
+                  <div><div style="font-size: 13px; color: #5B6B7B">Configured dose</div><div style="font-size: 15px; font-weight: 600; margin-top: 6px">9.5 vials / 950 mg / 95 mL</div></div>
+                  <div><div style="font-size: 13px; color: #5B6B7B">Total inventory</div><div style="font-size: 15px; font-weight: 600; margin-top: 6px">40 vials across 4 bins</div></div>
+                  <div><div style="font-size: 13px; color: #5B6B7B">Dispense location</div><div style="font-size: 15px; font-weight: 600; margin-top: 6px; color: #5B6B7B">Chosen during dispense</div></div>
+                </div>
+                <div style="border-top: 1px solid #E3E8ED; padding: 12px 16px; display: flex; justify-content: flex-end; align-items: center; gap: 16px; flex-wrap: wrap">
+                  <span onClick="{{ onRemoveConfigured }}" style="display: flex; align-items: center; gap: 8px; color: #D9342B; font-size: 15px; font-weight: 600; cursor: pointer">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9342B" stroke-width="1.7"><path d="M5 7h14 M9 7V5h6v2 M7 7l1 13h8l1-13"></path></svg>Remove
+                  </span>
+                  <div onClick="{{ onEditDose }}" style="padding: 11px 20px; background: #095192; border: 1px solid #095192; color: #FFFFFF; border-radius: 4px; font-size: 15px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.7"><path d="M4 20h4l10-10-4-4L4 16z M14 6l4 4"></path></svg>Edit dose
+                  </div>
+                </div>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+      </div>
+
+      <div style="flex: 0 0 auto; border-top: 1px solid #DADEE3; padding: 12px 24px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; background: #FFFFFF">
+        <div style="flex: 1; min-width: 12px"></div>
+        <span onClick="{{ onRemoveConfigured }}" style="color: #D9342B; font-size: 15px; font-weight: 600; cursor: pointer; padding: 0 8px">Cancel</span>
+        <div onClick="{{ onGoToScan }}" style="padding: 13px 22px; color: #FFFFFF; border-radius: 4px; font-size: 15px; font-weight: 600; display: flex; align-items: center; gap: 8px; background: {{ continueBg }}; border: 1px solid {{ continueBg }}; cursor: {{ continueCursor }}">
+          Continue to dispense
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8"><path d="M4 12h15 M13 6l6 6-6 6"></path></svg>
+        </div>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- ============ SCAN STEP ============ -->
+    <sc-if value="{{ isScan }}" hint-placeholder-val="{{ false }}">
+    <div style="flex: 1; min-height: 0; display: flex; flex-direction: column; background: #FFFFFF">
+      <div style="flex: 1; min-height: 0; overflow: auto">
+
+      <div style="padding: 16px 24px; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-bottom: 1px solid #E3E8ED">
+        <div>
+          <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; row-gap: 8px">
+            <span style="font-size: 22px; font-weight: 600; letter-spacing: 0.2px">{{ prodUpper }}</span>
+            <span style="background: #EEF1F6; color: #5B6B7B; font-size: 11px; font-weight: 600; letter-spacing: 0.6px; padding: 4px 8px; border-radius: 4px">{{ prodDoseType }}</span>
+          </div>
+          <div style="font-size: 16px; color: #5B6B7B; font-style: italic; margin-top: 6px">{{ prodSub }}</div>
+        </div>
+        <div onClick="{{ onToggleDoor }}" style="padding: 12px 22px; border: 1px solid #095192; color: #095192; background: #FFFFFF; border-radius: 4px; font-size: 15px; font-weight: 600; letter-spacing: 0.4px; cursor: pointer; white-space: nowrap; display: flex; align-items: center; gap: 10px" style-hover="background: #E9F1F8">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#095192" stroke-width="1.7"><path d="M7 11V8a5 5 0 019.5-2 M5 11h14v10H5z"></path></svg>UNLOCK DOOR
+        </div>
+      </div>
+
+      <div style="padding: 18px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px 24px">
+        <div>
+          <div style="font-size: 16px; margin-bottom: 10px"><span style="color: #5B6B7B">NDC</span> &nbsp;{{ prodNdc }}</div>
+          <div style="font-size: 16px; margin-bottom: 10px"><span style="color: #5B6B7B">Source</span> &nbsp;{{ prodSource }}</div>
+          <div style="font-size: 16px"><span style="color: #5B6B7B">Inventory Type</span> &nbsp;Purchased</div>
+        </div>
+        <div>
+          <div style="font-size: 16px; margin-bottom: 10px"><span style="color: #5B6B7B">Door</span> &nbsp;{{ currentDoor }} &nbsp;&nbsp;<span style="color: #5B6B7B">Bin</span> &nbsp;{{ currentBin }}</div>
+          <div style="font-size: 16px; margin-bottom: 10px"><span style="color: #5B6B7B">Inventory</span> &nbsp;{{ currentBinInventory }}</div>
+        </div>
+        <div>
+          <div style="font-size: 16px"><span style="color: #5B6B7B">Med Order</span> &nbsp;{{ prodMedOrder }}</div>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; align-items: stretch; border-top: 1px solid #E3E8ED; border-bottom: 1px solid #E3E8ED; flex: 0 0 auto">
+        <div style="flex: 1 1 440px; display: flex; align-items: center; gap: 12px; padding: 14px 24px; flex-wrap: wrap">
+          <div style="display: flex; flex: 1 1 280px; max-width: 380px; height: 44px; border: 1px solid #BCC3CD; border-radius: 4px; overflow: hidden">
+            <div style="flex: 0 0 40px; display: flex; align-items: center; justify-content: center">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8A949E" stroke-width="1.6"><path d="M4 5h4v14H4z M11 5v14 M14 5v14 M17 5h3v14h-3z"></path></svg>
+            </div>
+            <input value="{{ scanText }}" onChange="{{ onScanChange }}" onFocus="{{ onScanFocus }}" onKeyDown="{{ onScanKey }}" placeholder="Scan or type serial number" style="flex: 1; min-width: 0; border: none; outline: none; font-size: 15px; color: #25282A; background: transparent">
+            <div onClick="{{ onScanSubmit }}" style="flex: 0 0 52px; background: #095192; display: flex; align-items: center; justify-content: center; cursor: pointer">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2"><path d="M11 18a7 7 0 100-14 7 7 0 000 14M16.2 16.2L21 21"></path></svg>
+            </div>
+          </div>
+          <div style="padding: 11px 18px; border: 1px solid #095192; color: #095192; border-radius: 4px; font-size: 15px; font-weight: 600; letter-spacing: 0.4px; cursor: pointer; white-space: nowrap">ADD MANUALLY</div>
+        </div>
+        <div style="flex: 1 1 300px; border-left: 1px solid #E3E8ED; padding: 10px 24px; text-align: right; display: flex; flex-direction: column; justify-content: center">
+          <div style="font-size: 15px; color: #5B6B7B">Configured Dose</div>
+          <div style="font-size: 26px; margin-top: 4px; white-space: nowrap">{{ prodDoseText }}</div>
+          <sc-if value="{{ shortfall }}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; align-items: center; justify-content: flex-end; gap: 7px; margin-top: 6px">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#A36E1E" stroke-width="1.8" style="flex: 0 0 15px"><path d="M12 21a9 9 0 100-18 9 9 0 000 18M12 8v5M12 16.4v.1"></path></svg>
+              <span style="font-size: 13px; font-weight: 600; color: #A36E1E; text-wrap: pretty">{{ shortfallText }}</span>
+            </div>
+          </sc-if>
+        </div>
+        <div style="flex: 0 1 230px; border-left: 1px solid #E3E8ED; padding: 10px 24px; text-align: right; display: flex; flex-direction: column; justify-content: center">
+          <div style="font-size: 15px; color: #5B6B7B">Dispensed Dose</div>
+          <div style="font-size: 26px; margin-top: 4px; color: {{ dispensedColor }}">{{ dispensedMg }} mg</div>
+        </div>
+      </div>
+
+      <div>
+
+
+        <sc-if value="{{ hasDispensed }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top: 16px; padding: 10px 24px 12px; border-bottom: 1px solid #E3E8ED; display: flex; align-items: center; gap: 12px; flex-wrap: wrap">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#008774" stroke-width="1.7" style="flex: 0 0 17px"><path d="M12 21a9 9 0 100-18 9 9 0 000 18M8.4 12.2l2.5 2.5 4.7-5.1"></path></svg>
+            <span style="font-size: 17px; font-weight: 600">Items to Dispense ({{ dispensedItemCount }})</span>
+          </div>
+          <div style="margin: 16px 24px 0; border: 1px solid #E3E8ED; border-radius: 8px; overflow: hidden">
+            <div style="max-height: 320px; overflow: auto">
+              <div style="min-width: 1200px">
+                <div style="display: grid; grid-template-columns: {{ grid }}; background: #EEF1F6; border-bottom: 1px solid #E3E8ED; font-size: 13px; font-weight: 600; color: #5B6B7B; align-items: center; position: sticky; top: 0; z-index: 3">
+                  <div style="padding: 10px 0"></div>
+                  <div style="padding: 10px 8px">Serial</div>
+                  <div style="padding: 10px 8px">Lot</div>
+                  <div style="padding: 10px 8px">Expiration</div>
+                  <div style="padding: 10px 8px">Source</div>
+                  <div style="padding: 10px 8px">Inv (vials)</div>
+                  <div style="padding: 10px 8px">Dispense (mg)</div>
+                  <div style="padding: 10px 8px">Volume (mL)</div>
+                  <div style="padding: 10px 8px">Waste (mg)</div>
+                  <div style="padding: 10px 8px">Location</div>
+                  <div style="padding: 10px 16px"></div>
+                </div>
+                <sc-for list="{{ dispensedRows }}" as="d" hint-placeholder-count="1">
+                  <div style="display: grid; grid-template-columns: {{ grid }}; border-bottom: 1px solid #E3E8ED; align-items: center; font-size: 14px">
+                    <div style="padding: 12px 0 12px 18px; display: flex; align-items: flex-start">
+                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#008774" stroke-width="1.7" style="margin-top: 1px; flex: 0 0 17px"><path d="M12 21a9 9 0 100-18 9 9 0 000 18M8.4 12.2l2.5 2.5 4.7-5.1"></path></svg>
+                    </div>
+                    <div style="padding: 11px 8px">
+                      <div>
+                        <div>{{ d.serial }}</div>
+                        <div style="display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap">
+                          <sc-for list="{{ d.badges }}" as="b" hint-placeholder-count="0">
+                            <span style="border: 1px solid #DADEE3; border-radius: 4px; font-size: 11px; font-weight: 600; letter-spacing: 0.6px; color: #5B6B7B; padding: 3px 7px">{{ b }}</span>
+                          </sc-for>
+                        </div>
+                      </div>
+                    </div>
+                    <div style="padding: 12px 8px">{{ d.lot }}</div>
+                    <div style="padding: 12px 8px"><div style="color: {{ d.expColor }}">{{ d.exp }}</div><div style="font-size: 12px; color: #8A949E">{{ d.exp2 }}</div></div>
+                    <div style="padding: 12px 8px">{{ d.source }}</div>
+                    <sc-if value="{{ d.editing }}" hint-placeholder-val="{{ false }}">
+                      <div style="padding: 8px"><input value="{{ d.dVials }}" onChange="{{ d.onDraftVials }}" style="width: 100%; height: 38px; box-sizing: border-box; border: 1px solid #BCC3CD; border-radius: 4px; padding: 0 10px; font-size: 14px; color: #25282A; outline: none"></div>
+                      <div style="padding: 8px"><input value="{{ d.dMg }}" onChange="{{ d.onDraftMg }}" style="width: 100%; height: 38px; box-sizing: border-box; border: 1px solid #BCC3CD; border-radius: 4px; padding: 0 10px; font-size: 14px; color: #25282A; outline: none"></div>
+                      <div style="padding: 8px"><input value="{{ d.dMl }}" onChange="{{ d.onDraftMl }}" style="width: 100%; height: 38px; box-sizing: border-box; border: 1px solid #BCC3CD; border-radius: 4px; padding: 0 10px; font-size: 14px; color: #25282A; outline: none"></div>
+                      <div style="padding: 12px 8px">{{ d.waste }}</div>
+                      <div style="padding: 12px 8px"><div>Door: {{ d.door }}</div><div style="margin-top: 2px">Bin: {{ d.bin }}</div></div>
+                      <div style="padding: 8px 16px; display: flex; justify-content: flex-end; gap: 10px">
+                        <span onClick="{{ d.onSave }}" style="padding: 8px 14px; border: 1px solid #095192; color: #095192; border-radius: 4px; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap" style-hover="background: #E9F1F8">Save</span>
+                        <span onClick="{{ d.onCancel }}" style="padding: 8px 14px; border: 1px solid #D9342B; color: #D9342B; border-radius: 4px; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap" style-hover="background: #FDF0EF">Cancel</span>
+                      </div>
+                    </sc-if>
+                    <sc-if value="{{ d.notEditing }}" hint-placeholder-val="{{ true }}">
+                    <div style="padding: 12px 8px">{{ d.vials }}</div>
+                    <div style="padding: 12px 8px">{{ d.mg }}</div>
+                    <div style="padding: 12px 8px">{{ d.ml }}</div>
+                    <div style="padding: 12px 8px">{{ d.waste }}</div>
+                    <div style="padding: 12px 8px"><div>Door: {{ d.door }}</div><div style="margin-top: 2px">Bin: {{ d.bin }}</div></div>
+                    <div style="padding: 12px 16px; display: flex; justify-content: flex-end; align-items: center; gap: 10px; position: relative">
+                      <span onClick="{{ d.onEdit }}" title="Edit" style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 4px; border: 1px solid {{ d.editColor }}; cursor: {{ d.editCursor }}">
+                        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="{{ d.editColor }}" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l.4-3.4L16 5a1.8 1.8 0 012.6 2.6L7 19.2 4 20z"></path></svg>
+                      </span>
+                      <span onClick="{{ d.onRemove }}" title="Remove" style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 4px; border: 1px solid {{ d.removeIconColor }}; cursor: {{ d.removeCursor }}">
+                        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="{{ d.removeIconColor }}" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="8.4"></circle><path d="M8.4 12h7.2"></path></svg>
+                      </span>
+                    </div>
+                    </sc-if>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ noDispensed }}" hint-placeholder-val="{{ true }}">
+          <div style="margin: 16px 24px 0; border: 1px solid #E3E8ED; border-radius: 8px; background: #F8FAFC; padding: 14px 16px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap">
+            <span style="font-size: 17px; font-weight: 600">Items to dispense</span>
+            <span style="font-size: 14px; color: #5B6B7B">Scan or select items to add them to the list</span>
+          </div>
+        </sc-if>
+
+        <div style="position: sticky; top: 0; z-index: 6; background: #FFFFFF; margin-top: 16px; padding: 10px 24px 12px; border-bottom: 1px solid #E3E8ED; display: flex; align-items: center; gap: 12px; flex-wrap: wrap">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#095192" stroke-width="1.7" style="flex: 0 0 17px"><path d="M12 21a9 9 0 100-18 9 9 0 000 18M12 8v.1M12 11.5v5"></path></svg>
+          <span style="font-size: 17px; font-weight: 600">Suggested items ({{ suggestedCount }})</span>
+          <div style="flex: 1"></div>
+          <div onClick="{{ onAddSelected }}" style="padding: 11px 18px; border-radius: 4px; font-size: 15px; font-weight: 600; white-space: nowrap; border: 1px solid {{ addBtnColor }}; color: {{ addBtnColor }}; cursor: {{ addBtnCursor }}">Add Selected Items&nbsp;<br></div>
+          <div onClick="{{ onToggleSuggested }}" style="display: flex; align-items: center; gap: 6px; color: #095192; font-size: 15px; font-weight: 600; cursor: pointer; padding-left: 4px">{{ hideLabel }}
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#095192" stroke-width="1.8"><path d="{{ hideIcon }}"></path></svg>
+          </div>
+        </div>
+
+        <sc-if value="{{ suggestedOpen }}" hint-placeholder-val="{{ true }}">
+          <div style="margin: 12px 24px 24px; border: 1px solid #E3E8ED; border-radius: 8px; overflow: hidden">
+            <div style="overflow-x: auto">
+              <div style="min-width: 1060px">
+                <div style="display: grid; grid-template-columns: 52px minmax(0, 1.5fr) minmax(0, 0.7fr) minmax(0, 1.4fr) minmax(0, 0.8fr) minmax(0, 0.8fr) minmax(0, 0.9fr) minmax(0, 0.9fr) minmax(0, 0.7fr) minmax(0, 0.9fr) minmax(0, 1.4fr); background: #EEF1F6; border-bottom: 1px solid #E3E8ED; font-size: 13px; font-weight: 600; color: #5B6B7B; align-items: center">
+                  <div onClick="{{ onToggleAll }}" style="padding: 10px 0 10px 18px; cursor: {{ allCursor }}">
+                    <div style="width: 18px; height: 18px; border-radius: 4px; display: flex; align-items: center; justify-content: center; border: 1px solid {{ allBoxBorder }}; background: {{ allBoxBg }}">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" style="position: absolute; opacity: {{ allCheckOpacity }}"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" style="position: absolute; opacity: {{ allDashOpacity }}"><path d="M6 12h12"></path></svg>
+                    </div>
+                  </div>
+                  <div style="padding: 10px 8px">Serial</div>
+                  <div style="padding: 10px 8px">Lot</div>
+                  <div style="padding: 10px 8px">Expiration</div>
+                  <div style="padding: 10px 8px">Source</div>
+                  <div style="padding: 10px 8px">Inv (vials)</div>
+                  <div style="padding: 10px 8px">Dispense (mg)</div>
+                  <div style="padding: 10px 8px">Volume (mL)</div>
+                  <div style="padding: 10px 8px"></div>
+                  <div style="padding: 10px 8px">Location</div>
+                  <div style="padding: 10px 16px"></div>
+                </div>
+                <sc-for list="{{ suggestedRows }}" as="s" hint-placeholder-count="6">
+                  <div onClick="{{ s.onToggle }}" style="display: grid; grid-template-columns: 52px minmax(0, 1.5fr) minmax(0, 0.7fr) minmax(0, 1.4fr) minmax(0, 0.8fr) minmax(0, 0.8fr) minmax(0, 0.9fr) minmax(0, 0.9fr) minmax(0, 0.7fr) minmax(0, 0.9fr) minmax(0, 1.4fr); border-bottom: 1px solid #E3E8ED; align-items: center; font-size: 14px; cursor: {{ s.cursor }}; background: {{ s.bg }}; color: {{ s.fg }}">
+                    <div style="padding: 12px 0 12px 18px">
+                      <div style="width: 18px; height: 18px; border-radius: 4px; display: flex; align-items: center; justify-content: center; border: 1px solid {{ s.boxBorder }}; background: {{ s.boxBg }}">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" style="opacity: {{ s.checkOpacity }}"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>
+                      </div>
+                    </div>
+                    <div style="padding: 11px 8px">
+                      <div>{{ s.serial }}</div>
+                      <div style="display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap">
+                        <sc-for list="{{ s.badges }}" as="b" hint-placeholder-count="1">
+                          <span style="border: 1px solid #DADEE3; border-radius: 4px; font-size: 11px; font-weight: 600; letter-spacing: 0.6px; padding: 3px 7px; color: {{ s.fg }}">{{ b }}</span>
+                        </sc-for>
+                      </div>
+                    </div>
+                    <div style="padding: 11px 8px">{{ s.lot }}</div>
+                    <div style="padding: 11px 8px"><div style="color: {{ s.expColor }}">{{ s.exp }}</div><div style="font-size: 12px; color: {{ s.fg }}">{{ s.exp2 }}</div></div>
+                    <div style="padding: 11px 8px">{{ s.source }}</div>
+                    <div style="padding: 11px 8px">{{ s.vials }}</div>
+                    <div style="padding: 11px 8px">{{ s.mg }}</div>
+                    <div style="padding: 11px 8px">{{ s.ml }}</div>
+                    <div style="padding: 11px 8px"></div>
+                    <div style="padding: 11px 8px"><div>Door: {{ s.door }}</div><div style="margin-top: 2px">Bin: {{ s.bin }}</div></div>
+                    <div style="padding: 8px 16px; display: flex; justify-content: flex-end">
+                      <div onClick="{{ s.onAdd }}" style="padding: 8px 14px; border-radius: 4px; font-size: 13px; font-weight: 600; white-space: nowrap; border: 1px solid {{ s.addBorder }}; color: {{ s.addColor }}; cursor: {{ s.cursor }}">Add&nbsp;</div>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+
+      </div>
+
+      <div style="flex: 0 0 auto; border-top: 1px solid #DADEE3; display: flex; align-items: stretch; background: #FFFFFF; flex-wrap: wrap">
+        <div onClick="{{ onOpenProducts }}" style="display: flex; align-items: center; gap: 10px; padding: 10px 20px; border-right: 1px solid #E3E8ED; cursor: pointer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5B6B7B" stroke-width="1.6"><path d="M4 6h10v12H4z M17 6h3v12h-3z"></path></svg>
+          <div>
+            <div style="font-size: 11px; color: #757575">Product</div>
+            <div style="font-size: 14px; color: #095192; font-weight: 600">{{ footerProductLabel }}</div>
+          </div>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#095192" stroke-width="2"><path d="M9 5l7 7-7 7"></path></svg>
+        </div>
+        <div onClick="{{ onOpenLocations }}" style="display: flex; align-items: center; gap: 10px; padding: 10px 20px; border-right: 1px solid #E3E8ED; cursor: {{ locCursor }}">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5B6B7B" stroke-width="1.6"><path d="M12 21s7-6.2 7-11a7 7 0 10-14 0c0 4.8 7 11 7 11z M12 12.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg>
+          <div>
+            <div style="font-size: 11px; color: #757575">Location</div>
+            <div style="font-size: 14px; font-weight: 600; color: {{ locValueColor }}">{{ footerLocationLabel }}</div>
+          </div>
+          <sc-if value="{{ multiBin }}" hint-placeholder-val="{{ true }}">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#095192" stroke-width="2"><path d="M9 5l7 7-7 7"></path></svg>
+          </sc-if>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px; padding: 10px 20px; border-right: 1px solid #E3E8ED">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#008774" stroke-width="1.6"><path d="M12 21a9 9 0 100-18 9 9 0 000 18M8.4 12.2l2.5 2.5 4.7-5.1"></path></svg>
+          <div><div style="font-size: 11px; color: #757575">Dispensed</div><div style="font-size: 14px; font-weight: 600">{{ dispensedCount }}</div></div>
+        </div>
+        <div style="flex: 1; min-width: 12px"></div>
+        <div style="display: flex; align-items: center; gap: 12px; padding: 10px 20px; flex-wrap: wrap">
+          <div onClick="{{ onBackToConfigure }}" style="padding: 11px 20px; border: 1px solid #095192; color: #095192; border-radius: 4px; font-size: 15px; font-weight: 600; cursor: pointer">Cancel</div>
+          <div onClick="{{ onSkip }}" style="padding: 11px 20px; border: 1px solid {{ skipBtnBorder }}; color: {{ skipBtnColor }}; border-radius: 4px; font-size: 15px; font-weight: 600; letter-spacing: 0.4px; cursor: {{ skipBtnCursor }}; white-space: nowrap">{{ skipLabel }}</div>
+          <div onClick="{{ onDispense }}" style="padding: 11px 20px; display: flex; align-items: center; gap: 9px; border-radius: 4px; font-size: 15px; font-weight: 600; letter-spacing: 0.4px; white-space: nowrap; background: {{ dispenseBtnBg }}; border: 1px solid {{ dispenseBtnBorder }}; color: {{ dispenseBtnColor }}; cursor: {{ dispenseBtnCursor }}">
+            <sc-if value="{{ dispenseIconVisible }}" hint-placeholder-val="{{ true }}">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{ dispenseBtnColor }}" stroke-width="1.7"><path d="M12 21a9 9 0 100-18 9 9 0 000 18M8.4 12.2l2.5 2.5 4.7-5.1"></path></svg>
+            </sc-if>
+            {{ dispenseLabel }}
+          </div>
+        </div>
+      </div>
+    </div>
+    </sc-if>
+  </div>
+
+  <!-- CONFIGURE OVERLAY PANEL -->
+  <sc-if value="{{ configOpen }}" hint-placeholder-val="{{ true }}">
+    <div onClick="{{ onCloseConfig }}" style="position: absolute; inset: 0; background: rgba(11,42,74,0.28); z-index: 40"></div>
+    <div style="position: absolute; top: 0; right: 0; bottom: 0; width: min(920px, 64%); min-width: 440px; background: #FFFFFF; z-index: 41; display: flex; flex-direction: column; box-shadow: 0 20px 48px rgba(11,42,74,0.24); animation: sheetIn 160ms cubic-bezier(0.2,0,0,1)">
+      <div style="background: #F8FAFC; padding: 16px 24px; display: flex; align-items: flex-start; justify-content: space-between; border-bottom: 1px solid #E3E8ED; flex: 0 0 auto">
+        <div>
+          <div style="font-size: 22px; font-weight: 600">Geidt, Ann</div>
+          <div style="font-size: 14px; color: #757575; margin-top: 4px">ID: 8475825283402</div>
+        </div>
+        <svg onClick="{{ onCloseConfig }}" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5B6B7B" stroke-width="1.6" style="cursor: pointer"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; border-bottom: 1px solid #E3E8ED; flex: 0 0 auto">
+        <sc-for list="{{ configMetrics }}" as="c" hint-placeholder-count="4">
+          <div style="flex: 1 1 140px; padding: 12px 24px 14px; border-right: 1px solid #E3E8ED">
+            <div style="font-size: 13px; color: #757575">{{ c.label }}</div>
+            <div style="font-size: 26px; font-weight: 600; margin-top: 2px; letter-spacing: -0.4px">{{ c.value }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="flex: 1; min-height: 0; overflow: auto">
+        <div style="padding: 20px 24px 0">
+          <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap">
+            <span style="font-size: 22px; font-weight: 600">{{ prodName }}</span>
+            <span style="background: #E9F1F8; color: #095192; font-size: 11px; font-weight: 600; letter-spacing: 0.6px; padding: 4px 8px; border-radius: 4px">{{ prodDoseType }}</span>
+          </div>
+          <div style="font-size: 15px; color: #5B6B7B; margin-top: 4px">{{ prodSub }}</div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px 24px; margin-top: 20px">
+            <div><div style="font-size: 13px; color: #757575">NDC</div><div style="font-size: 14px; font-weight: 600; margin-top: 4px">{{ prodNdc }}</div></div>
+            <div><div style="font-size: 13px; color: #757575">Inventory type</div><div style="font-size: 14px; font-weight: 600; margin-top: 4px">Purchased</div></div>
+            <div><div style="font-size: 13px; color: #757575">Route</div><div style="font-size: 14px; font-weight: 600; margin-top: 4px">Intravenous (IV)</div></div>
+            <div><div style="font-size: 13px; color: #757575">HCPCS code</div><div style="font-size: 14px; font-weight: 600; margin-top: 4px">J-0640</div></div>
+            <div><div style="font-size: 13px; color: #757575">GCN</div><div style="font-size: 14px; font-weight: 600; margin-top: 4px">44533</div></div>
+            <div><div style="font-size: 13px; color: #757575">Dose type</div><div style="font-size: 14px; font-weight: 600; margin-top: 4px">MDV</div></div>
+          </div>
+          <div style="margin-top: 24px; font-size: 13px; color: #757575">Dispense instructions</div>
+          <div style="font-size: 15px; line-height: 1.6; margin-top: 4px; max-width: 820px; text-wrap: pretty">{{ prodInstructions }}</div>
+        </div>
+        <div style="margin: 24px; border: 1px solid #E3E8ED; border-radius: 8px; overflow: hidden">
+          <div style="display: grid; grid-template-columns: repeat(3, minmax(140px, 1fr)) 104px; background: #EEF1F6; border-bottom: 1px solid #E3E8ED">
+            <div style="padding: 12px 16px; font-size: 13px; font-weight: 600; color: #5B6B7B">Inventory (vials)</div>
+            <div style="padding: 12px 16px; font-size: 13px; font-weight: 600; color: #5B6B7B">Dispense (mg)</div>
+            <div style="padding: 12px 16px; font-size: 13px; font-weight: 600; color: #5B6B7B">Volume (mL)</div>
+            <div></div>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(3, minmax(140px, 1fr)) 104px; align-items: start; padding: 16px 0">
+            <div style="padding: 0 16px">
+              <input value="{{ invVials }}" onChange="{{ onInvVials }}" style="width: 100%; max-width: 170px; height: 42px; border: 1px solid #BCC3CD; border-radius: 4px; padding: 0 12px; font-size: 15px; color: #25282A">
+              <div style="font-size: 13px; color: #757575; margin-top: 8px">Inventory: 40 vials</div>
+            </div>
+            <div style="padding: 0 16px">
+              <input value="{{ dispMg }}" onChange="{{ onDispMg }}" style="width: 100%; max-width: 170px; height: 42px; border: 1px solid #BCC3CD; border-radius: 4px; padding: 0 12px; font-size: 15px; color: #25282A">
+              <div style="font-size: 13px; color: #757575; margin-top: 8px">Inventory: 4000 mg</div>
+            </div>
+            <div style="padding: 0 16px">
+              <input value="{{ volMl }}" onChange="{{ onVolMl }}" style="width: 100%; max-width: 170px; height: 42px; border: 1px solid #BCC3CD; border-radius: 4px; padding: 0 12px; font-size: 15px; color: #25282A">
+              <div style="font-size: 13px; color: #757575; margin-top: 8px">Inventory: 400 mL</div>
+            </div>
+            <div style="padding: 10px 16px; text-align: right"><span onClick="{{ onClearConfig }}" style="color: #D9342B; font-size: 15px; font-weight: 600; cursor: pointer">Clear</span></div>
+          </div>
+        </div>
+      </div>
+      <div style="border-top: 1px solid #E3E8ED; padding: 16px 24px; display: flex; justify-content: flex-end; gap: 12px; flex: 0 0 auto">
+        <div onClick="{{ onCloseConfig }}" style="padding: 13px 22px; border: 1px solid #095192; color: #095192; font-size: 15px; font-weight: 600; border-radius: 4px; cursor: pointer">Cancel</div>
+        <div onClick="{{ onSaveConfig }}" style="padding: 13px 22px; background: #095192; border: 1px solid #095192; color: #FFFFFF; font-size: 15px; font-weight: 600; border-radius: 4px; cursor: pointer" style-hover="background: #073C6E; border-color: #073C6E">Save</div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- LOCATIONS PANEL -->
+  <sc-if value="{{ locOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ onCloseLocations }}" style="position: absolute; inset: 0; background: rgba(11,42,74,0.28); z-index: 42"></div>
+    <div style="position: absolute; top: 0; right: 0; bottom: 0; width: min(900px, 62%); min-width: 440px; background: #FFFFFF; z-index: 43; display: flex; flex-direction: column; box-shadow: 0 20px 48px rgba(11,42,74,0.24); animation: sheetIn 160ms cubic-bezier(0.2,0,0,1)">
+      <div style="padding: 22px 24px 16px; flex: 0 0 auto">
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 16px">
+          <div style="font-size: 24px; font-weight: 600; letter-spacing: -0.3px">Dispense locations</div>
+          <svg onClick="{{ onCloseLocations }}" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5B6B7B" stroke-width="1.6" style="cursor: pointer; flex: 0 0 22px"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+        </div>
+        <div style="font-size: 18px; font-weight: 600; margin-top: 14px">{{ prodName }}</div>
+        <div style="font-size: 15px; color: #5B6B7B; font-style: italic; margin-top: 2px">{{ prodSub }}</div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; padding: 16px 24px 18px; border-top: 1px solid #E3E8ED; flex: 0 0 auto">
+        <div><div style="font-size: 13px; color: #757575">NDC</div><div style="font-size: 15px; font-weight: 600; margin-top: 4px">{{ prodNdc }}</div></div>
+        <div><div style="font-size: 13px; color: #757575">Inventory type</div><div style="font-size: 15px; font-weight: 600; margin-top: 4px">Purchased</div></div>
+        <div><div style="font-size: 13px; color: #757575">Configured dose</div><div style="font-size: 15px; font-weight: 600; margin-top: 4px">{{ prodTargetMg }}</div></div>
+        <div><div style="font-size: 13px; color: #757575">Dispensed Dose</div><div style="font-size: 15px; font-weight: 600; margin-top: 4px">{{ dispensedOfTarget }}</div></div>
+      </div>
+      <div style="flex: 1; min-height: 0; overflow: auto">
+        <div style="margin: 0 24px; background: #F3E4FD; border: 1px solid #E0C6F5; border-radius: 4px; display: flex; align-items: flex-start; gap: 10px; padding: 12px 16px">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#8B3FD9" stroke-width="1.7" style="flex: 0 0 17px; margin-top: 1px"><path d="M12 21a9 9 0 100-18 9 9 0 000 18M12 8v.1M12 11.5v5"></path></svg>
+          <span style="font-size: 14px; line-height: 1.5">Select a bin to restock as the product is at multiple locations.</span>
+        </div>
+        <div style="padding: 20px 24px 8px; font-size: 17px; font-weight: 600">Available at ({{ locationCount }})</div>
+        <div style="margin: 4px 24px 24px; border: 1px solid #E3E8ED; border-radius: 8px; overflow: hidden">
+          <div style="overflow-x: auto">
+            <div style="min-width: 660px">
+              <div style="display: grid; grid-template-columns: 0.6fr 0.6fr 0.6fr 1fr 0.8fr 0.9fr 1fr; background: #EEF1F6; border-bottom: 1px solid #E3E8ED; font-size: 13px; font-weight: 600; color: #5B6B7B">
+                <div style="padding: 12px 18px">Door</div>
+                <div style="padding: 12px 8px">Bin</div>
+                <div style="padding: 12px 8px">Size</div>
+                <div style="padding: 12px 8px">Latest expiration</div>
+                <div style="padding: 12px 8px">Inventory</div>
+                <div style="padding: 12px 8px">Dispensed</div>
+                <div style="padding: 12px 18px"></div>
+              </div>
+              <sc-for list="{{ locationRows }}" as="l" hint-placeholder-count="4">
+                <div style="display: grid; grid-template-columns: 0.6fr 0.6fr 0.6fr 1fr 0.8fr 0.9fr 1fr; border-bottom: 1px solid #E3E8ED; align-items: center; font-size: 15px; background: {{ l.bg }}">
+                  <div style="padding: 16px 18px">{{ l.door }}</div>
+                  <div style="padding: 16px 8px">{{ l.bin }}</div>
+                  <div style="padding: 16px 8px">{{ l.size }}</div>
+                  <div style="padding: 16px 8px">{{ l.expiration }}</div>
+                  <div style="padding: 16px 8px">{{ l.inventory }}</div>
+                  <div style="padding: 16px 8px">{{ l.dose }}</div>
+                  <div onClick="{{ l.onSelect }}" style="padding: 16px 18px; text-align: right; font-size: 15px; font-weight: 600; color: {{ l.actionColor }}; cursor: {{ l.actionCursor }}">{{ l.action }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="border-top: 1px solid #E3E8ED; padding: 16px 24px; display: flex; justify-content: flex-end; flex: 0 0 auto">
+        <div onClick="{{ onCloseLocations }}" style="padding: 13px 22px; border: 1px solid #095192; color: #095192; border-radius: 4px; font-size: 15px; font-weight: 600; cursor: pointer">Close</div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- PRODUCT LINEUP PANEL -->
+  <sc-if value="{{ prodOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ onCloseProducts }}" style="position: absolute; inset: 0; background: rgba(15,23,42,0.35); z-index: 44"></div>
+    <div style="position: absolute; top: 0; right: 0; bottom: 0; width: min(640px, 56%); min-width: 400px; background: #FFFFFF; z-index: 45; display: flex; flex-direction: column; box-shadow: 0 20px 48px rgba(11,42,74,0.24); animation: sheetIn 160ms cubic-bezier(0.2,0,0,1)">
+      <div style="padding: 20px 24px 16px; border-bottom: 1px solid #E3E8ED; flex: 0 0 auto">
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 16px">
+          <div>
+            <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.6px; color: #757575">DISPENSE</div>
+            <div style="font-size: 24px; font-weight: 600; letter-spacing: -0.3px; margin-top: 4px">List of products ({{ productCount }})</div>
+          </div>
+          <svg onClick="{{ onCloseProducts }}" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5B6B7B" stroke-width="1.6" style="cursor: pointer; flex: 0 0 22px"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+        </div>
+      </div>
+      <div style="padding: 16px 24px; border-bottom: 1px solid #E3E8ED; display: flex; gap: 12px; flex-wrap: wrap; flex: 0 0 auto">
+        <input value="{{ prodSearch }}" onChange="{{ onProdSearch }}" placeholder="Search product or NDC" style="flex: 1 1 240px; min-width: 0; height: 44px; border: 1px solid #BCC3CD; border-radius: 4px; padding: 0 12px; font-size: 15px; color: #25282A">
+        <select value="{{ prodStatus }}" onChange="{{ onProdStatus }}" style="flex: 0 1 130px; height: 44px; border: 1px solid #BCC3CD; border-radius: 4px; padding: 0 10px; font-size: 15px; color: #25282A; background: #FFFFFF; font-family: inherit">
+          <sc-for list="{{ statusOptions }}" as="o" hint-placeholder-count="4">
+            <option value="{{ o }}">{{ o }}</option>
+          </sc-for>
+        </select>
+        <select value="{{ prodDoor }}" onChange="{{ onProdDoor }}" style="flex: 0 1 130px; height: 44px; border: 1px solid #BCC3CD; border-radius: 4px; padding: 0 10px; font-size: 15px; color: #25282A; background: #FFFFFF; font-family: inherit">
+          <sc-for list="{{ doorOptions }}" as="o" hint-placeholder-count="4">
+            <option value="{{ o }}">{{ o }}</option>
+          </sc-for>
+        </select>
+      </div>
+      <div style="flex: 1; min-height: 0; overflow: auto; padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 12px">
+        <sc-for list="{{ productRows }}" as="p" hint-placeholder-count="4">
+          <div onClick="{{ p.onJump }}" style="border-radius: 8px; padding: 14px 16px; display: flex; align-items: center; gap: 12px; cursor: {{ p.cursor }}; border: 1px solid {{ p.border }}; background: {{ p.bg }}">
+            <div style="flex: 1; min-width: 0">
+              <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap">
+                <span style="font-size: 17px; font-weight: 600">{{ p.name }}</span>
+                <span style="background: #EEF1F6; color: #5B6B7B; font-size: 11px; font-weight: 600; letter-spacing: 0.6px; padding: 3px 7px; border-radius: 4px">{{ p.doseType }}</span>
+              </div>
+              <div style="font-size: 14px; color: #757575; margin-top: 6px">NDC {{ p.ndc }} &nbsp;·&nbsp; {{ p.where }}</div>
+            </div>
+            <sc-if value="{{ p.showChip }}" hint-placeholder-val="{{ false }}">
+              <span style="font-size: 13px; font-weight: 600; border-radius: 999px; padding: 6px 14px; white-space: nowrap; background: {{ p.chipBg }}; color: {{ p.chipFg }}">{{ p.status }}</span>
+            </sc-if>
+          </div>
+        </sc-for>
+        <sc-if value="{{ noProducts }}" hint-placeholder-val="{{ false }}">
+          <div style="padding: 32px 0; text-align: center; font-size: 15px; color: #8A949E">No products match those filters.</div>
+        </sc-if>
+      </div>
+      <div style="border-top: 1px solid #E3E8ED; padding: 16px 24px; display: flex; justify-content: flex-end; flex: 0 0 auto">
+        <div onClick="{{ onCloseProducts }}" style="padding: 13px 22px; border: 1px solid #095192; color: #095192; border-radius: 4px; font-size: 15px; font-weight: 600; cursor: pointer">Close</div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- DOOR OPEN MODAL -->
+  <sc-if value="{{ alertOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position: absolute; inset: 0; background: rgba(11,42,74,0.28); z-index: 50; display: flex; align-items: center; justify-content: center; padding: 24px">
+      <div style="width: 600px; max-width: 100%; background: #FFFFFF; border-radius: 4px; box-shadow: 0 20px 48px rgba(11,42,74,0.24); padding: 22px 28px 24px">
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 16px">
+          <div style="font-size: 22px; font-weight: 600">Door {{ currentDoor }} is Open</div>
+          <svg onClick="{{ onCloseAlert }}" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5B6B7B" stroke-width="1.6" style="cursor: pointer; flex: 0 0 22px"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+        </div>
+        <div style="font-size: 17px; color: #25282A; margin-top: 12px; line-height: 1.55">Please close the door to continue.</div>
+        <div style="height: 56px"></div>
+        <div style="display: flex; justify-content: flex-end">
+          <div onClick="{{ onCloseDoorAndSwitch }}" style="padding: 11px 30px; background: #095192; border: 1px solid #095192; color: #FFFFFF; border-radius: 4px; font-size: 15px; font-weight: 600; cursor: pointer">OK</div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- SKIP CONFIRMATION -->
+  <sc-if value="{{ skipAskOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position: absolute; inset: 0; background: rgba(11,42,74,0.28); z-index: 51; display: flex; align-items: center; justify-content: center; padding: 24px">
+      <div style="width: 600px; max-width: 100%; background: #FFFFFF; border-radius: 4px; box-shadow: 0 20px 48px rgba(11,42,74,0.24); padding: 22px 28px 24px">
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 16px">
+          <div style="font-size: 22px; font-weight: 600">Are you sure you want to skip this product?</div>
+          <svg onClick="{{ onCancelSkip }}" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5B6B7B" stroke-width="1.6" style="cursor: pointer; flex: 0 0 22px"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+        </div>
+        <div style="font-size: 17px; color: #25282A; margin-top: 14px; line-height: 1.55; max-width: 500px; text-wrap: pretty">If you continue, "{{ skipAskName }}" will be skipped from the dispense workflow.</div>
+        <div style="height: 56px"></div>
+        <div style="display: flex; justify-content: flex-end; gap: 12px">
+          <div onClick="{{ onCancelSkip }}" style="padding: 13px 22px; border: 1px solid #095192; color: #095192; border-radius: 4px; font-size: 15px; font-weight: 600; letter-spacing: 0.4px; cursor: pointer">NO, STAY</div>
+          <div onClick="{{ onConfirmSkip }}" style="padding: 13px 22px; background: #095192; border: 1px solid #095192; color: #FFFFFF; border-radius: 4px; font-size: 15px; font-weight: 600; letter-spacing: 0.4px; cursor: pointer">YES, CONTINUE</div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- SUMMARY MODAL -->
+  <sc-if value="{{ summaryOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position: absolute; inset: 0; background: rgba(11,42,74,0.28); z-index: 52; display: flex; align-items: center; justify-content: center; padding: 24px">
+      <div style="width: 600px; max-width: 100%; background: #FFFFFF; border-radius: 4px; box-shadow: 0 20px 48px rgba(11,42,74,0.24); padding: 26px 28px 24px">
+        <div style="display: flex; align-items: center; gap: 12px">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="{{ summaryIconColor }}" stroke-width="1.7"><path d="{{ summaryIconPath }}"></path></svg>
+          <span style="font-size: 22px; font-weight: 600">{{ summaryTitle }}</span>
+        </div>
+        <div style="font-size: 17px; color: #5B6B7B; margin-top: 14px; line-height: 1.55">{{ summaryBody }}</div>
+        <div style="height: 56px"></div>
+        <div style="display: flex; justify-content: flex-end; gap: 12px">
+          <div onClick="{{ onRestart }}" style="padding: 13px 22px; border: 1px solid #095192; color: #095192; border-radius: 4px; font-size: 15px; font-weight: 600; cursor: pointer">Restart prototype</div>
+          <div onClick="{{ onCloseSummary }}" style="padding: 13px 22px; background: #095192; border: 1px solid #095192; color: #FFFFFF; border-radius: 4px; font-size: 15px; font-weight: 600; cursor: pointer">{{ summaryPrimaryLabel }}</div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- TOASTS -->
+  <div style="position: absolute; top: 14px; right: 18px; z-index: 60; display: flex; flex-direction: column; gap: 10px; align-items: flex-end; pointer-events: none">
+    <sc-for list="{{ toasts }}" as="t" hint-placeholder-count="0">
+      <div style="background: #FFFFFF; border: 1px solid #E3E8ED; border-left: 4px solid #008774; border-radius: 4px; display: flex; align-items: center; gap: 12px; padding: 13px 16px; max-width: 460px; box-shadow: 0 8px 24px rgba(0,0,0,0.16); animation: toastIn 160ms cubic-bezier(0.2,0,0,1); pointer-events: auto">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#008774" stroke-width="1.7" style="flex: 0 0 18px"><path d="M12 21a9 9 0 100-18 9 9 0 000 18M8.4 12.2l2.5 2.5 4.7-5.1"></path></svg>
+        <span style="font-size: 14px; line-height: 1.45">{{ t.text }}</span>
+        <svg onClick="{{ t.onClose }}" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8A949E" stroke-width="1.8" style="cursor: pointer; flex: 0 0 16px"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+      </div>
+    </sc-for>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;nextBinRule&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;Earliest expiration, then partials&quot;, &quot;Bin order&quot;], &quot;default&quot;: &quot;Earliest expiration, then partials&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Behaviour&quot;}}">
+class Component extends DCLogic {
+  state = {
+    step: 'configure',
+    activeProduct: 1,
+    configOpen: true,
+    configured: false,
+    searchText: 'leuco',
+    invVials: '9.5', dispMg: '950', volMl: '95',
+    currentDoor: 1, currentBin: 32,
+    doorOpen: false,
+    dispensedIds: [],
+    sel: [],
+    banner: 0,
+    toasts: [],
+    locOpen: false,
+    prodOpen: false,
+    prodSearch: '',
+    prodStatus: 'All',
+    prodDoor: 'All',
+    doneProducts: [],
+    skippedProducts: [],
+    alertOpen: false,
+    pendingLoc: null,
+    summaryOpen: false,
+    skipAskOpen: false,
+    summaryKind: 'done',
+    kb: false,
+    scanText: '',
+    dirty: false,
+    doorPrompted: false,
+    binBaseline: [],
+    binBaseOverrides: {},
+    editId: null,
+    draft: null,
+    overrides: {},
+    hover: null,
+    suggestedOpen: true,
+    toastSeq: 0
+  };
+
+  catalog = {
+    1: {
+      name: 'Leucovorin calcium 200 mg vial',
+      upper: 'LEUCOVORIN CALCIUM 200 MG VIAL',
+      sub: 'leucovorin calcium 200 mg solution for injection',
+      ndc: '2502181430', doseType: 'MDV', source: 'Multiple', medOrder: 'Leucovorin Calcium',
+      invType: 'Purchased', route: 'Intravenous (IV)',
+      target: 950, doseText: '9.5 vials / 950 mg / 95 mL',
+      instructions: "Each 200 mg vial of leucovorin for injection, when reconstituted with 20 mL of sterile diluent, contains leucovorin (as the calcium salt) 10 mg/mL.",
+      locations: [
+    { door: 1, bin: 32, inventory: 10, size: '1×1', expiration: '03/2026' },
+    { door: 2, bin: 10, inventory: 12, size: '1×1', expiration: '04/2026' },
+    { door: 2, bin: 22, inventory: 8,  size: '2×2', expiration: '05/2026' },
+    { door: 3, bin: 10, inventory: 10, size: '1×1', expiration: '05/2026' }
+      ],
+      pool: [
+    { id: 1,  serial: 'DEMO0503382101', lot: 'LOT-12', exp: 'BUD 03/07/2026 · 20:58', exp2: 'Expires 05/31/2031', soon: true,  badges: ['Partial', 'Expiring soon'], door: 1, bin: 32, source: 'BioCare', vials: '0.5', mg: 50,  ml: 5 },
+    { id: 2,  serial: 'DEMO0503382104', lot: 'LOT-12', exp: '04/10/2026', exp2: '', soon: true,  badges: ['Expiring soon'], door: 1, bin: 32, source: 'BioCare', vials: '1', mg: 100, ml: 10 },
+    { id: 3,  serial: 'DEMO0503382110', lot: 'LOT-12', exp: 'BUD 04/15/2026 · 11:43', exp2: 'Expires 05/31/2031', soon: true,  badges: ['Partial', 'Expiring soon'], door: 2, bin: 10, source: 'BioCare', vials: '0.5', mg: 50,  ml: 5 },
+    { id: 4,  serial: 'DEMO0503382113', lot: 'LOT-12', exp: '04/28/2026', exp2: '', soon: true,  badges: ['Expiring soon'], door: 2, bin: 10, source: 'BioCare', vials: '1', mg: 100, ml: 10 },
+    { id: 5,  serial: 'DEMO0503382122', lot: 'LOT-13', exp: '05/09/2026', exp2: '', soon: true,  badges: ['Expiring soon'], door: 2, bin: 22, source: 'BioCare', vials: '1', mg: 100, ml: 10 },
+    { id: 6,  serial: 'DEMO0503382128', lot: 'LOT-13', exp: '05/09/2026', exp2: '', soon: true,  badges: ['Expiring soon'], door: 3, bin: 10, source: 'Syncora', vials: '1', mg: 100, ml: 10 },
+    { id: 7,  serial: 'DEMO0503382107', lot: 'LOT-14', exp: '06/22/2026', exp2: '', soon: false, badges: [], door: 1, bin: 32, source: 'Syncora', vials: '1', mg: 100, ml: 10 },
+    { id: 8,  serial: 'DEMO0503382116', lot: 'LOT-15', exp: '07/14/2026', exp2: '', soon: false, badges: [], door: 2, bin: 10, source: 'Syncora', vials: '1', mg: 100, ml: 10 },
+    { id: 9,  serial: 'DEMO0503382119', lot: 'LOT-15', exp: '07/14/2026', exp2: '', soon: false, badges: [], door: 2, bin: 10, source: 'Syncora', vials: '1', mg: 100, ml: 10 },
+    { id: 10, serial: 'DEMO0503382125', lot: 'LOT-16', exp: '08/30/2026', exp2: '', soon: false, badges: [], door: 2, bin: 22, source: 'BioCare', vials: '1', mg: 100, ml: 10 },
+    { id: 11, serial: 'DEMO0503382131', lot: 'LOT-16', exp: '09/12/2026', exp2: '', soon: false, badges: [], door: 3, bin: 10, source: 'Syncora', vials: '1', mg: 100, ml: 10 },
+    { id: 12, serial: 'DEMO0503382134', lot: 'LOT-16', exp: '09/12/2026', exp2: '', soon: false, badges: [], door: 3, bin: 10, source: 'Syncora', vials: '1', mg: 100, ml: 10 }
+      ]
+    },
+    2: {
+      name: 'Avastin 400 mg/16 mL vial',
+      upper: 'AVASTIN 400 MG/16 ML VIAL',
+      sub: 'bevacizumab 400 mg/16 mL solution for injection',
+      ndc: '11987654321', doseType: 'SDV', source: 'BioCare', medOrder: 'Bevacizumab',
+      invType: 'Purchased', route: 'Intravenous (IV)',
+      target: 400, doseText: '1 vial / 400 mg / 16 mL',
+      instructions: 'Single-dose vial. Withdraw the full 16 mL and dilute in 100 mL of 0.9% sodium chloride before infusion. Any unused portion must be discarded — partial Avastin vials cannot be returned to inventory.',
+      locations: [
+        { door: 2, bin: 10, inventory: 6, size: '1×1', expiration: '06/2026' }
+      ],
+      pool: [
+        { id: 201, serial: 'AVA0771204411', lot: 'LOT-A21', exp: '06/18/2026', exp2: '', soon: true,  badges: ['Expiring soon'], door: 2, bin: 10, source: 'BioCare', vials: '1', mg: 400, ml: 16 },
+        { id: 202, serial: 'AVA0771204417', lot: 'LOT-A21', exp: '09/02/2026', exp2: '', soon: false, badges: [], door: 2, bin: 10, source: 'BioCare', vials: '1', mg: 400, ml: 16 },
+        { id: 203, serial: 'AVA0771204423', lot: 'LOT-A24', exp: '11/26/2026', exp2: '', soon: false, badges: [], door: 2, bin: 10, source: 'BioCare', vials: '1', mg: 400, ml: 16 },
+        { id: 204, serial: 'AVA0771204430', lot: 'LOT-A24', exp: '01/14/2027', exp2: '', soon: false, badges: [], door: 2, bin: 10, source: 'Syncora', vials: '1', mg: 400, ml: 16 }
+      ]
+    },
+    3: {
+      name: 'Rituximab 500 mg/50 mL vial',
+      upper: 'RITUXIMAB 500 MG/50 ML VIAL',
+      sub: 'rituximab 500 mg/50 mL solution for injection',
+      ndc: '50242005301', doseType: 'MDV', source: 'Syncora', medOrder: 'Rituximab',
+      invType: 'Purchased', route: 'Intravenous (IV)',
+      target: 1000, doseText: '2 vials / 1000 mg / 100 mL',
+      instructions: 'Multi-dose vial. Dilute to a final concentration of 1 to 4 mg/mL in 0.9% sodium chloride. A broached vial is stable for 24 hours refrigerated — record the partial back to its bin immediately after withdrawal.',
+      locations: [
+        { door: 1, bin: 18, inventory: 5, size: '2×2', expiration: '08/2026' }
+      ],
+      pool: [
+        { id: 301, serial: 'RTX0910556201', lot: 'LOT-R08', exp: 'BUD 08/04/2026 · 09:12', exp2: 'Expires 02/28/2028', soon: true, badges: ['Partial', 'Expiring soon'], door: 1, bin: 18, source: 'Syncora', vials: '0.5', mg: 250, ml: 25 },
+        { id: 302, serial: 'RTX0910556208', lot: 'LOT-R08', exp: '08/21/2026', exp2: '', soon: true,  badges: ['Expiring soon'], door: 1, bin: 18, source: 'Syncora', vials: '1', mg: 500, ml: 50 },
+        { id: 303, serial: 'RTX0910556214', lot: 'LOT-R11', exp: '12/09/2026', exp2: '', soon: false, badges: [], door: 1, bin: 18, source: 'Syncora', vials: '1', mg: 500, ml: 50 },
+        { id: 304, serial: 'RTX0910556220', lot: 'LOT-R11', exp: '12/09/2026', exp2: '', soon: false, badges: [], door: 1, bin: 18, source: 'BioCare', vials: '1', mg: 500, ml: 50 },
+        { id: 305, serial: 'RTX0910556226', lot: 'LOT-R12', exp: '03/30/2027', exp2: '', soon: false, badges: [], door: 1, bin: 18, source: 'BioCare', vials: '1', mg: 500, ml: 50 }
+      ]
+    }
+    ,
+    4: {
+      name: 'Paclitaxel 300 mg/50 mL vial',
+      upper: 'PACLITAXEL 300 MG/50 ML VIAL',
+      sub: 'paclitaxel 300 mg/50 mL solution for injection',
+      ndc: '55390030450', doseType: 'SDV', source: 'BioCare', medOrder: 'Paclitaxel',
+      invType: 'Purchased', route: 'Intravenous (IV)',
+      target: 600, doseText: '2 vials / 600 mg / 100 mL',
+      instructions: 'Single-dose vial. Dilute to a final concentration of 0.3 to 1.2 mg/mL and administer through an in-line 0.22 micron filter. Discard any unused portion.',
+      locations: [
+        { door: 3, bin: 4,  inventory: 4, size: '2×2', expiration: '07/2026' },
+        { door: 3, bin: 12, inventory: 3, size: '1×1', expiration: '10/2026' }
+      ],
+      pool: [
+        { id: 401, serial: 'PAC0334981102', lot: 'LOT-P05', exp: '07/12/2026', exp2: '', soon: true,  badges: ['Expiring soon'], door: 3, bin: 4,  source: 'BioCare', vials: '1', mg: 300, ml: 50 },
+        { id: 402, serial: 'PAC0334981108', lot: 'LOT-P05', exp: '10/03/2026', exp2: '', soon: false, badges: [], door: 3, bin: 4,  source: 'BioCare', vials: '1', mg: 300, ml: 50 },
+        { id: 403, serial: 'PAC0334981115', lot: 'LOT-P09', exp: '10/28/2026', exp2: '', soon: false, badges: [], door: 3, bin: 12, source: 'Syncora', vials: '1', mg: 300, ml: 50 },
+        { id: 404, serial: 'PAC0334981121', lot: 'LOT-P09', exp: '02/17/2027', exp2: '', soon: false, badges: [], door: 3, bin: 12, source: 'Syncora', vials: '1', mg: 300, ml: 50 }
+      ]
+    }
+  };
+
+  get product() { return this.catalog[this.state.activeProduct]; }
+  get pool() { return this.product.pool; }
+  get locations() { return this.product.locations; }
+  get target() { return this.product.target; }
+
+  get products() {
+    return [1, 2, 3, 4].map(id => {
+      const c = this.catalog[id];
+      const doors = c.locations.map(l => l.door).filter((d, i, a) => a.indexOf(d) === i);
+      return {
+        id, name: c.name, ndc: c.ndc, doseType: c.doseType, locs: c.locations.length, doors,
+        where: c.locations.length === 1 ? 'Door ' + c.locations[0].door + ' · Bin ' + c.locations[0].bin : c.locations.length + ' locations'
+      };
+    });
+  }
+
+  navItems = [
+    { label: 'Home', d: 'M4 11l8-7 8 7v9H4z' },
+    { label: 'Dispense', d: 'M4 5h16v6H4z M8 11v8 M16 11v8', active: true },
+    { label: 'Order', d: 'M6 3h12v18H6z M9 8h6 M9 12h6' },
+    { label: 'Restock', d: 'M4 8l8-5 8 5v8l-8 5-8-5z' },
+    { label: 'Audit', d: 'M6 3h9l3 3v15H6z M9 12h6 M9 16h4' },
+    { label: 'Inventory', d: 'M4 7h16v13H4z M4 7l2-4h12l2 4' },
+    { label: 'Formulary', d: 'M5 4h11a3 3 0 013 3v13H8a3 3 0 01-3-3z' },
+    { label: 'Patient', d: 'M12 12a4 4 0 100-8 4 4 0 000 8 M5 20a7 7 0 0114 0' },
+    { label: 'Transfer', d: 'M4 8h13l-3-3 M20 16H7l3 3' },
+    { label: 'Reporting', d: 'M4 20V9 M10 20V4 M16 20v-8 M22 20H2' }
+  ];
+
+  toast(text) {
+    const id = this.state.toastSeq + 1;
+    this.setState(s => ({ toastSeq: id, toasts: [...s.toasts, { id, text }] }));
+    setTimeout(() => this.setState(s => ({ toasts: s.toasts.filter(t => t.id !== id) })), 5000);
+  }
+
+  dispensedItems() {
+    return this.state.dispensedIds.map(id => this.pool.find(p => p.id === id));
+  }
+
+  mgOf(p) {
+    const ov = this.state.overrides[p.id];
+    return ov && ov.mg != null ? Number(ov.mg) || 0 : p.mg;
+  }
+
+  totalMg() {
+    return this.dispensedItems().reduce((a, b) => a + this.mgOf(b), 0);
+  }
+
+  addIds(ids) {
+    if (!ids.length) return;
+    let running = this.totalMg();
+    const accepted = [];
+    ids.forEach(id => {
+      const item = this.pool.find(p => p.id === id);
+      if (running + item.mg <= this.target) { accepted.push(id); running += item.mg; }
+    });
+    if (accepted.length < ids.length) this.toast('Configured dose reached. Extra serials were not added.');
+    if (!accepted.length) return;
+    this.setState(s => ({ dispensedIds: [...s.dispensedIds, ...accepted], sel: [], dirty: true, banner: accepted.length, doorOpen: true }));
+  }
+
+  switchTo(loc) {
+    const prev = 'Door ' + this.state.currentDoor + ' · Bin ' + this.state.currentBin;
+    const hadItems = this.dispensedItems().length > 0;
+    this.setState(s => ({ currentDoor: loc.door, currentBin: loc.bin, locOpen: false, alertOpen: false, pendingLoc: null, sel: [], dirty: false, banner: 0, doorOpen: true, binBaseline: s.dispensedIds, binBaseOverrides: s.overrides }));
+    this.toast('Door ' + loc.door + ' is unlocked now');
+  }
+
+  nextLoc(ids) {
+    const st = this.state;
+    const rank = l => {
+      const items = this.pool.filter(p => p.door === l.door && p.bin === l.bin && !ids.includes(p.id));
+      if (!items.length) return null;
+      const soonest = items.reduce((a, p) => Math.min(a, this.expDays(p)), Infinity);
+      const partial = items.some(p => Number(p.vials) % 1 !== 0) ? 0 : 1;
+      return { l: l, soonest: soonest, partial: partial };
+    };
+    const candidates = this.locations
+      .filter(l => !(l.door === st.currentDoor && l.bin === st.currentBin))
+      .map(rank).filter(Boolean);
+    if (this.props.nextBinRule !== 'Bin order') candidates.sort((a, b) => a.soonest - b.soonest || a.partial - b.partial);
+    return candidates.length ? candidates[0].l : null;
+  }
+
+  expDays(p) {
+    const m = String(p.exp).match(/(\d{2})\/(\d{2})\/(\d{4})/);
+    return m ? new Date(+m[3], +m[1] - 1, +m[2]).getTime() : Infinity;
+  }
+
+  finish() {
+    const id = this.state.activeProduct;
+    const prod = this.product;
+    const total = this.totalMg();
+    const bins = this.dispensedItems().map(p => p.door + '-' + p.bin).filter((k, i, a) => a.indexOf(k) === i).length;
+    this.setState(s => ({
+      locOpen: false, doorOpen: false, sel: [], dirty: false,
+      doneProducts: s.doneProducts.includes(id) ? s.doneProducts : [...s.doneProducts, id]
+    }), () => {
+      this.toast(prod.name + ' is successfully dispensed');
+      const next = this.nextProductId();
+      if (next) this.openProduct(next);
+      else this.setState({ summaryOpen: true, summaryKind: 'workflow' });
+    });
+  }
+
+  skipProduct() {
+    const id = this.state.activeProduct;
+    this.setState(s => ({
+      skipAskOpen: false, locOpen: false, doorOpen: false, sel: [], dirty: false,
+      skippedProducts: s.skippedProducts.includes(id) ? s.skippedProducts : [...s.skippedProducts, id]
+    }), () => {
+      const next = this.nextProductId();
+      if (next) this.openProduct(next);
+      else this.setState({ summaryOpen: true, summaryKind: 'workflow' });
+    });
+  }
+
+  nextProductId() {
+    const st = this.state;
+    const ids = [1, 2, 3, 4];
+    const open = id => id !== st.activeProduct && !st.doneProducts.includes(id) && !st.skippedProducts.includes(id);
+    return ids.filter(id => id > st.activeProduct).find(open) || ids.find(open) || null;
+  }
+
+  openProduct(id) {
+    const c = this.catalog[id];
+    const loc = c.locations[0];
+    const doorChanged = loc.door !== this.state.currentDoor;
+    this.setState(s => ({ skippedProducts: s.skippedProducts.filter(x => x !== id) }));
+    this.setState({
+      activeProduct: id, dispensedIds: [], sel: [], overrides: {}, editId: null, draft: null,
+      dirty: false, banner: 0, summaryOpen: false, locOpen: false, prodOpen: false, doorOpen: false,
+      currentDoor: loc.door, currentBin: loc.bin, binBaseline: [], binBaseOverrides: {}
+    });
+    if (doorChanged) this.toast('Door ' + loc.door + ' is unlocked now');
+  }
+
+  goToBin(loc) {
+    if (loc.door === this.state.currentDoor) {
+      this.setState(s => ({ currentBin: loc.bin, sel: [], dirty: false, banner: 0, locOpen: false, binBaseline: s.dispensedIds, binBaseOverrides: s.overrides }));
+      return;
+    }
+    this.selectLocation(loc);
+  }
+
+  dispenseAndContinue() {
+    const st = this.state;
+    if (this.totalMg() < this.target) {
+      const next = this.nextLoc(st.dispensedIds);
+      if (next) this.goToBin(next);
+      else this.toast(this.totalMg() + ' of ' + this.target + ' mg picked. The full configured dose must be dispensed before continuing.');
+      return;
+    }
+    let running = this.totalMg();
+    const accepted = [];
+    st.sel.forEach(id => {
+      const it = this.pool.find(p => p.id === id);
+      if (running + it.mg <= this.target) { accepted.push(id); running += it.mg; }
+    });
+    if (accepted.length < st.sel.length) this.toast('Configured dose reached. Extra serials were not added.');
+    const ids = st.dispensedIds.concat(accepted);
+    const where = 'Door ' + st.currentDoor + ', Bin ' + st.currentBin;
+    const next = running >= this.target ? null : this.nextLoc(ids);
+    this.setState({ dispensedIds: ids, sel: [], dirty: false, banner: accepted.length });
+    if (accepted.length) this.toast(accepted.length + (accepted.length === 1 ? ' serial' : ' serials') + ' dispensed in ' + where);
+    if (running >= this.target) { this.finish(); return; }
+    if (next) { this.goToBin(next); return; }
+    this.toast(running + ' of ' + this.target + ' mg picked. The full configured dose must be dispensed before continuing.');
+  }
+
+  skipAndContinue() {
+    this.setState({ skipAskOpen: true });
+  }
+
+  selectLocation(loc) {
+    this.proceedTo(loc);
+  }
+
+  proceedTo(loc) {
+    if (loc.door !== this.state.currentDoor && this.state.doorOpen && !this.state.doorPrompted) {
+      this.setState({ doorPrompted: true });
+      this.setState({ alertOpen: true, pendingLoc: loc });
+      return;
+    }
+    this.switchTo(loc);
+  }
+
+  submitScan() {
+    const st = this.state;
+    const q = (st.scanText || '').trim().toUpperCase();
+    if (!q) return;
+    const hit = this.pool.find(p => p.serial.toUpperCase() === q && !st.dispensedIds.includes(p.id));
+    if (!hit) {
+      const other = [1, 2, 3, 4].find(id => id !== st.activeProduct && this.catalog[id].pool.some(p => p.serial.toUpperCase() === q));
+      if (other) { this.toast('That serial is ' + this.catalog[other].name + ' — you are dispensing ' + this.product.name); return; }
+      this.toast('Serial not found in available inventory');
+      return;
+    }
+    if (hit.door !== st.currentDoor || hit.bin !== st.currentBin) {
+      this.toast('That serial is in Door ' + hit.door + ' · Bin ' + hit.bin + '. Switch location first.');
+      return;
+    }
+    this.setState({ scanText: '' });
+    this.addIds([hit.id]);
+  }
+
+  renderVals() {
+    const st = this.state;
+    const dispensed = this.dispensedItems();
+    const totalMg = this.totalMg();
+    const complete = totalMg >= this.target;
+    const editing = st.editId != null;
+
+    const suggested = this.pool.filter(p => !st.dispensedIds.includes(p.id));
+    const suggestedRows = suggested.map(p => {
+      const active = p.door === st.currentDoor && p.bin === st.currentBin;
+      const checked = st.sel.includes(p.id);
+      return {
+        serial: p.serial, lot: p.lot, exp: p.exp, exp2: p.exp2, badges: p.badges,
+        source: p.source, door: p.door, bin: p.bin, vials: p.vials, mg: p.mg, ml: p.ml,
+        cursor: active ? 'pointer' : 'not-allowed',
+        bg: checked ? '#E9F1F8' : (active ? '#FFFFFF' : '#F7F8F9'),
+        fg: active ? '#25282A' : '#9FA9B7',
+        expColor: !active ? '#9FA9B7' : (String(p.exp).indexOf('BUD') === 0 ? '#A36E1E' : '#25282A'),
+        boxBorder: active ? (checked ? '#095192' : '#BCC3CD') : '#DADEE3',
+        boxBg: checked ? '#095192' : '#FFFFFF',
+        checkOpacity: checked ? 1 : 0,
+        onToggle: active ? () => this.setState(s => ({ sel: s.sel.includes(p.id) ? s.sel.filter(x => x !== p.id) : [...s.sel, p.id] })) : () => {},
+        addBorder: active ? '#095192' : '#DADEE3',
+        addColor: active ? '#095192' : '#9FA9B7',
+        onAdd: active ? e => { e.stopPropagation(); this.addIds([p.id]); } : e => { e.stopPropagation(); this.toast('Switch to Door ' + p.door + ' · Bin ' + p.bin + ' to dispense this serial'); }
+      };
+    });
+
+    const selectableIds = suggested.filter(p => p.door === st.currentDoor && p.bin === st.currentBin).map(p => p.id);
+    const allSelected = selectableIds.length > 0 && selectableIds.every(id => st.sel.includes(id));
+    const someSelected = !allSelected && selectableIds.some(id => st.sel.includes(id));
+
+    const binAdded = dispensed.some(p => p.door === st.currentDoor && p.bin === st.currentBin);
+    const lastBin = !this.nextLoc(st.dispensedIds);
+    const prod = this.product;
+    const isLastProduct = this.products.findIndex(p => p.id === st.activeProduct) === this.products.length - 1;
+    const nextId = this.nextProductId();
+    let projected = totalMg;
+    st.sel.forEach(id => { const it = this.pool.find(p => p.id === id); if (it && projected + it.mg <= prod.target) projected += it.mg; });
+    const doseWillBeMet = projected >= prod.target;
+    const endsRun = isLastProduct && doseWillBeMet;
+    const skipEndsRun = isLastProduct && !this.nextLoc(st.dispensedIds);
+    const canDispense = !editing && (complete || !lastBin);
+    const canSkip = !editing && dispensed.length === 0 && Object.keys(st.overrides).length === 0;
+
+    const inBin = p => p.door === st.currentDoor && p.bin === st.currentBin;
+    const dispensedRows = dispensed.slice().sort((a, b) => (inBin(b) ? 1 : 0) - (inBin(a) ? 1 : 0)).map(p => {
+      const can = p.door === st.currentDoor && p.bin === st.currentBin;
+      const ov = st.overrides[p.id] || {};
+      const editing = st.editId === p.id;
+      const draft = editing && st.draft ? st.draft : {};
+      const vials = ov.vials != null ? ov.vials : p.vials;
+      const mg = ov.mg != null ? ov.mg : p.mg;
+      const ml = ov.ml != null ? ov.ml : p.ml;
+      const mgPerVial = p.mg / Number(p.vials);
+      const mlPerVial = p.ml / Number(p.vials);
+      const shownVials = Number(editing ? draft.vials : vials) || 0;
+      const shownMg = Number(editing ? draft.mg : mg) || 0;
+      const waste = Math.max(0, Math.round((Math.ceil(shownVials) * mgPerVial - shownMg) * 100) / 100);
+      const derive = (field, raw) => {
+        const n = Number(raw);
+        const d = { vials: String(vials), mg: String(mg), ml: String(ml) };
+        d[field] = raw;
+        if (!isNaN(n) && raw !== '') {
+          const maxV = Number(p.vials);
+          let v = field === 'vials' ? n : (field === 'mg' ? n / mgPerVial : n / mlPerVial);
+          const clamped = v < 0 || v > maxV;
+          v = Math.min(maxV, Math.max(0, v));
+          const r = x => String(Math.round(x * 100) / 100);
+          if (field !== 'vials' || clamped) d.vials = r(v);
+          if (field !== 'mg' || clamped) d.mg = r(v * mgPerVial);
+          if (field !== 'ml' || clamped) d.ml = r(v * mlPerVial);
+        }
+        this.setState({ draft: d });
+      };
+      return {
+        serial: p.serial, lot: p.lot, exp: p.exp, exp2: p.exp2, badges: p.badges,
+        source: p.source, door: p.door, bin: p.bin, vials: vials, mg: mg, ml: ml,
+        waste: waste,
+        editing, notEditing: !editing,
+        dVials: draft.vials != null ? draft.vials : '',
+        dMg: draft.mg != null ? draft.mg : '',
+        dMl: draft.ml != null ? draft.ml : '',
+        editColor: '#095192',
+        editCursor: 'pointer',
+        onEdit: () => this.setState({ editId: p.id, draft: { vials: String(vials), mg: String(mg), ml: String(ml) } }),
+        onDraftVials: e => derive('vials', e.target.value),
+        onDraftMg: e => derive('mg', e.target.value),
+        onDraftMl: e => derive('ml', e.target.value),
+        onSave: () => {
+          const next = Number(this.state.draft.mg) || 0;
+          const others = this.dispensedItems().reduce((a, x) => a + (x.id === p.id ? 0 : this.mgOf(x)), 0);
+          const over = others + next - this.target;
+          if (over > 0) { this.toast('That would exceed the configured dose by ' + Math.round(over * 100) / 100 + ' mg'); return; }
+          this.setState(s => ({
+            overrides: Object.assign({}, s.overrides, { [p.id]: { vials: s.draft.vials, mg: next, ml: s.draft.ml } }),
+            editId: null, draft: null, dirty: true
+          }));
+        },
+        onCancel: () => this.setState({ editId: null, draft: null }),
+        expColor: String(p.exp).indexOf('BUD') === 0 ? '#A36E1E' : '#25282A',
+        removeColor: can ? '#D9342B' : '#9FA9B7',
+        removeIconColor: can ? '#D9342B' : '#C0C6CE',
+        removeCursor: can ? 'pointer' : 'not-allowed',
+        onRemove: can ? () => this.setState(s => ({ dispensedIds: s.dispensedIds.filter(x => x !== p.id), dirty: true, banner: 0 })) : () => this.toast('Switch to Door ' + p.door + ' · Bin ' + p.bin + ' to remove this serial')
+      };
+    });
+
+    const usedDoses = {};
+    dispensed.forEach(p => { const k = p.door + '-' + p.bin; usedDoses[k] = (usedDoses[k] || 0) + p.mg; });
+
+    const locationRows = this.locations.map(l => {
+      const isCurrent = l.door === st.currentDoor && l.bin === st.currentBin;
+      const dose = usedDoses[l.door + '-' + l.bin];
+      return {
+        door: l.door, bin: l.bin, size: l.size, expiration: l.expiration,
+        inventory: l.inventory,
+        dose: dose ? dose + ' mg' : '—',
+        bg: isCurrent ? '#F8FAFC' : '#FFFFFF',
+        action: isCurrent ? 'Current bin' : 'Select',
+        actionColor: isCurrent ? '#9FA9B7' : '#095192',
+        actionCursor: isCurrent ? 'default' : 'pointer',
+        onSelect: isCurrent ? () => {} : () => this.selectLocation(l)
+      };
+    });
+
+    const guidedPos = this.locations.findIndex(l => l.door === st.currentDoor && l.bin === st.currentBin);
+    const multiBin = this.locations.length > 1;
+
+    const statusFor = p => {
+      if (st.doneProducts.includes(p.id)) return 'Dispensed';
+      if (st.skippedProducts.includes(p.id)) return 'Skipped';
+      if (p.id === st.activeProduct) return 'Current';
+      return 'Pending';
+    };
+    const chip = s => s === 'Current' ? { bg: '#E9F1F8', fg: '#095192' }
+      : s === 'Dispensed' ? { bg: '#E6F4F1', fg: '#008774' }
+      : s === 'Skipped' ? { bg: '#FCF6E3', fg: '#8A6A00' }
+      : { bg: '#EEF1F6', fg: '#5B6B7B' };
+    const q = st.prodSearch.trim().toLowerCase();
+    const productRows = this.products
+      .map((p, i) => ({ p, i, status: statusFor(p) }))
+      .filter(({ p, status }) => {
+        if (q && !(p.name.toLowerCase().includes(q) || p.ndc.includes(q))) return false;
+        if (st.prodStatus !== 'All' && status !== st.prodStatus) return false;
+        if (st.prodDoor !== 'All' && !p.doors.includes(Number(st.prodDoor.replace('Door ', '')))) return false;
+        return true;
+      })
+      .map(({ p, i, status }) => {
+        const c = chip(status);
+        return {
+          name: p.name, ndc: p.ndc, doseType: p.doseType,
+          where: p.where || (p.locs + ' locations'),
+          status,
+          showChip: status !== 'Pending',
+          chipBg: c.bg, chipFg: c.fg,
+          bg: status === 'Current' ? '#F4F8FC' : (status === 'Dispensed' ? '#F7F8F9' : '#FFFFFF'),
+          border: status === 'Current' ? '#095192' : '#E3E8ED',
+          cursor: status === 'Current' || status === 'Dispensed' ? 'default' : 'pointer',
+          onJump: status === 'Current'
+            ? () => this.setState({ prodOpen: false })
+            : (status === 'Dispensed'
+                ? () => this.toast(p.name + ' is already dispensed and cannot be reopened')
+                : () => {
+                    if (this.dispensedItems().length && !complete) { this.toast('Dispense the full configured dose before switching products'); return; }
+                    this.openProduct(p.id);
+                  })
+        };
+      });
+
+    const press = ch => () => this.setState(s => ({ scanText: ch === '<' ? s.scanText.slice(0, -1) : s.scanText + ch }));
+    const mkRow = str => str.split('').map(c => ({ label: c, onPress: press(c) }));
+    const kbRows = [
+      mkRow('1234567890'),
+      mkRow('QWERTYUIOP'),
+      mkRow('ASDFGHJKL'),
+      [...mkRow('ZXCVBNM'), { label: '⌫', onPress: press('<') }, { label: 'Enter', onPress: () => this.submitScan() }]
+    ];
+
+    const currentLoc = this.locations.find(l => l.door === st.currentDoor && l.bin === st.currentBin);
+
+    return {
+      rail: this.navItems.map(n => ({
+        label: n.label, d: n.d,
+        color: n.active ? '#FFFFFF' : '#BFD5E8',
+        bg: n.active ? '#073C6E' : 'transparent',
+        mark: n.active ? '#FFFFFF' : 'transparent'
+      })),
+      prodName: prod.name, prodUpper: prod.upper, prodSub: prod.sub, prodNdc: prod.ndc,
+      prodDoseType: prod.doseType, prodSource: prod.source, prodMedOrder: prod.medOrder,
+      prodInvType: prod.invType, prodRoute: prod.route, prodDoseText: prod.doseText,
+      prodInstructions: prod.instructions, prodTargetMg: prod.target + ' mg',
+      shortfall: prod.pool.reduce((a, p) => a + p.mg, 0) < prod.target,
+      shortfallText: 'Available ' + prod.pool.reduce((a, p) => a + p.mg, 0) + ' mg of ' + prod.target + ' mg configured — this order cannot be filled',
+      dispensedOfTarget: totalMg + ' mg',
+      isConfigure: st.step === 'configure',
+      isScan: st.step === 'scan',
+      configOpen: st.step === 'configure' && st.configOpen,
+
+      searchText: st.searchText,
+      onSearch: e => this.setState({ searchText: e.target.value }),
+      onClearSearch: () => this.setState({ searchText: '' }),
+      products: [
+        { name: 'Leucovorin calcium 200 mg vial', tags: ['MDV', 'CLIMATE'], ndc: '2502181430', inventory: '40 vials / 4000 mg / 400 mL', invType: 'Purchased', doseType: 'MDV', headBg: '#E9F1F8', bodyBg: '#FFFFFF', titleColor: '#25282A', bodyColor: '#25282A', chevron: '#095192', cursor: 'pointer', onOpen: () => this.setState({ configOpen: true }) },
+        { name: 'Carboplatin 150 mg/15 mL vial', tags: ['MDV', 'CIV'], ndc: '16729029533', inventory: '0 vials / 0 mg / 0 mL', invType: 'Specialty pharmacy', doseType: 'MDV', headBg: '#F7F8F9', bodyBg: '#F7F8F9', titleColor: '#9FA9B7', bodyColor: '#9FA9B7', chevron: '#9FA9B7', cursor: 'not-allowed', onOpen: () => {} },
+        { name: 'Oxaliplatin 100 mg/20 mL vial', tags: ['SDV'], ndc: '00703424601', inventory: '0 vials / 0 mg / 0 mL', invType: 'Purchased', doseType: 'SDV', headBg: '#F7F8F9', bodyBg: '#F7F8F9', titleColor: '#9FA9B7', bodyColor: '#9FA9B7', chevron: '#9FA9B7', cursor: 'not-allowed', onOpen: () => {} }
+      ],
+      configuredCount: st.configured ? 1 : 0,
+      hasConfigured: st.configured,
+      nothingConfigured: !st.configured,
+      continueBg: st.configured ? '#095192' : '#9FA9B7',
+      continueCursor: st.configured ? 'pointer' : 'not-allowed',
+      onGoToScan: () => { if (st.configured) this.setState({ step: 'scan' }); },
+      onRemoveConfigured: () => this.setState({ configured: false, configOpen: false }),
+      onEditDose: () => this.setState({ configOpen: true }),
+
+      configMetrics: [
+        { label: 'Med order (mg)', value: String(prod.target) },
+        { label: 'Dispensed (mg)', value: String(totalMg) },
+        { label: 'Remaining (mg)', value: String(Math.max(0, prod.target - totalMg)) },
+        { label: 'Configured (mg)', value: st.configured ? String(prod.target) : '0' }
+      ],
+      invVials: st.invVials, dispMg: st.dispMg, volMl: st.volMl,
+      onInvVials: e => this.setState({ invVials: e.target.value }),
+      onDispMg: e => this.setState({ dispMg: e.target.value }),
+      onVolMl: e => this.setState({ volMl: e.target.value }),
+      onClearConfig: () => this.setState({ invVials: '', dispMg: '', volMl: '' }),
+      onCloseConfig: () => this.setState({ configOpen: false }),
+      onSaveConfig: () => this.setState({ configOpen: false, configured: true }),
+      onBackToConfigure: () => this.setState({ step: 'configure', configOpen: false, kb: false }),
+
+      currentDoor: st.currentDoor,
+      currentBin: st.currentBin,
+      currentBinInventory: currentLoc ? currentLoc.inventory : 0,
+      onToggleDoor: () => { this.setState({ doorOpen: true }); this.toast('Door ' + st.currentDoor + ' is unlocked now'); },
+
+      scanText: st.scanText,
+      onScanChange: e => this.setState({ scanText: e.target.value }),
+      onScanFocus: () => {},
+      onScanKey: e => { if (e.key === 'Enter') this.submitScan(); },
+      onScanSubmit: () => this.submitScan(),
+      kbOpen: st.kb,
+      kbRows,
+      onHideKb: () => this.setState({ kb: false }),
+
+      dispensedMg: totalMg,
+      dispensedColor: complete ? '#008774' : '#25282A',
+      dispensedCount: this.products.filter(p => statusFor(p) === 'Dispensed').length,
+      dispensedSummary: dispensed.length + ' serial' + (dispensed.length === 1 ? '' : 's') + ' · ' + totalMg + ' mg of ' + prod.target + ' mg',
+      dispensedItemCount: dispensed.filter(inBin).length,
+      hasDispensed: dispensed.length > 0,
+      noDispensed: dispensed.length === 0,
+      dispensedRows,
+      grid: '52px minmax(0, 1.5fr) minmax(0, 0.7fr) minmax(0, 1.4fr) minmax(0, 0.8fr) minmax(0, 0.8fr) minmax(0, 0.9fr) minmax(0, 0.9fr) minmax(0, 0.7fr) minmax(0, 0.9fr) minmax(0, 1.4fr)',
+
+      suggestedRows,
+      allBoxBorder: selectableIds.length ? (allSelected || someSelected ? '#095192' : '#BCC3CD') : '#DADEE3',
+      allBoxBg: allSelected || someSelected ? '#095192' : '#FFFFFF',
+      allCheckOpacity: allSelected ? 1 : 0,
+      allDashOpacity: someSelected ? 1 : 0,
+      allCursor: selectableIds.length ? 'pointer' : 'not-allowed',
+      onToggleAll: () => {
+        if (!selectableIds.length) return;
+        this.setState(s => ({
+          sel: allSelected ? s.sel.filter(id => !selectableIds.includes(id))
+                           : s.sel.concat(selectableIds.filter(id => !s.sel.includes(id)))
+        }));
+      },
+      suggestedCount: suggested.length,
+      suggestedOpen: st.suggestedOpen,
+      hideLabel: st.suggestedOpen ? 'Hide all' : 'Show all',
+      hideIcon: st.suggestedOpen ? 'M6 15l6-6 6 6' : 'M6 9l6 6 6-6',
+      onToggleSuggested: () => this.setState(s => ({ suggestedOpen: !s.suggestedOpen })),
+      addBtnColor: st.sel.length ? '#095192' : '#9FA9B7',
+      addBtnCursor: st.sel.length ? 'pointer' : 'not-allowed',
+      onAddSelected: () => this.addIds(st.sel),
+
+      showBanner: st.banner > 0,
+      bannerText: st.banner + ' suggested item' + (st.banner === 1 ? '' : 's'),
+      onCloseBanner: () => this.setState({ banner: 0 }),
+
+      locOpen: st.locOpen,
+      locationRows,
+      locationCount: this.locations.length,
+      multiBin,
+      locCursor: multiBin ? 'pointer' : 'default',
+      locValueColor: multiBin ? '#095192' : '#5B6B7B',
+      footerLocationLabel: guidedPos >= 0 ? (guidedPos + 1) + '/' + this.locations.length : 'Select location',
+      footerProductLabel: (this.products.findIndex(p => p.id === st.activeProduct) + 1) + '/' + this.products.length,
+      onOpenLocations: () => { if (multiBin) this.setState({ locOpen: true }); },
+      onCloseLocations: () => this.setState({ locOpen: false }),
+
+      prodOpen: st.prodOpen,
+      productCount: this.products.length,
+      productRows,
+      noProducts: productRows.length === 0,
+      prodSearch: st.prodSearch,
+      prodStatus: st.prodStatus,
+      prodDoor: st.prodDoor,
+      statusOptions: ['All', 'Current', 'Pending', 'Dispensed', 'Skipped'],
+      doorOptions: ['All', 'Door 1', 'Door 2', 'Door 3'],
+      onProdSearch: e => this.setState({ prodSearch: e.target.value }),
+      onProdStatus: e => this.setState({ prodStatus: e.target.value }),
+      onProdDoor: e => this.setState({ prodDoor: e.target.value }),
+      onOpenProducts: () => this.setState({ prodOpen: true }),
+      onCloseProducts: () => this.setState({ prodOpen: false }),
+
+      alertOpen: st.alertOpen,
+      onCloseAlert: () => this.setState({ alertOpen: false }),
+      onCloseDoorAndSwitch: () => { const loc = st.pendingLoc; this.setState({ doorOpen: false }); if (loc) this.switchTo(loc); else this.setState({ alertOpen: false }); },
+
+      dispenseLabel: complete ? (isLastProduct ? 'DISPENSE & VIEW SUMMARY' : 'DISPENSE & CONTINUE') : (lastBin ? 'DISPENSE & CONTINUE' : 'NEXT BIN'),
+      dispenseBtnBg: canDispense ? '#095192' : '#9FA9B7',
+      dispenseBtnBorder: canDispense ? '#095192' : '#9FA9B7',
+      dispenseBtnColor: '#FFFFFF',
+      dispenseBtnCursor: canDispense ? 'pointer' : 'not-allowed',
+      dispenseIconVisible: complete,
+      skipLabel: isLastProduct ? 'SKIP & VIEW SUMMARY' : 'SKIP & CONTINUE',
+      skipBtnColor: canSkip ? '#095192' : '#9FB4CE',
+      skipBtnBorder: canSkip ? '#095192' : '#C9D5E3',
+      skipBtnCursor: canSkip ? 'pointer' : 'not-allowed',
+      onDispense: () => { if (canDispense) this.dispenseAndContinue(); },
+      onSkip: () => { if (canSkip) this.skipAndContinue(); },
+      skipAskOpen: st.skipAskOpen,
+      skipAskName: prod.upper,
+      onCancelSkip: () => this.setState({ skipAskOpen: false }),
+      onConfirmSkip: () => this.skipProduct(),
+      summaryOpen: st.summaryOpen,
+      summaryTitle: st.summaryKind === 'workflow' ? 'Dispense workflow complete'
+        : (st.summaryKind === 'skipped' ? 'Product skipped'
+        : 'Dispense transaction saved'),
+      summaryBody: st.summaryKind === 'workflow'
+        ? st.doneProducts.length + ' of ' + this.products.length + ' products dispensed, ' + st.skippedProducts.length + ' skipped. Skipped products stay on the list for a later run.'
+        : st.summaryKind === 'skipped'
+        ? 'No serials were dispensed for ' + prod.name + '. The product stays on the list for a later run.'
+        : totalMg + ' of ' + prod.target + ' mg of ' + prod.name + ' recorded as one transaction, picked from ' + Object.keys(usedDoses).length + (Object.keys(usedDoses).length === 1 ? ' bin location.' : ' bin locations.'),
+      summaryIconColor: st.summaryKind === 'done' || st.summaryKind === 'workflow' ? '#008774' : '#B4770B',
+      summaryIconPath: st.summaryKind === 'done' || st.summaryKind === 'workflow'
+        ? 'M12 21a9 9 0 100-18 9 9 0 000 18M8.4 12.2l2.5 2.5 4.7-5.1'
+        : 'M12 21a9 9 0 100-18 9 9 0 000 18M12 8v5M12 16.4v.1',
+      usedLocationCount: Object.keys(usedDoses).length,
+      summaryPrimaryLabel: nextId ? 'Next: ' + this.catalog[nextId].name.split(' ')[0] : 'Done',
+      onCloseSummary: () => { if (nextId) this.openProduct(nextId); else this.setState({ summaryOpen: false }); },
+      onRestart: () => this.setState({ step: 'configure', activeProduct: 1, overrides: {}, editId: null, draft: null, configOpen: true, configured: false, currentDoor: 1, currentBin: 32, doorOpen: false, dispensedIds: [], sel: [], banner: 0, summaryOpen: false, kb: false, scanText: '', invVials: '9.5', dispMg: '950', volMl: '95', doneProducts: [], skippedProducts: [] }),
+
+      toasts: st.toasts.map(t => ({ text: t.text, onClose: () => this.setState(s => ({ toasts: s.toasts.filter(x => x.id !== t.id) })) }))
+    };
+  }
+}
+</script>
+</body>
+</html>

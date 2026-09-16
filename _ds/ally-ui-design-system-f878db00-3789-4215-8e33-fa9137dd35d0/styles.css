@@ -1,0 +1,6 @@
+/* Ally UI — global CSS entry point. Consumers link this single file. */
+@import './colors_and_type.css';   /* curated, hand-verified tokens used by every built component */
+@import './components.css';        /* component classes */
+@import './tokens/fig-tokens.css'; /* full Figma variable mirror (1275 vars, all collections) — kept for
+  raw kit coverage/reference; components consume the curated tokens above, not these directly */
+@import './tokens/fig-typography.css';

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="./doc-page.js"></script>
+<style>
+  body { margin: 0; font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; color: #25282A; }
+  a { color: #095192; }
+  a:hover { color: #073C6E; }
+  doc-page:not(:defined) { visibility: hidden; }
+</style>
+</helmet>
+<doc-page margin="0.75in">
+  <div slot="header" style="display: flex; align-items: baseline; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid #E3E8ED">
+    <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.6px; color: #095192">DISPENSE — MULTI-BIN</span>
+    <span style="font-size: 11px; color: #757575">User stories, 27 July 2026</span>
+  </div>
+
+  <h1 style="font-size: 34px; font-weight: 600; letter-spacing: -0.6px; line-height: 1.15; margin: 8px 0 0">Multi-bin dispense — functional user stories</h1>
+  <p style="font-size: 15px; line-height: 1.6; color: #5B6B7B; margin: 12px 0 0; max-width: 46em">Every behaviour built into <span style="font-weight: 600; color: #25282A">Dispense Multi-Bin Flow</span>, written as stories with acceptance criteria. Decisions and open questions live in <span style="font-weight: 600; color: #25282A">Dispense Multi-Bin Decisions</span>.</p>
+
+  <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 24px; padding: 18px 22px; background: #F8FAFC; border: 1px solid #E3E8ED; border-radius: 8px; break-inside: avoid">
+    <div><div style="font-size: 13px; color: #757575">Stories</div><div style="font-size: 14px; font-weight: 600; margin-top: 4px">22</div></div>
+    <div style="border-left: 1px solid #DADEE3; padding-left: 24px"><div style="font-size: 13px; color: #757575">Epics</div><div style="font-size: 14px; font-weight: 600; margin-top: 4px">6</div></div>
+    <div style="border-left: 1px solid #DADEE3; padding-left: 24px"><div style="font-size: 13px; color: #757575">Products in flow</div><div style="font-size: 14px; font-weight: 600; margin-top: 4px">4</div></div>
+    <div style="border-left: 1px solid #DADEE3; padding-left: 24px"><div style="font-size: 13px; color: #757575">Device</div><div style="font-size: 14px; font-weight: 600; margin-top: 4px">Tablet</div></div>
+  </div>
+
+  <h2 style="font-size: 21px; font-weight: 600; color: #095192; margin: 32px 0 0; padding-bottom: 9px; border-bottom: 1px solid #E3E8ED">A · Product & location context</h2>
+
+  <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 18px">
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 6px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.6px; color: #095192; background: #E9F1F8; border-radius: 4px; padding: 4px 8px; white-space: nowrap">US-1</span>
+        <span style="font-size: 17px; font-weight: 600">See the product I am dispensing</span>
+      </div>
+      <p style="font-size: 15px; line-height: 1.6; margin: 0 0 8px; max-width: 46em">As a pharmacy technician, I want the scanning screen to name the product I am working on so I never dispense against the wrong order.</p>
+      <ul style="font-size: 14px; line-height: 1.6; color: #5B6B7B; margin: 0; padding-left: 20px; max-width: 46em">
+        <li>Header shows product name in caps, dose-type chip and the generic name beneath, with no parentheses.</li>
+        <li>Meta row shows NDC, source, inventory type, current door and bin, bin inventory and the med order.</li>
+        <li>Configured dose and dispensed dose sit in the dose bar; dispensed dose shows the running total only.</li>
+        <li>All of it is per product and updates when the flow advances.</li>
+      </ul>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 6px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.6px; color: #095192; background: #E9F1F8; border-radius: 4px; padding: 4px 8px; white-space: nowrap">US-2</span>
+        <span style="font-size: 17px; font-weight: 600">Start at the right bin</span>
+      </div>
+      <p style="font-size: 15px; line-height: 1.6; margin: 0 0 8px; max-width: 46em">As a technician, I want the flow to open on the bin holding the nearest-expiring serial so I do not have to choose a starting point.</p>
+      <ul style="font-size: 14px; line-height: 1.6; color: #5B6B7B; margin: 0; padding-left: 20px; max-width: 46em">
+        <li>Each product declares its own bin list; the first entry is the opening bin.</li>
+        <li>Footer shows Location n/total; single-bin products show 1/1 and the stepper is inert.</li>
+      </ul>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 6px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.6px; color: #095192; background: #E9F1F8; border-radius: 4px; padding: 4px 8px; white-space: nowrap">US-3</span>
+        <span style="font-size: 17px; font-weight: 600">Switch to another bin deliberately</span>
+      </div>
+      <p style="font-size: 15px; line-height: 1.6; margin: 0 0 8px; max-width: 46em">As a technician, I want a panel of every bin holding this product so I can move when the current bin cannot cover the dose.</p>
+      <ul style="font-size: 14px; line-height: 1.6; color: #5B6B7B; margin: 0; padding-left: 20px; max-width: 46em">
+        <li>Panel lists door, bin, size, expiration, inventory and the dose already taken from that bin.</li>
+        <li>The current bin is marked and cannot be reselected.</li>
+        <li>Everything already on the dispense list survives the switch.</li>
+      </ul>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 6px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.6px; color: #095192; background: #E9F1F8; border-radius: 4px; padding: 4px 8px; white-space: nowrap">US-4</span>
+        <span style="font-size: 17px; font-weight: 600">Be told when a door unlocks or is still open</span>
+      </div>
+      <p style="font-size: 15px; line-height: 1.6; margin: 0 0 8px; max-width: 46em">As a technician, I want door state surfaced so I am not walking to a locked cabinet or leaving one open.</p>
+      <ul style="font-size: 14px; line-height: 1.6; color: #5B6B7B; margin: 0; padding-left: 20px; max-width: 46em">
+        <li>Moving to a bin behind another door toasts "Door X is unlocked now".</li>
+        <li>If the current door is open, a "Door X is Open" prompt asks the user to close it first; the pending bin is remembered and applied on OK.</li>
+        <li>For demo purposes the prompt fires once per session, not on every switch.</li>
+        <li>Bin changes within the same door are silent.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 style="font-size: 21px; font-weight: 600; color: #095192; margin: 36px 0 0; padding-bottom: 9px; border-bottom: 1px solid #E3E8ED">B · Building the dispense list</h2>
+
+  <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 18px">
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 6px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.6px; color: #095192; background: #E9F1F8; border-radius: 4px; padding: 4px 8px; white-space: nowrap">US-5</span>
+        <span style="font-size: 17px; font-weight: 600">See every serial, act only on this bin</span>
+      </div>
+      <p style="font-size: 15px; line-height: 1.6; margin: 0 0 8px; max-width: 46em">As a technician, I want suggested items to show all locations but only allow the bin I am standing at.</p>
+      <ul style="font-size: 14px; line-height: 1.6; color: #5B6B7B; margin: 0; padding-left: 20px; max-width: 46em">
+        <li>Rows carry serial, badges, lot, expiration, source, location, inventory vials, dispense mg and volume.</li>
+        <li>Rows outside the current door and bin are greyed and not selectable.</li>
+        <li>Tapping a greyed row's action toasts the door and bin to switch to.</li>
+      </ul>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 6px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.6px; color: #095192; background: #E9F1F8; border-radius: 4px; padding: 4px 8px; white-space: nowrap">US-6</span>
+        <span style="font-size: 17px; font-weight: 600">Add serials one at a time or in bulk</span>
+      </div>
+      <p style="font-size: 15px; line-height: 1.6; margin: 0 0 8px; max-width: 46em">As a technician, I want both a per-row action and a multi-select so I can work at whatever pace the picking allows.</p>
+      <ul style="font-size: 14px; line-height: 1.6; color: #5B6B7B; margin: 0; padding-left: 20px; max-width: 46em">
+        <li>Each selectable row has an "Add to dispense" button that adds that serial alone.</li>
+        <li>Checkboxes plus "Dispense Selected" add the whole selection.</li>
+        <li>The header checkbox selects or clears every selectable row and shows a dash when partially selected.</li>
+        <li>Adds that would exceed the configured dose are refused with a toast.</li>
+      </ul>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 6px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.6px; color: #095192; background: #E9F1F8; border-radius: 4px; padding: 4px 8px; white-space: nowrap">US-7</span>
+        <span style="font-size: 17px; font-weight: 600">Scan a serial instead of hunting for it</span>
+      </div>
+      <p style="font-size: 15px; line-height: 1.6; margin: 0 0 8px; max-width: 46em">As a technician, I want to scan or type a serial number and have it added if it belongs here.</p>
+      <ul style="font-size: 14px; line-height: 1.6; color: #5B6B7B; margin: 0; padding-left: 20px; max-width: 46em">
+        <li>Unknown or already-dispensed serials toast "Serial not found in available inventory".</li>
+        <li>A serial from another bin toasts where it actually is and is not added.</li>
+        <li>The on-screen keyboard shrinks the scroll region rather than covering it.</li>
+      </ul>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 6px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.6px; color: #095192; background: #E9F1F8; border-radius: 4px; padding: 4px 8px; white-space: nowrap">US-8</span>
+        <span style="font-size: 17px; font-weight: 600">Read the dispense list at a glance</span>
+      </div>
+      <p style="font-size: 15px; line-height: 1.6; margin: 0 0 8px; max-width: 46em">As a technician, I want the list of what I have picked to stay legible as it grows.</p>
+      <ul style="font-size: 14px; line-height: 1.6; color: #5B6B7B; margin: 0; padding-left: 20px; max-width: 46em">
+        <li>Header reads "Dispense items (n)"; columns align exactly with the suggested-items table.</li>
+        <li>Location is one column showing Door and Bin stacked.</li>
+        <li>The list caps its height and scrolls internally with a sticky column header.</li>
+        <li>Serials from the current bin sort to the top because they are the actionable ones.</li>
+      </ul>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 6px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.6px; color: #095192; background: #E9F1F8; border-radius: 4px; padding: 4px 8px; white-space: nowrap">US-9</span>
+        <span style="font-size: 17px; font-weight: 600">Edit anywhere, remove only what I can physically put back</span>
+      </div>
+      <p style="font-size: 15px; line-height: 1.6; margin: 0 0 8px; max-width: 46em">As a technician, I want to correct any serial's numbers regardless of bin, but I must not remove one I cannot return to its bin right now.</p>
+      <ul style="font-size: 14px; line-height: 1.6; color: #5B6B7B; margin: 0; padding-left: 20px; max-width: 46em">
+        <li>Edit is enabled on every row in the dispense list, current bin or not.</li>
+        <li>Remove is enabled only for serials in the current door and bin.</li>
+        <li>Disabled removes are greyed; tapping one toasts "Switch to Door X · Bin Y to remove this serial" — no hover tooltips, since the device is a tablet.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 style="font-size: 21px; font-weight: 600; color: #095192; margin: 36px 0 0; padding-bottom: 9px; border-bottom: 1px solid #E3E8ED">C · Editing a dispensed serial</h2>
+
+  <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 18px">
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 6px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.6px; color: #095192; background: #E9F1F8; border-radius: 4px; padding: 4px 8px; white-space: nowrap">US-10</span>
+        <span style="font-size: 17px; font-weight: 600">Adjust what I actually drew from a vial</span>
+      </div>
+      <p style="font-size: 15px; line-height: 1.6; margin: 0 0 8px; max-width: 46em">As a technician, I want to edit vials, dose or volume inline when the draw does not match the label quantity.</p>
+      <ul style="font-size: 14px; line-height: 1.6; color: #5B6B7B; margin: 0; padding-left: 20px; max-width: 46em">
+        <li>Edit turns Inv, Dispense and Volume into inputs with outlined Save and Cancel actions.</li>
+        <li>Editing one field derives the other two from the serial's per-vial ratio — 0.5 vial = 50 mg = 5 mL.</li>
+        <li>Values clamp to the serial's available inventory and cannot go negative.</li>
+        <li>Waste (mg) is the opened vials' content minus the dispensed amount, recalculated live.</li>
+        <li>The dispensed-dose total follows the edited value.</li>
+      </ul>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 6px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.6px; color: #095192; background: #E9F1F8; border-radius: 4px; padding: 4px 8px; white-space: nowrap">US-11</span>
+        <span style="font-size: 17px; font-weight: 600">Finish the edit before moving on</span>
+      </div>
+      <p style="font-size: 15px; line-height: 1.6; margin: 0 0 8px; max-width: 46em">As a technician, I should not be able to commit a bin while a row is half-edited.</p>
+      <ul style="font-size: 14px; line-height: 1.6; color: #5B6B7B; margin: 0; padding-left: 20px; max-width: 46em">
+        <li>Both footer actions are disabled while any row is in edit mode.</li>
+        <li>Save or Cancel restores them.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 style="font-size: 21px; font-weight: 600; color: #095192; margin: 36px 0 0; padding-bottom: 9px; border-bottom: 1px solid #E3E8ED">D · Committing, skipping and unsaved work</h2>
+
+  <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 18px">
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 6px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.6px; color: #095192; background: #E9F1F8; border-radius: 4px; padding: 4px 8px; white-space: nowrap">US-12</span>
+        <span style="font-size: 17px; font-weight: 600">One save per product, not per bin</span>
+      </div>
+      <p style="font-size: 15px; line-height: 1.6; margin: 0 0 8px; max-width: 46em">As a pharmacist, I need a single atomic transaction per product — nothing is written to inventory until the whole dose is accounted for.</p>
+      <ul style="font-size: 14px; line-height: 1.6; color: #5B6B7B; margin: 0; padding-left: 20px; max-width: 46em">
+        <li>Nothing saves on a bin change; picking, editing and removing are all just local state until the dose is met.</li>
+        <li>Primary reads "Continue to next bin" while the dose is short — it cycles bins without saving anything.</li>
+        <li>Once the dispensed total equals the configured dose, the label flips to "Dispense & continue" (or "& view summary" on the last product); clicking it writes the one transaction and advances to the next product.</li>
+      </ul>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 6px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.6px; color: #095192; background: #E9F1F8; border-radius: 4px; padding: 4px 8px; white-space: nowrap">US-13</span>
+        <span style="font-size: 17px; font-weight: 600">Never save less than the configured dose</span>
+      </div>
+      <p style="font-size: 15px; line-height: 1.6; margin: 0 0 8px; max-width: 46em">As a pharmacist, I need the transaction to match the order exactly — there is no partial dispense.</p>
+      <ul style="font-size: 14px; line-height: 1.6; color: #5B6B7B; margin: 0; padding-left: 20px; max-width: 46em">
+        <li>The primary action stays "Continue to next bin" and never saves until the dispensed total equals the configured dose.</li>
+        <li>On the last bin while still short, it cycles back through the bin list rather than disabling — there is always a next step, just never a save.</li>
+        <li>If every bin is exhausted and the dose is still short, it toasts the shortfall instead of committing.</li>
+      </ul>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 6px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.6px; color: #095192; background: #E9F1F8; border-radius: 4px; padding: 4px 8px; white-space: nowrap">US-14</span>
+        <span style="font-size: 17px; font-weight: 600">Skip is a whole-product decision</span>
+      </div>
+      <p style="font-size: 15px; line-height: 1.6; margin: 0 0 8px; max-width: 46em">As a technician, since nothing saves until the full dose is met, Skip &amp; continue is never about a bin — it always means abandoning the product.</p>
+      <ul style="font-size: 14px; line-height: 1.6; color: #5B6B7B; margin: 0; padding-left: 20px; max-width: 46em">
+        <li>Available only on a completely untouched product: nothing added, nothing edited, in any bin.</li>
+        <li>Checking, editing, or otherwise interacting with a serial disables it immediately, even before anything is added.</li>
+        <li>Removing every change or resetting the product back to its initial state re-enables it.</li>
+      </ul>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 6px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.6px; color: #095192; background: #E9F1F8; border-radius: 4px; padding: 4px 8px; white-space: nowrap">US-15</span>
+        <span style="font-size: 17px; font-weight: 600">Confirm before abandoning a product</span>
+      </div>
+      <p style="font-size: 15px; line-height: 1.6; margin: 0 0 8px; max-width: 46em">As a technician, I want a checkpoint before a product leaves the workflow.</p>
+      <ul style="font-size: 14px; line-height: 1.6; color: #5B6B7B; margin: 0; padding-left: 20px; max-width: 46em">
+        <li>Dialog: "Are you sure you want to skip this product?" naming the product, with NO, STAY and YES, CONTINUE.</li>
+        <li>Confirming marks it skipped and goes straight to the next product — no interim modal.</li>
+      </ul>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 6px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.6px; color: #095192; background: #E9F1F8; border-radius: 4px; padding: 4px 8px; white-space: nowrap">US-16</span>
+        <span style="font-size: 17px; font-weight: 600">Switch bins freely — nothing to lose yet</span>
+      </div>
+      <p style="font-size: 15px; line-height: 1.6; margin: 0 0 8px; max-width: 46em">As a technician, since a bin change never saves anything, I should be able to move between bins without a checkpoint.</p>
+      <ul style="font-size: 14px; line-height: 1.6; color: #5B6B7B; margin: 0; padding-left: 20px; max-width: 46em">
+        <li>Selecting another bin from the Location panel switches immediately — no save-or-discard prompt.</li>
+        <li>Everything picked or edited so far stays in local state and travels with the product across every bin.</li>
+        <li>The same applies to jumping to a different product mid-dispense.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 style="font-size: 21px; font-weight: 600; color: #095192; margin: 36px 0 0; padding-bottom: 9px; border-bottom: 1px solid #E3E8ED">E · Moving through the product queue</h2>
+
+  <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 18px">
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 6px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.6px; color: #095192; background: #E9F1F8; border-radius: 4px; padding: 4px 8px; white-space: nowrap">US-17</span>
+        <span style="font-size: 17px; font-weight: 600">Run several products in one session</span>
+      </div>
+      <p style="font-size: 15px; line-height: 1.6; margin: 0 0 8px; max-width: 46em">As a technician, I want the flow to carry me through every product on the order.</p>
+      <ul style="font-size: 14px; line-height: 1.6; color: #5B6B7B; margin: 0; padding-left: 20px; max-width: 46em">
+        <li>Four products are wired: Leucovorin (4 bins), Avastin (single bin), Rituximab (single bin), Paclitaxel (2 bins) — each with its own NDC, dose type, configured dose, instructions and serial pool.</li>
+        <li>Completing or skipping advances to the next product in list order, wrapping to earlier skipped ones only at the end.</li>
+        <li>Footer counter reads Product n/4.</li>
+      </ul>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 6px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.6px; color: #095192; background: #E9F1F8; border-radius: 4px; padding: 4px 8px; white-space: nowrap">US-18</span>
+        <span style="font-size: 17px; font-weight: 600">Jump to a product from the list</span>
+      </div>
+      <p style="font-size: 15px; line-height: 1.6; margin: 0 0 8px; max-width: 46em">As a technician, I want the product panel to show status and let me return to unfinished work.</p>
+      <ul style="font-size: 14px; line-height: 1.6; color: #5B6B7B; margin: 0; padding-left: 20px; max-width: 46em">
+        <li>Search, status filter and door filter; chips show Current, Dispensed or Skipped.</li>
+        <li>Dispensed products are locked — greyed, not clickable, and tapping toasts that they cannot be reopened.</li>
+        <li>Skipped products can be reopened, which clears their skipped status.</li>
+      </ul>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 6px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.6px; color: #095192; background: #E9F1F8; border-radius: 4px; padding: 4px 8px; white-space: nowrap">US-19</span>
+        <span style="font-size: 17px; font-weight: 600">Know what the button will do before I press it</span>
+      </div>
+      <p style="font-size: 15px; line-height: 1.6; margin: 0 0 8px; max-width: 46em">As a technician, I want the footer copy to describe the outcome of the click, not my position in the list.</p>
+      <ul style="font-size: 14px; line-height: 1.6; color: #5B6B7B; margin: 0; padding-left: 20px; max-width: 46em">
+        <li>"CONTINUE TO NEXT BIN" while the configured dose is still short — the word "dispense" never appears until there is something to save.</li>
+        <li>"DISPENSE &amp; CONTINUE" once the dose is met, which saves and moves to the next product; "DISPENSE &amp; VIEW SUMMARY" instead when it is the last product.</li>
+        <li>"SKIP &amp; CONTINUE" flips to "SKIP &amp; VIEW SUMMARY" on the last product, when nothing has been touched yet.</li>
+      </ul>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 6px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.6px; color: #095192; background: #E9F1F8; border-radius: 4px; padding: 4px 8px; white-space: nowrap">US-20</span>
+        <span style="font-size: 17px; font-weight: 600">Get confirmation without a modal</span>
+      </div>
+      <p style="font-size: 15px; line-height: 1.6; margin: 0 0 8px; max-width: 46em">As a technician, I do not want to dismiss a dialog after every product.</p>
+      <ul style="font-size: 14px; line-height: 1.6; color: #5B6B7B; margin: 0; padding-left: 20px; max-width: 46em">
+        <li>Completing a product toasts "&lt;Product&gt; is successfully dispensed" and moves straight on.</li>
+        <li>Toasts stay short — no dose or bin arithmetic.</li>
+        <li>Only the end of the run opens a modal: "Dispense workflow complete", with the dispensed and skipped counts.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 style="font-size: 21px; font-weight: 600; color: #095192; margin: 36px 0 0; padding-bottom: 9px; border-bottom: 1px solid #E3E8ED">F · Screen behaviour on a tablet</h2>
+
+  <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 18px">
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 6px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.6px; color: #095192; background: #E9F1F8; border-radius: 4px; padding: 4px 8px; white-space: nowrap">US-21</span>
+        <span style="font-size: 17px; font-weight: 600">Scroll the product page as one</span>
+      </div>
+      <p style="font-size: 15px; line-height: 1.6; margin: 0 0 8px; max-width: 46em">As a technician on a tablet, I want the whole product page to move together, with the controls I need always reachable.</p>
+      <ul style="font-size: 14px; line-height: 1.6; color: #5B6B7B; margin: 0; padding-left: 20px; max-width: 46em">
+        <li>Product header, meta, dose bar and both tables scroll as a single column.</li>
+        <li>The top bar and left rail never move.</li>
+        <li>The action bar is anchored to the bottom of the screen regardless of content length.</li>
+      </ul>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 6px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.6px; color: #095192; background: #E9F1F8; border-radius: 4px; padding: 4px 8px; white-space: nowrap">US-22</span>
+        <span style="font-size: 17px; font-weight: 600">Touch-sized, self-explaining controls</span>
+      </div>
+      <p style="font-size: 15px; line-height: 1.6; margin: 0 0 8px; max-width: 46em">As a technician wearing gloves, I need targets I can hit and feedback I can read without a mouse.</p>
+      <ul style="font-size: 14px; line-height: 1.6; color: #5B6B7B; margin: 0; padding-left: 20px; max-width: 46em">
+        <li>Row actions are outlined icon buttons — blue pencil for edit, red circle-minus for remove.</li>
+        <li>No behaviour depends on hover; every blocked action explains itself in a toast on tap.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div slot="footer" style="display: flex; align-items: baseline; justify-content: space-between; padding-top: 8px; border-top: 1px solid #E3E8ED">
+    <span style="font-size: 11px; color: #757575">Dispense — multi-bin allocation</span>
+    <span style="font-size: 11px; color: #757575">Functional user stories</span>
+  </div>
+</doc-page>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="./doc-page.js"></script>
+<style>
+  body { margin: 0; font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; color: #25282A; }
+  a { color: #095192; }
+  a:hover { color: #073C6E; }
+  doc-page:not(:defined) { visibility: hidden; }
+</style>
+</helmet>
+<doc-page margin="0.75in">
+  <div slot="header" style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding-bottom: 8px; border-bottom: 1px solid #E3E8ED">
+    <span style="font-size: 12px; font-weight: 600; color: #095192">AllyIQ · Dispense</span>
+    <span style="font-size: 12px; color: #757575">Multi-bin dispense — edge cases &amp; interface reactions</span>
+  </div>
+
+  <h1 style="font-size: 36px; font-weight: 600; letter-spacing: -0.7px; line-height: 1.12; margin: 6px 0 0">Edge cases — Multi-bin dispense</h1>
+  <p style="font-size: 15px; line-height: 1.65; color: #25282A; margin: 14px 0 0; max-width: 44em">Companion to <span style="font-style: italic">Multi-bin dispense — functional user stories</span>. Each entry states the condition, the exact interface reaction, and the copy shown. Entries marked <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #A36E1E; background: #FBF3E4; border: 1px solid #EFD9AE; border-radius: 3px; padding: 2px 6px">DECISION</span> are not settled in the prototype and need a product call before build.</p>
+
+  <div style="margin-top: 22px; border: 1px solid #E3E8ED; border-radius: 8px; padding: 18px 22px 20px; break-inside: avoid">
+    <div style="font-size: 16px; font-weight: 600">How to read an entry</div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 26px; margin-top: 12px">
+      <div style="font-size: 14px; line-height: 1.6; color: #5B6B7B"><span style="font-weight: 600; color: #25282A">When</span> — the trigger condition, observable on screen.</div>
+      <div style="font-size: 14px; line-height: 1.6; color: #5B6B7B"><span style="font-weight: 600; color: #25282A">Interface reacts</span> — required behaviour, including state of every affected control.</div>
+    </div>
+  </div>
+
+  <h2 style="font-size: 21px; font-weight: 600; color: #095192; margin: 32px 0 0; padding-bottom: 9px; border-bottom: 1px solid #E3E8ED">1. Entering a product</h2>
+  <div style="margin-top: 16px; display: flex; flex-direction: column; gap: 18px">
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #095192; background: #E9F1F8; border-radius: 3px; padding: 3px 7px; white-space: nowrap">EC-1.1</span>
+        <span style="font-size: 17px; font-weight: 600">Product lives in exactly one bin</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1.35fr; gap: 26px">
+        <div style="font-size: 14px; line-height: 1.6; color: #5B6B7B">Single-bin product is opened.</div>
+        <div style="font-size: 14px; line-height: 1.6">Footer Location reads 1/1 and the stepper is inert. The first bin is also the last, so the dose gate applies immediately and Skip &amp; continue means skipping the product, not the bin.</div>
+      </div>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #095192; background: #E9F1F8; border-radius: 3px; padding: 3px 7px; white-space: nowrap">EC-1.2</span>
+        <span style="font-size: 17px; font-weight: 600">Facility cannot cover the configured dose</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1.35fr; gap: 26px">
+        <div style="font-size: 14px; line-height: 1.6; color: #5B6B7B">Total available stock across every bin is below the configured dose.</div>
+        <div style="font-size: 14px; line-height: 1.6">Detected on entry, not at the last bin. An amber line sits under Configured Dose: "Available 700 mg of 950 mg configured — this order cannot be filled". The technician learns it before walking to the first door.</div>
+      </div>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #095192; background: #E9F1F8; border-radius: 3px; padding: 3px 7px; white-space: nowrap">EC-1.3</span>
+        <span style="font-size: 17px; font-weight: 600">Returning to a product already worked on</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1.35fr; gap: 26px">
+        <div style="font-size: 14px; line-height: 1.6; color: #5B6B7B">Technician jumps back to a product they previously left.</div>
+        <div style="font-size: 14px; line-height: 1.6">Only skipped products can be reopened; the skipped status clears and the product restarts at its first bin. Dispensed products are locked — greyed in the panel, and tapping toasts that they cannot be reopened.</div>
+      </div>
+    </div>
+  </div>
+
+  <h2 style="font-size: 21px; font-weight: 600; color: #095192; margin: 30px 0 0; padding-bottom: 9px; border-bottom: 1px solid #E3E8ED">2. Finding and adding serials</h2>
+  <div style="margin-top: 16px; display: flex; flex-direction: column; gap: 18px">
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #095192; background: #E9F1F8; border-radius: 3px; padding: 3px 7px; white-space: nowrap">EC-2.1</span>
+        <span style="font-size: 17px; font-weight: 600">Suggested row belongs to another bin</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1.35fr; gap: 26px">
+        <div style="font-size: 14px; line-height: 1.6; color: #5B6B7B">Serial is listed but sits behind a different door or bin.</div>
+        <div style="font-size: 14px; line-height: 1.6">Row is greyed, its checkbox is inert and its Add button is muted. Tapping the button toasts "Switch to Door 3 · Bin 12 to dispense this serial" — visible for planning, not actionable from here.</div>
+      </div>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #095192; background: #E9F1F8; border-radius: 3px; padding: 3px 7px; white-space: nowrap">EC-2.2</span>
+        <span style="font-size: 17px; font-weight: 600">A single serial overshoots the remaining dose</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1.35fr; gap: 26px">
+        <div style="font-size: 14px; line-height: 1.6; color: #5B6B7B">Adding one more full vial would exceed the configured dose.</div>
+        <div style="font-size: 14px; line-height: 1.6">The add is refused with "Configured dose reached. Extra serials were not added." To take a partial, the technician adds a serial that fits and edits it down — the balance routes to Waste.</div>
+      </div>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #095192; background: #E9F1F8; border-radius: 3px; padding: 3px 7px; white-space: nowrap">EC-2.3</span>
+        <span style="font-size: 17px; font-weight: 600">Bulk selection exceeds the dose</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1.35fr; gap: 26px">
+        <div style="font-size: 14px; line-height: 1.6; color: #5B6B7B">Several serials are checked and Dispense Selected is pressed.</div>
+        <div style="font-size: 14px; line-height: 1.6">Serials are accepted in order until the next would exceed the target; the rest are dropped with one toast. The selection clears so the technician re-picks deliberately rather than guessing what landed.</div>
+      </div>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #095192; background: #E9F1F8; border-radius: 3px; padding: 3px 7px; white-space: nowrap">EC-2.4</span>
+        <span style="font-size: 17px; font-weight: 600">Every serial in the bin is already on the list</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1.35fr; gap: 26px">
+        <div style="font-size: 14px; line-height: 1.6; color: #5B6B7B">Nothing selectable remains in the current bin.</div>
+        <div style="font-size: 14px; line-height: 1.6">The suggested table empties for this bin and the header checkbox goes inert — grey border, not-allowed cursor, no dash state. The picked serials sit at the top of the dispense list, because current-bin rows sort first.</div>
+      </div>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #095192; background: #E9F1F8; border-radius: 3px; padding: 3px 7px; white-space: nowrap">EC-2.5</span>
+        <span style="font-size: 17px; font-weight: 600">Current bin cannot cover the remaining dose</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1.35fr; gap: 26px">
+        <div style="font-size: 14px; line-height: 1.6; color: #5B6B7B">Bin is exhausted but the dose is still short, and other bins hold stock.</div>
+        <div style="font-size: 14px; line-height: 1.6">The primary action reads "Continue to next bin" and cycles to the next bin holding unpicked stock — earliest expiration first, then partials. Nothing is saved by this click; the Location panel shows the dose already taken from each bin.</div>
+      </div>
+    </div>
+  </div>
+
+  <h2 style="font-size: 21px; font-weight: 600; color: #095192; margin: 30px 0 0; padding-bottom: 9px; border-bottom: 1px solid #E3E8ED">3. Scanning</h2>
+  <div style="margin-top: 16px; display: flex; flex-direction: column; gap: 18px">
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #095192; background: #E9F1F8; border-radius: 3px; padding: 3px 7px; white-space: nowrap">EC-3.1</span>
+        <span style="font-size: 17px; font-weight: 600">Serial belongs to another bin</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1.35fr; gap: 26px">
+        <div style="font-size: 14px; line-height: 1.6; color: #5B6B7B">Scanned serial is valid for this product but stored elsewhere.</div>
+        <div style="font-size: 14px; line-height: 1.6">Not added. Toast names the real location: "That serial is in Door 3 · Bin 12. Switch location first."</div>
+      </div>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #095192; background: #E9F1F8; border-radius: 3px; padding: 3px 7px; white-space: nowrap">EC-3.2</span>
+        <span style="font-size: 17px; font-weight: 600">Serial belongs to a different product</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1.35fr; gap: 26px">
+        <div style="font-size: 14px; line-height: 1.6; color: #5B6B7B">Technician scans a vial from another order on the cart.</div>
+        <div style="font-size: 14px; line-height: 1.6">Distinguished from a genuine miss: "That serial is Rituximab 500 mg/50 mL vial — you are dispensing Avastin 400 mg/16 mL vial". Wrong-drug is the error worth naming loudly.</div>
+      </div>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #095192; background: #E9F1F8; border-radius: 3px; padding: 3px 7px; white-space: nowrap">EC-3.3</span>
+        <span style="font-size: 17px; font-weight: 600">Serial is unknown or already dispensed</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1.35fr; gap: 26px">
+        <div style="font-size: 14px; line-height: 1.6; color: #5B6B7B">Barcode is unreadable, mistyped, or the serial is already on the list.</div>
+        <div style="font-size: 14px; line-height: 1.6">One toast covers both: "Serial not found in available inventory". The field clears so the next scan is not appended to the failed one.</div>
+      </div>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #095192; background: #E9F1F8; border-radius: 3px; padding: 3px 7px; white-space: nowrap">EC-3.4</span>
+        <span style="font-size: 17px; font-weight: 600">Same serial scanned twice</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1.35fr; gap: 26px">
+        <div style="font-size: 14px; line-height: 1.6; color: #5B6B7B">Double trigger on the scanner, or a re-scan of a picked vial.</div>
+        <div style="font-size: 14px; line-height: 1.6">The second scan finds nothing, because dispensed serials leave the available pool. A duplicate row can never be created.</div>
+      </div>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #095192; background: #E9F1F8; border-radius: 3px; padding: 3px 7px; white-space: nowrap">EC-3.5</span>
+        <span style="font-size: 17px; font-weight: 600">Empty scan field submitted</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1.35fr; gap: 26px">
+        <div style="font-size: 14px; line-height: 1.6; color: #5B6B7B">Enter pressed with nothing typed.</div>
+        <div style="font-size: 14px; line-height: 1.6">Nothing happens — no toast, no error state. An empty submit is a slip, not a mistake worth reporting.</div>
+      </div>
+    </div>
+  </div>
+
+  <h2 style="font-size: 21px; font-weight: 600; color: #095192; margin: 30px 0 0; padding-bottom: 9px; border-bottom: 1px solid #E3E8ED">4. Editing a dispensed serial</h2>
+  <div style="margin-top: 16px; display: flex; flex-direction: column; gap: 18px">
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #095192; background: #E9F1F8; border-radius: 3px; padding: 3px 7px; white-space: nowrap">EC-4.1</span>
+        <span style="font-size: 17px; font-weight: 600">Value entered exceeds what the vial holds</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1.35fr; gap: 26px">
+        <div style="font-size: 14px; line-height: 1.6; color: #5B6B7B">Vials, dose or volume typed above the serial's inventory.</div>
+        <div style="font-size: 14px; line-height: 1.6">Values clamp to the serial's inventory. A 0.5-vial serial snaps back to 0.5 / 50 mg / 5 mL, and all three fields update together so they can never disagree.</div>
+      </div>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #095192; background: #E9F1F8; border-radius: 3px; padding: 3px 7px; white-space: nowrap">EC-4.2</span>
+        <span style="font-size: 17px; font-weight: 600">Negative or cleared value</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1.35fr; gap: 26px">
+        <div style="font-size: 14px; line-height: 1.6; color: #5B6B7B">Field emptied mid-typing, or a minus figure entered.</div>
+        <div style="font-size: 14px; line-height: 1.6">Negatives clamp to zero. An empty field is left alone while typing rather than force-filled, so the technician can clear and retype without fighting the input.</div>
+      </div>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #095192; background: #E9F1F8; border-radius: 3px; padding: 3px 7px; white-space: nowrap">EC-4.3</span>
+        <span style="font-size: 17px; font-weight: 600">Edit would push the total past the configured dose</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1.35fr; gap: 26px">
+        <div style="font-size: 14px; line-height: 1.6; color: #5B6B7B">A row is raised so the running total would exceed the target.</div>
+        <div style="font-size: 14px; line-height: 1.6">Save refuses with "That would exceed the configured dose by 50 mg" and the row stays in edit mode so the value can be corrected. The clamp is per dose, not just per serial.</div>
+      </div>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #095192; background: #E9F1F8; border-radius: 3px; padding: 3px 7px; white-space: nowrap">EC-4.4</span>
+        <span style="font-size: 17px; font-weight: 600">Footer pressed mid-edit</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1.35fr; gap: 26px">
+        <div style="font-size: 14px; line-height: 1.6; color: #5B6B7B">A row is open in edit mode.</div>
+        <div style="font-size: 14px; line-height: 1.6">Both footer actions are disabled — the bin cannot be committed on a half-typed value. Save or Cancel restores them.</div>
+      </div>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #095192; background: #E9F1F8; border-radius: 3px; padding: 3px 7px; white-space: nowrap">EC-4.5</span>
+        <span style="font-size: 17px; font-weight: 600">Editing a serial from another bin</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1.35fr; gap: 26px">
+        <div style="font-size: 14px; line-height: 1.6; color: #5B6B7B">Row on the dispense list was picked in an earlier bin.</div>
+        <div style="font-size: 14px; line-height: 1.6">Permitted — nothing is saved yet, so correcting any row's numbers is safe from any bin. Remove stays bin-restricted, since it implies physically returning the vial: it is only enabled for serials in the current door and bin.</div>
+      </div>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #095192; background: #E9F1F8; border-radius: 3px; padding: 3px 7px; white-space: nowrap">EC-4.6</span>
+        <span style="font-size: 17px; font-weight: 600">Serial edited down to zero</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1.35fr; gap: 26px">
+        <div style="font-size: 14px; line-height: 1.6; color: #5B6B7B">Dispense amount set to 0 mg on a picked vial.</div>
+        <div style="font-size: 14px; line-height: 1.6">Allowed; the row stays on the list contributing 0 mg with the full vial as waste. Removing the serial outright is the cleaner action and remains available for current-bin rows.</div>
+      </div>
+    </div>
+  </div>
+
+  <h2 style="font-size: 21px; font-weight: 600; color: #095192; margin: 30px 0 0; padding-bottom: 9px; border-bottom: 1px solid #E3E8ED">5. Moving between bins</h2>
+  <div style="margin-top: 16px; display: flex; flex-direction: column; gap: 18px">
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #095192; background: #E9F1F8; border-radius: 3px; padding: 3px 7px; white-space: nowrap">EC-5.1</span>
+        <span style="font-size: 17px; font-weight: 600">Switching bins with picked or edited serials</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1.35fr; gap: 26px">
+        <div style="font-size: 14px; line-height: 1.6; color: #5B6B7B">A bin is picked from the Location panel while another bin holds unsaved work.</div>
+        <div style="font-size: 14px; line-height: 1.6">Switches immediately — no prompt. Nothing was saved in the previous bin to begin with, so there is nothing to discard; everything picked or edited stays in local state and travels with the product to the new bin.</div>
+      </div>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #095192; background: #E9F1F8; border-radius: 3px; padding: 3px 7px; white-space: nowrap">EC-5.2</span>
+        <span style="font-size: 17px; font-weight: 600">Jumping to a different product mid-dispense</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1.35fr; gap: 26px">
+        <div style="font-size: 14px; line-height: 1.6; color: #5B6B7B">Product panel is used to open another product while the current one is unfinished.</div>
+        <div style="font-size: 14px; line-height: 1.6">Also switches immediately, for the same reason — no save-or-discard checkpoint exists because nothing has been written yet. The unfinished product simply waits, reopenable later like a skipped one.</div>
+      </div>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #095192; background: #E9F1F8; border-radius: 3px; padding: 3px 7px; white-space: nowrap">EC-5.3</span>
+        <span style="font-size: 17px; font-weight: 600">Destination bin is behind a different door</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1.35fr; gap: 26px">
+        <div style="font-size: 14px; line-height: 1.6; color: #5B6B7B">The next bin, or the next product's first bin, sits behind another door.</div>
+        <div style="font-size: 14px; line-height: 1.6">Toast "Door 3 is unlocked now". If the previous door is still open, a "Door is Open" prompt asks for it to be closed first and the pending bin is applied on OK. Same-door bin changes are silent; for demo purposes the prompt fires once per session.</div>
+      </div>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #095192; background: #E9F1F8; border-radius: 3px; padding: 3px 7px; white-space: nowrap">EC-5.4</span>
+        <span style="font-size: 17px; font-weight: 600">Returning to a bin already picked from</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1.35fr; gap: 26px">
+        <div style="font-size: 14px; line-height: 1.6; color: #5B6B7B">Technician steps back to an earlier bin.</div>
+        <div style="font-size: 14px; line-height: 1.6">Permitted. Those serials become actionable again — remove and edit re-enable, the "Dispensed" marker disappears, and they sort back to the top of the list.</div>
+      </div>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #095192; background: #E9F1F8; border-radius: 3px; padding: 3px 7px; white-space: nowrap">EC-5.5</span>
+        <span style="font-size: 17px; font-weight: 600">Later bins hold nothing left to pick</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1.35fr; gap: 26px">
+        <div style="font-size: 14px; line-height: 1.6; color: #5B6B7B">Advance is triggered but the remaining bins are empty.</div>
+        <div style="font-size: 14px; line-height: 1.6">The advance skips them; if none remain the product finalises instead. The technician is never sent to an empty bin.</div>
+      </div>
+    </div>
+  </div>
+
+  <h2 style="font-size: 21px; font-weight: 600; color: #095192; margin: 30px 0 0; padding-bottom: 9px; border-bottom: 1px solid #E3E8ED">6. Committing and skipping</h2>
+  <div style="margin-top: 16px; margin-bottom: 18px; break-inside: avoid">
+      <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #095192; background: #E9F1F8; border-radius: 3px; padding: 3px 7px; white-space: nowrap">EC-6.0</span>
+        <span style="font-size: 17px; font-weight: 600">Which bin "Continue to next bin" picks</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1.35fr; gap: 26px">
+        <div style="font-size: 14px; line-height: 1.6; color: #5B6B7B">More than one bin still holds unpicked stock for this product.</div>
+        <div style="font-size: 14px; line-height: 1.6">Ranked by earliest expiration across all remaining bins, then by whether the bin holds a partial vial — same-door bins get no priority over others, so the promise stays "soonest to expire" regardless of which door that means opening next. A tweak can fall back to plain bin-list order.</div>
+      </div>
+  </div>
+  <div style="margin-top: 16px; display: flex; flex-direction: column; gap: 18px">
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #095192; background: #E9F1F8; border-radius: 3px; padding: 3px 7px; white-space: nowrap">EC-6.1</span>
+        <span style="font-size: 17px; font-weight: 600">Last bin reached with the dose still short</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1.35fr; gap: 26px">
+        <div style="font-size: 14px; line-height: 1.6; color: #5B6B7B">No bin holds unpicked stock and the dispensed total is below the configured dose.</div>
+        <div style="font-size: 14px; line-height: 1.6">"Continue to next bin" cycles back through the bin list rather than disabling. If every bin has been visited and the shortfall is real, it toasts "600 of 950 mg picked. The full configured dose must be dispensed before continuing." There is no partial-dispense path, but the button itself is never a dead end.</div>
+      </div>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #095192; background: #E9F1F8; border-radius: 3px; padding: 3px 7px; white-space: nowrap">EC-6.2</span>
+        <span style="font-size: 17px; font-weight: 600">Skip attempted after any interaction</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1.35fr; gap: 26px">
+        <div style="font-size: 14px; line-height: 1.6; color: #5B6B7B">A serial has been added, edited, or a bulk action applied, in any bin for this product.</div>
+        <div style="font-size: 14px; line-height: 1.6">Skip is disabled immediately — not just once something is added, but from the first interaction with any serial. Only removing every added serial and undoing every edit, back to the product's initial state, re-enables it.</div>
+      </div>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #095192; background: #E9F1F8; border-radius: 3px; padding: 3px 7px; white-space: nowrap">EC-6.3</span>
+        <span style="font-size: 17px; font-weight: 600">Skip is always a whole-product decision</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1.35fr; gap: 26px">
+        <div style="font-size: 14px; line-height: 1.6; color: #5B6B7B">Skip &amp; continue is pressed at any point in the flow.</div>
+        <div style="font-size: 14px; line-height: 1.6">There is no per-bin meaning left to distinguish — since nothing saves until the full dose, Skip always means abandoning the product, and only ever from a pristine one (see EC-6.2).</div>
+      </div>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #095192; background: #E9F1F8; border-radius: 3px; padding: 3px 7px; white-space: nowrap">EC-6.4</span>
+        <span style="font-size: 17px; font-weight: 600">Skipping the product</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1.35fr; gap: 26px">
+        <div style="font-size: 14px; line-height: 1.6; color: #5B6B7B">Skip pressed on a product with nothing added or edited.</div>
+        <div style="font-size: 14px; line-height: 1.6">"Are you sure you want to skip this product?" naming the product, with NO, STAY and YES, CONTINUE. Confirming marks it skipped and goes straight to the next product — no interim modal. Copy stays "Skip &amp; continue" throughout; the bin-versus-product distinction is behavioural, never verbal.</div>
+      </div>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #095192; background: #E9F1F8; border-radius: 3px; padding: 3px 7px; white-space: nowrap">EC-6.5</span>
+        <span style="font-size: 17px; font-weight: 600">Last remaining product is finished or skipped</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1.35fr; gap: 26px">
+        <div style="font-size: 14px; line-height: 1.6; color: #5B6B7B">Nothing is left to advance to.</div>
+        <div style="font-size: 14px; line-height: 1.6">The run closes with "Dispense workflow complete", reporting dispensed and skipped counts. Completing an earlier product only toasts "&lt;Product&gt; is successfully dispensed" — the end of the run is the one place a modal is justified.</div>
+      </div>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #095192; background: #E9F1F8; border-radius: 3px; padding: 3px 7px; white-space: nowrap">EC-6.6</span>
+        <span style="font-size: 17px; font-weight: 600">Dose met before the last bin, on the last product</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1.35fr; gap: 26px">
+        <div style="font-size: 14px; line-height: 1.6; color: #5B6B7B">The checked selection meets the configured dose, on the last remaining product.</div>
+        <div style="font-size: 14px; line-height: 1.6">The primary action flips live from "CONTINUE TO NEXT BIN" straight to "DISPENSE &amp; VIEW SUMMARY", skipping the mid-state "DISPENSE &amp; CONTINUE" entirely, since there is no next product to continue to. The label always describes the outcome of the click, never the position in the list.</div>
+      </div>
+    </div>
+  </div>
+
+  <h2 style="font-size: 21px; font-weight: 600; color: #095192; margin: 30px 0 0; padding-bottom: 9px; border-bottom: 1px solid #E3E8ED">7. Session and live data</h2>
+  <div style="margin-top: 16px; display: flex; flex-direction: column; gap: 18px">
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #095192; background: #E9F1F8; border-radius: 3px; padding: 3px 7px; white-space: nowrap">EC-7.1</span>
+        <span style="font-size: 17px; font-weight: 600">Leaving the order mid-run</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1.35fr; gap: 26px">
+        <div style="font-size: 14px; line-height: 1.6; color: #5B6B7B">Top bar or left rail navigation is used while a bin holds uncommitted work.</div>
+        <div style="font-size: 14px; line-height: 1.6">Out of scope for the demo — the top bar and left rail are inert throughout, with no visual distinction from an active state. The only way out of a product is the footer.</div>
+      </div>
+    </div>
+
+    <div style="break-inside: avoid">
+      <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px">
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #A36E1E; background: #FBF3E4; border-radius: 3px; padding: 3px 7px; white-space: nowrap">EC-7.2</span>
+        <span style="font-size: 17px; font-weight: 600">Another technician takes stock mid-run</span>
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #A36E1E; background: #FBF3E4; border: 1px solid #EFD9AE; border-radius: 3px; padding: 2px 6px">DECISION</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1.35fr; gap: 26px">
+        <div style="font-size: 14px; line-height: 1.6; color: #5B6B7B">A suggested serial is removed from its bin by someone else before it is picked.</div>
+        <div style="font-size: 14px; line-height: 1.6">The prototype assumes a static pool. Proposed: the row falls out of the table with a toast rather than failing at commit. Needs a call on polling frequency and on what happens if the serial was already added.</div>
+      </div>
+    </div>
+  </div>
+
+  <div slot="footer" style="display: flex; align-items: baseline; justify-content: space-between; padding-top: 8px; border-top: 1px solid #E3E8ED">
+    <span style="font-size: 11px; color: #757575">AllyIQ · Dispense — multi-bin allocation</span>
+    <span style="font-size: 11px; color: #757575">Edge cases &amp; interface reactions</span>
+  </div>
+</doc-page>
+</x-dc>
+</body>
+</html>
