@@ -30,7 +30,7 @@ http
       return;
     }
 
-    if (pathname === '/') pathname = '/Multi-Bin Dispense - Prototype.html';
+    if (pathname === '/') pathname = '/index.html';
 
     const target = path.join(ROOT, pathname);
     if (!target.startsWith(ROOT + path.sep)) {
