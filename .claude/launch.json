@@ -5,7 +5,8 @@
       "name": "prototype",
       "runtimeExecutable": "node",
       "runtimeArgs": ["/Users/ideas2it/Downloads/Multi Bin - Dispense/.claude/static-server.js"],
-      "port": 4173
+      "port": 4173,
+      "autoPort": true
     }
   ]
 }
