@@ -1,0 +1,70 @@
+/* Nav tokens required by the Ally UI side/top nav components.
+   Values resolved from the design system the nav components ship with. */
+:root {
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --fw-regular: 400;
+  --dark-blue-400: #4870A1;
+  --dark-blue-500: #095192;
+  --content-inverse: #FFFFFF;
+  --gray-950: #25282A;
+  --steel-500: #64748B;
+  --text-default: var(--gray-950);
+  --text-tertiary: var(--steel-500);
+  --sidenav-size: 10px;
+  --sidenav-lh: 14px;
+  --sidenav-item-hover: var(--dark-blue-400);
+  --sidenav-selection-bg: var(--content-inverse);
+  --sidenav-selection-fg: var(--dark-blue-500);
+}
+
+.ally-sidenav {font-family: var(--font-sans); font-weight: var(--fw-regular); font-size: var(--sidenav-size); line-height: var(--sidenav-lh); color: var(--text-default);}
+/* ---- Side navigation + top bar (measured off the shipping AllyIQ shell) ------ 60px rail, 50px cells; active state is a #173a63 fill, not a pill. Colors are the app's own values, expressed as the DS tokens they correspond to. */ .sidenav {width:70px;min-width:70px;flex-shrink:0;height:100%;min-height:0;align-self:stretch; background:var(--dark-blue-500);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden; font-family:var(--font-sans);color:#fff}
+/* Nav group takes the slack and scrolls; the footer group stays pinned to the bottom. */ .sidenav-main {flex:1;min-height:0;display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden; scrollbar-width:none}
+.sidenav-main::-webkit-scrollbar {width:0;height:0}
+.sidenav-foot {flex:none}
+.sidenav-logo {height:50px;background:#0e243f;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sidenav-logo img {width:28px;height:25px;object-fit:contain;display:block}
+.sidenav-pin {height:50px;background:#173a63;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff}
+.sidenav-pin>span:not(.sidenav-chev)>svg {width:24px;height:24px;display:block}
+.sidenav-itemwrap {position:relative;display:flex;width:100%}
+.sidenav-item {width:100%;height:50px;flex-shrink:0;display:flex;flex-direction:column;align-items:center; justify-content:center;gap:1px;background:transparent;border:0;padding:0;cursor:pointer;color:#fff; font-family:inherit;transition:background-color .12s ease}
+.sidenav-item:hover {background:var(--sidenav-item-hover)}
+.sidenav-item:focus-visible {outline:2px solid #fff;outline-offset:-2px}
+/* Figma: selection is a WHITE pill with DarkBlue/500 content (Color-Tokens › Side Navigation). */ .sidenav-item[aria-current="page"] {background:var(--sidenav-selection-bg);color:var(--sidenav-selection-fg); border-radius:0;font-weight:500}
+.sidenav-item[aria-current="page"]:hover {background:var(--sidenav-selection-bg)}
+.sidenav-item-icon {display:block;flex-shrink:0}
+.sidenav-item-icon>svg,.sidenav-item>svg {width:24px;height:24px;display:block;flex-shrink:0}
+.sidenav-label {font-size:10px;line-height:normal;font-weight:500;text-align:center;width:100%;overflow:hidden; text-overflow:ellipsis;white-space:nowrap;padding:0 2px}
+.sidenav-chev {position:absolute;right:8px;top:0;bottom:0;margin:auto 0;width:4px;height:6px;display:block;flex-shrink:0;pointer-events:none}
+.sidenav-pin .sidenav-chev {position:static;margin:0 0 0 3px}
+/* Chevron sits over the cell, so on the white selection pill it takes the selection ink. */ .sidenav-itemwrap:has(.sidenav-item[aria-current="page"]) .sidenav-chev {color:var(--sidenav-selection-fg)}
+.sidenav-chev svg {width:100%;height:100%;display:block}
+.sidenav-version {font-size:10px;font-weight:500;color:#fff;text-align:center;padding:8px 0 10px}
+.topnav {height:60px;flex-shrink:0;background:#fff;border-bottom:1px solid #d8d8d8;display:flex;align-items:center; justify-content:space-between;padding:0 16px;gap:16px;font-family:var(--font-sans);box-sizing:border-box}
+.topnav-left {display:flex;align-items:center;gap:16px;min-width:0}
+.topnav-right {display:flex;align-items:center;gap:16px;flex-shrink:0}
+.topnav-chip {display:flex;align-items:center;gap:8px;background:transparent;border:0;padding:0;cursor:pointer; font-family:inherit;font-size:13px;line-height:100%;font-weight:500;color:var(--dark-blue-500);white-space:nowrap}
+/* Figma draws a secondary chip in #757575 and a 1px×24 rule between chips. */ .topnav-chip.is-secondary {color:var(--text-tertiary)}
+.topnav-chip.is-secondary>.topnav-chip-icon>svg {color:var(--text-tertiary)}
+.topnav-divider {width:1px;height:24px;flex:none;background:#d8d8d8}
+.topnav-chip:hover {text-decoration:underline;text-underline-offset:4px}
+.topnav-chip:focus-visible {outline:2px solid var(--dark-blue-500);outline-offset:2px;border-radius:2px}
+.topnav-chip[disabled] {cursor:default;text-decoration:none}
+.topnav-chip-icon>svg,.topnav-chip>svg {width:20px;height:20px;display:block;flex-shrink:0;color:var(--dark-blue-500)}
+.topnav-user {font-size:13px;font-weight:400;color:var(--text-default);white-space:nowrap}
+.topnav-signout {background:transparent;border:0;padding:4px;cursor:pointer;display:flex;color:var(--dark-blue-500)}
+.topnav-signout svg {width:18px;height:18px;display:block}
+.topnav-signout:focus-visible {outline:2px solid var(--dark-blue-500);outline-offset:2px;border-radius:2px}
+
+/* Shell header band. One token drives the top bar and the side-nav logo block so
+   their bottom edges stay aligned across the shell; 54px gives the two-line
+   user block (name + email) room the DS's 50px default did not have. */
+:root { --app-topnav-h: 54px; }
+.topnav { height: var(--app-topnav-h); min-height: var(--app-topnav-h); }
+.sidenav-logo { height: var(--app-topnav-h); min-height: var(--app-topnav-h); }
+
+/* Two-line user block: name over email, inside the DS .topnav-user span. */
+.topnav-user { line-height: 1.3; }
+.topnav-user-stack { display: flex; flex-direction: column; align-items: flex-end; }
+.topnav-user-name { font-size: 13px; font-weight: 500; color: var(--text-default); }
+.topnav-user-email { font-size: 12px; font-weight: 400; color: var(--text-tertiary); }

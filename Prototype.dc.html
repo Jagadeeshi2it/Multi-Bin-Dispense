@@ -21,53 +21,23 @@
   @keyframes toastIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes sheetIn { from { transform: translateX(24px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 </style>
+<link rel="stylesheet" href="./_ds/ally-ui-nav/nav.css">
+<script src="./_ds/ally-ui-nav/_ds_bundle.js"></script>
 </helmet>
 <div style="width: 100%; height: 100dvh; min-height: 620px; background: #FFFFFF; position: relative; overflow: hidden; display: flex">
 
-  <!-- LEFT RAIL -->
-  <div style="width: 76px; flex: 0 0 76px; background: #095192; display: flex; flex-direction: column">
-    <div style="height: 56px; flex: 0 0 56px; background: #073C6E; display: flex; align-items: center; justify-content: center">
-      <div style="width: 32px; height: 32px; border-radius: 4px; background: #FFFFFF; color: #095192; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; letter-spacing: -0.4px">IQ</div>
-    </div>
-    <div style="flex: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column">
-      <sc-for list="{{ rail }}" as="n" hint-placeholder-count="9">
-        <div style="flex: 0 0 56px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; cursor: pointer; position: relative; background: {{ n.bg }}">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="{{ n.color }}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ n.d }}"></path></svg>
-          <div style="font-size: 10px; line-height: 1.1; color: {{ n.color }}">{{ n.label }}</div>
-          <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: {{ n.mark }}"></div>
-        </div>
-      </sc-for>
-    </div>
-    <div style="padding: 10px 0 14px; display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 0 0 auto">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#BFD5E8" stroke-width="1.6"><path d="M4 4h16v13H4z M8 21h8"></path></svg>
-      <div style="font-size: 10px; color: #BFD5E8; text-align: center; line-height: 1.15">Resource<br>center</div>
-    </div>
-  </div>
+  <!-- LEFT RAIL — Ally UI DS SideNav -->
+  <x-import component-from-global-scope="AllyUIDesignSystem_f878db.SideNav" version="{{ navVersion }}" hint-size="70px,100vh">
+    <sc-for list="{{ navRail }}" as="it" hint-placeholder-count="11">
+      <x-import component-from-global-scope="AllyUIDesignSystem_f878db.SideNavItem" label="{{ it.label }}" icon-name="{{ it.icon }}" selected="{{ it.selected }}" expandable="{{ it.expandable }}" hint-size="70px,50px"></x-import>
+    </sc-for>
+  </x-import>
 
   <!-- MAIN COLUMN -->
   <div style="flex: 1; min-width: 0; display: flex; flex-direction: column">
 
-    <div style="height: 56px; flex: 0 0 56px; border-bottom: 1px solid #DADEE3; display: flex; align-items: center; padding: 0 20px; gap: 16px; background: #FFFFFF; overflow: hidden">
-      <div style="flex: 1 1 auto; min-width: 0; display: flex; align-items: center; gap: 28px; overflow: hidden">
-        <div style="display: flex; align-items: center; gap: 8px; color: #095192; font-size: 15px; font-weight: 600; min-width: 0; flex: 0 1 auto">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#095192" stroke-width="1.6" style="flex: 0 0 17px"><path d="M4 4h16v16H4z M4 9h16 M9 9v11"></path></svg>
-          <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap">AIQ Demo Practice</span>
-        </div>
-        <div style="display: flex; align-items: center; gap: 8px; color: #095192; font-size: 15px; font-weight: 600; min-width: 0; flex: 0 1 auto">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#095192" stroke-width="1.6" style="flex: 0 0 17px"><path d="M12 21s7-6.2 7-11a7 7 0 10-14 0c0 4.8 7 11 7 11z M12 12.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg>
-          <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap">Dev Oncology Clinic-Frisco</span>
-        </div>
-        <div style="display: flex; align-items: center; gap: 8px; color: #095192; font-size: 15px; font-weight: 600; min-width: 0; flex: 0 1 auto">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#095192" stroke-width="1.6" style="flex: 0 0 17px"><path d="M3 5h18v11H3z M8 20h8 M12 16v4"></path></svg>
-          <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap">Anil-MedOrderStation Station-Virtual</span>
-        </div>
-      </div>
-      <div style="flex: 0 1 auto; min-width: 0; text-align: right; line-height: 1.4">
-        <div style="font-size: 14px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">Jagadeesh Radhakrishnan</div>
-        <div style="font-size: 13px; color: #757575; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">jagadeesh@allygpo.com</div>
-      </div>
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#095192" stroke-width="1.6" style="flex: 0 0 20px"><path d="M15 4h4v16h-4 M10 8l4 4-4 4 M14 12H3"></path></svg>
-    </div>
+    <!-- TOP BAR — Ally UI DS TopNav -->
+    <x-import component-from-global-scope="AllyUIDesignSystem_f878db.TopNav" user="{{ topUser }}" left="{{ topChips }}" hint-size="100%,50px"></x-import>
 
     <!-- ============ CONFIGURE STEP BACKGROUND ============ -->
     <sc-if value="{{ isConfigure }}" hint-placeholder-val="{{ true }}">
@@ -99,8 +69,8 @@
         </div>
       </div>
 
-      <div style="flex: 1; min-height: 0; display: flex; flex-wrap: wrap">
-        <div style="flex: 1 1 480px; min-width: 380px; border-right: 1px solid #E3E8ED; display: flex; flex-direction: column; min-height: 0">
+      <div style="flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); grid-auto-rows: minmax(0, 1fr); overflow: hidden">
+        <div style="min-width: 0; border-right: 1px solid #E3E8ED; display: flex; flex-direction: column; min-height: 0; overflow: hidden">
           <div style="padding: 18px 24px 12px; font-size: 21px; font-weight: 600; flex: 0 0 auto">Find product</div>
           <div style="padding: 0 24px 12px; display: flex; flex: 0 0 auto">
             <div style="display: flex; flex: 1; max-width: 640px; height: 46px; border: 1px solid #BCC3CD; border-radius: 4px; overflow: hidden">
@@ -115,7 +85,7 @@
           </div>
           <div style="flex: 1; min-height: 0; overflow: auto; padding: 4px 24px 24px; display: flex; flex-direction: column; gap: 16px">
             <sc-for list="{{ products }}" as="p" hint-placeholder-count="3">
-              <div onClick="{{ p.onOpen }}" style="border: 1px solid #E3E8ED; border-radius: 8px; overflow: hidden; cursor: {{ p.cursor }}">
+              <div onClick="{{ p.onOpen }}" style="flex: 0 0 auto; border: 1px solid #E3E8ED; border-radius: 8px; overflow: hidden; cursor: {{ p.cursor }}">
                 <div style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: {{ p.headBg }}; flex-wrap: wrap">
                   <span style="font-size: 17px; font-weight: 600; color: {{ p.titleColor }}">{{ p.name }}</span>
                   <sc-for list="{{ p.tags }}" as="t" hint-placeholder-count="1">
@@ -136,7 +106,7 @@
           </div>
         </div>
 
-        <div style="flex: 1 1 480px; min-width: 380px; display: flex; flex-direction: column; min-height: 0">
+        <div style="min-width: 0; display: flex; flex-direction: column; min-height: 0; overflow: hidden">
           <div style="padding: 18px 24px 12px; font-size: 21px; font-weight: 600; flex: 0 0 auto">Configured for dispense ({{ configuredCount }})</div>
           <div style="flex: 1; min-height: 0; overflow: auto; padding: 4px 24px 24px">
             <sc-if value="{{ nothingConfigured }}" hint-placeholder-val="{{ true }}">
@@ -155,7 +125,7 @@
                   <div><div style="font-size: 13px; color: #5B6B7B">NDC</div><div style="font-size: 15px; font-weight: 600; margin-top: 6px">2502181430</div></div>
                   <div><div style="font-size: 13px; color: #5B6B7B">Inventory type</div><div style="font-size: 15px; font-weight: 600; margin-top: 6px">Purchased</div></div>
                   <div><div style="font-size: 13px; color: #5B6B7B">Dose type</div><div style="font-size: 15px; font-weight: 600; margin-top: 6px">MDV</div></div>
-                  <div><div style="font-size: 13px; color: #5B6B7B">Configured dose</div><div style="font-size: 15px; font-weight: 600; margin-top: 6px">9.5 vials / 950 mg / 95 mL</div></div>
+                  <div><div style="font-size: 13px; color: #5B6B7B">Configured dose</div><div style="font-size: 15px; font-weight: 600; margin-top: 6px">{{ prodDoseText }}</div></div>
                   <div><div style="font-size: 13px; color: #5B6B7B">Total inventory</div><div style="font-size: 15px; font-weight: 600; margin-top: 6px">40 vials across 4 bins</div></div>
                   <div><div style="font-size: 13px; color: #5B6B7B">Dispense location</div><div style="font-size: 15px; font-weight: 600; margin-top: 6px; color: #5B6B7B">Chosen during dispense</div></div>
                 </div>
@@ -197,20 +167,30 @@
           </div>
           <div style="font-size: 16px; color: #5B6B7B; font-style: italic; margin-top: 6px">{{ prodSub }}</div>
         </div>
+        <sc-if value="{{ locPicked }}" hint-placeholder-val="{{ true }}">
         <div onClick="{{ onToggleDoor }}" style="padding: 12px 22px; border: 1px solid #095192; color: #095192; background: #FFFFFF; border-radius: 4px; font-size: 15px; font-weight: 600; letter-spacing: 0.4px; cursor: pointer; white-space: nowrap; display: flex; align-items: center; gap: 10px" style-hover="background: #E9F1F8">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#095192" stroke-width="1.7"><path d="M7 11V8a5 5 0 019.5-2 M5 11h14v10H5z"></path></svg>UNLOCK DOOR
         </div>
+        </sc-if>
       </div>
 
       <div style="padding: 18px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px 24px">
         <div>
           <div style="font-size: 16px; margin-bottom: 10px"><span style="color: #5B6B7B">NDC</span> &nbsp;{{ prodNdc }}</div>
-          <div style="font-size: 16px; margin-bottom: 10px"><span style="color: #5B6B7B">Source</span> &nbsp;{{ prodSource }}</div>
           <div style="font-size: 16px"><span style="color: #5B6B7B">Inventory Type</span> &nbsp;Purchased</div>
         </div>
         <div>
-          <div style="font-size: 16px; margin-bottom: 10px"><span style="color: #5B6B7B">Door</span> &nbsp;{{ currentDoor }} &nbsp;&nbsp;<span style="color: #5B6B7B">Bin</span> &nbsp;{{ currentBin }}</div>
-          <div style="font-size: 16px; margin-bottom: 10px"><span style="color: #5B6B7B">Inventory</span> &nbsp;{{ currentBinInventory }}</div>
+          <div style="font-size: 16px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap">
+            <span style="color: #5B6B7B">Door</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px">
+              <sc-if value="{{ locPicked }}" hint-placeholder-val="{{ true }}">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="{{ currentDoorTint }}" stroke-width="1.6" stroke-linecap="round" style="flex: 0 0 16px"><path d="{{ currentDoorIconD }}"></path></svg>
+              </sc-if>
+              {{ doorLabel }}
+            </span>
+            <span style="color: #5B6B7B; margin-left: 8px">Bin</span> {{ binLabel }}
+          </div>
+          <div style="font-size: 16px; margin-bottom: 10px"><span style="color: #5B6B7B">Inventory</span> &nbsp;{{ inventoryLabel }}</div>
         </div>
         <div>
           <div style="font-size: 16px"><span style="color: #5B6B7B">Med Order</span> &nbsp;{{ prodMedOrder }}</div>
@@ -219,19 +199,24 @@
 
       <div style="display: flex; flex-wrap: wrap; align-items: stretch; border-top: 1px solid #E3E8ED; border-bottom: 1px solid #E3E8ED; flex: 0 0 auto">
         <div style="flex: 1 1 440px; display: flex; align-items: center; gap: 12px; padding: 14px 24px; flex-wrap: wrap">
-          <div style="display: flex; flex: 1 1 280px; max-width: 380px; height: 44px; border: 1px solid #BCC3CD; border-radius: 4px; overflow: hidden">
+          <div style="display: flex; flex: 1 1 280px; max-width: 380px; height: 44px; border: 1px solid #BCC3CD; border-radius: 4px; overflow: hidden; background: {{ scanFieldBg }}">
             <div style="flex: 0 0 40px; display: flex; align-items: center; justify-content: center">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8A949E" stroke-width="1.6"><path d="M4 5h4v14H4z M11 5v14 M14 5v14 M17 5h3v14h-3z"></path></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{ scanGlyph }}" stroke-width="1.6"><path d="M4 5h4v14H4z M11 5v14 M14 5v14 M17 5h3v14h-3z"></path></svg>
             </div>
-            <input value="{{ scanText }}" onChange="{{ onScanChange }}" onFocus="{{ onScanFocus }}" onKeyDown="{{ onScanKey }}" placeholder="Scan or type serial number" style="flex: 1; min-width: 0; border: none; outline: none; font-size: 15px; color: #25282A; background: transparent">
-            <div onClick="{{ onScanSubmit }}" style="flex: 0 0 52px; background: #095192; display: flex; align-items: center; justify-content: center; cursor: pointer">
+            <input value="{{ scanText }}" onChange="{{ onScanChange }}" onFocus="{{ onScanFocus }}" onKeyDown="{{ onScanKey }}" disabled="{{ scanDisabled }}" placeholder="{{ scanPlaceholder }}" style="flex: 1; min-width: 0; border: none; outline: none; font-size: 15px; color: #25282A; background: transparent; cursor: {{ scanCursor }}">
+            <div onClick="{{ onScanSubmit }}" style="flex: 0 0 52px; background: {{ scanBtnBg }}; display: flex; align-items: center; justify-content: center; cursor: {{ scanCursor }}">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2"><path d="M11 18a7 7 0 100-14 7 7 0 000 14M16.2 16.2L21 21"></path></svg>
             </div>
           </div>
-          <div style="padding: 11px 18px; border: 1px solid #095192; color: #095192; border-radius: 4px; font-size: 15px; font-weight: 600; letter-spacing: 0.4px; cursor: pointer; white-space: nowrap">ADD MANUALLY</div>
+          <div onClick="{{ onAddManually }}" style="padding: 11px 18px; border: 1px solid {{ scanBtnBg }}; color: {{ scanBtnBg }}; border-radius: 4px; font-size: 15px; font-weight: 600; letter-spacing: 0.4px; cursor: {{ scanCursor }}; white-space: nowrap">ADD MANUALLY</div>
         </div>
         <div style="flex: 1 1 300px; border-left: 1px solid #E3E8ED; padding: 10px 24px; text-align: right; display: flex; flex-direction: column; justify-content: center">
-          <div style="font-size: 15px; color: #5B6B7B">Configured Dose</div>
+          <div style="display: flex; align-items: center; justify-content: flex-end; gap: 10px">
+            <span style="font-size: 15px; color: #5B6B7B">Configured Dose</span>
+            <span onClick="{{ onEditDoseFromScan }}" style="display: inline-flex; align-items: center; gap: 5px; font-size: 14px; font-weight: 600; color: #095192; cursor: pointer">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#095192" stroke-width="1.8" style="flex: 0 0 14px"><path d="M4 20h4l10-10-4-4L4 16z M14 6l4 4"></path></svg>Edit dose
+            </span>
+          </div>
           <div style="font-size: 26px; margin-top: 4px; white-space: nowrap">{{ prodDoseText }}</div>
           <sc-if value="{{ shortfall }}" hint-placeholder-val="{{ false }}">
             <div style="display: flex; align-items: center; justify-content: flex-end; gap: 7px; margin-top: 6px">
@@ -327,7 +312,13 @@
             <span style="font-size: 14px; color: #5B6B7B">Scan or select items to add them to the list</span>
           </div>
         </sc-if>
+        <sc-if value="{{ needsLocation }}" hint-placeholder-val="{{ false }}">
+          <div style="margin: 16px 24px; border: 1px dashed #D8D8D8; border-radius: 4px; padding: 56px 16px; display: flex; align-items: center; justify-content: center; text-align: center">
+            <span style="font-size: 16px; line-height: 24px; color: #5B6B7B">Select a bin location to load its inventory to dispense</span>
+          </div>
+        </sc-if>
 
+        <sc-if value="{{ locPicked }}" hint-placeholder-val="{{ true }}">
         <div style="position: sticky; top: 0; z-index: 6; background: #FFFFFF; margin-top: 16px; padding: 10px 24px 12px; border-bottom: 1px solid #E3E8ED; display: flex; align-items: center; gap: 12px; flex-wrap: wrap">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#095192" stroke-width="1.7" style="flex: 0 0 17px"><path d="M12 21a9 9 0 100-18 9 9 0 000 18M12 8v.1M12 11.5v5"></path></svg>
           <span style="font-size: 17px; font-weight: 600">Suggested items ({{ suggestedCount }})</span>
@@ -337,6 +328,7 @@
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#095192" stroke-width="1.8"><path d="{{ hideIcon }}"></path></svg>
           </div>
         </div>
+        </sc-if>
 
         <sc-if value="{{ suggestedOpen }}" hint-placeholder-val="{{ true }}">
           <div style="margin: 12px 24px 24px; border: 1px solid #E3E8ED; border-radius: 8px; overflow: hidden">
@@ -409,7 +401,7 @@
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5B6B7B" stroke-width="1.6"><path d="M12 21s7-6.2 7-11a7 7 0 10-14 0c0 4.8 7 11 7 11z M12 12.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg>
           <div>
             <div style="font-size: 11px; color: #757575">Location</div>
-            <div style="font-size: 14px; font-weight: 600; color: {{ locValueColor }}">{{ footerLocationLabel }}</div>
+            <div style="font-size: 14px; font-weight: 700; color: {{ locValueColor }}">{{ footerLocationLabel }}</div>
           </div>
           <sc-if value="{{ multiBin }}" hint-placeholder-val="{{ true }}">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#095192" stroke-width="2"><path d="M9 5l7 7-7 7"></path></svg>
@@ -424,9 +416,7 @@
           <div onClick="{{ onBackToConfigure }}" style="padding: 11px 20px; border: 1px solid #095192; color: #095192; border-radius: 4px; font-size: 15px; font-weight: 600; cursor: pointer">Cancel</div>
           <div onClick="{{ onSkip }}" style="padding: 11px 20px; border: 1px solid {{ skipBtnBorder }}; color: {{ skipBtnColor }}; border-radius: 4px; font-size: 15px; font-weight: 600; letter-spacing: 0.4px; cursor: {{ skipBtnCursor }}; white-space: nowrap">{{ skipLabel }}</div>
           <div onClick="{{ onDispense }}" style="padding: 11px 20px; display: flex; align-items: center; gap: 9px; border-radius: 4px; font-size: 15px; font-weight: 600; letter-spacing: 0.4px; white-space: nowrap; background: {{ dispenseBtnBg }}; border: 1px solid {{ dispenseBtnBorder }}; color: {{ dispenseBtnColor }}; cursor: {{ dispenseBtnCursor }}">
-            <sc-if value="{{ dispenseIconVisible }}" hint-placeholder-val="{{ true }}">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{ dispenseBtnColor }}" stroke-width="1.7"><path d="M12 21a9 9 0 100-18 9 9 0 000 18M8.4 12.2l2.5 2.5 4.7-5.1"></path></svg>
-            </sc-if>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{ dispenseBtnColor }}" stroke-width="1.7"><path d="M12 21a9 9 0 100-18 9 9 0 000 18M8.4 12.2l2.5 2.5 4.7-5.1"></path></svg>
             {{ dispenseLabel }}
           </div>
         </div>
@@ -524,13 +514,13 @@
       <div style="flex: 1; min-height: 0; overflow: auto">
         <div style="margin: 0 24px; background: #F3E4FD; border: 1px solid #E0C6F5; border-radius: 4px; display: flex; align-items: flex-start; gap: 10px; padding: 12px 16px">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#8B3FD9" stroke-width="1.7" style="flex: 0 0 17px; margin-top: 1px"><path d="M12 21a9 9 0 100-18 9 9 0 000 18M12 8v.1M12 11.5v5"></path></svg>
-          <span style="font-size: 14px; line-height: 1.5">Select a bin to restock as the product is at multiple locations.</span>
+          <span style="font-size: 14px; line-height: 1.5">Select a bin to dispense from as the product is at multiple locations.</span>
         </div>
         <div style="padding: 20px 24px 8px; font-size: 17px; font-weight: 600">Available at ({{ locationCount }})</div>
         <div style="margin: 4px 24px 24px; border: 1px solid #E3E8ED; border-radius: 8px; overflow: hidden">
           <div style="overflow-x: auto">
             <div style="min-width: 660px">
-              <div style="display: grid; grid-template-columns: 0.6fr 0.6fr 0.6fr 1fr 0.8fr 0.9fr 1fr; background: #EEF1F6; border-bottom: 1px solid #E3E8ED; font-size: 13px; font-weight: 600; color: #5B6B7B">
+              <div style="display: grid; grid-template-columns: 1.1fr 0.5fr 0.5fr 1fr 0.8fr 0.9fr 1fr; background: #EEF1F6; border-bottom: 1px solid #E3E8ED; font-size: 13px; font-weight: 600; color: #5B6B7B">
                 <div style="padding: 12px 18px">Door</div>
                 <div style="padding: 12px 8px">Bin</div>
                 <div style="padding: 12px 8px">Size</div>
@@ -540,8 +530,11 @@
                 <div style="padding: 12px 18px"></div>
               </div>
               <sc-for list="{{ locationRows }}" as="l" hint-placeholder-count="4">
-                <div style="display: grid; grid-template-columns: 0.6fr 0.6fr 0.6fr 1fr 0.8fr 0.9fr 1fr; border-bottom: 1px solid #E3E8ED; align-items: center; font-size: 15px; background: {{ l.bg }}">
-                  <div style="padding: 16px 18px">{{ l.door }}</div>
+                <div style="display: grid; grid-template-columns: 1.1fr 0.5fr 0.5fr 1fr 0.8fr 0.9fr 1fr; border-bottom: 1px solid #E3E8ED; align-items: center; font-size: 15px; background: {{ l.bg }}">
+                  <div style="padding: 16px 18px; display: flex; align-items: center; gap: 8px">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="{{ l.doorTint }}" stroke-width="1.6" stroke-linecap="round" style="flex: 0 0 17px"><path d="{{ l.doorIconD }}"></path></svg>
+                    <span>{{ l.door }}</span>
+                  </div>
                   <div style="padding: 16px 8px">{{ l.bin }}</div>
                   <div style="padding: 16px 8px">{{ l.size }}</div>
                   <div style="padding: 16px 8px">{{ l.expiration }}</div>
@@ -681,10 +674,12 @@ class Component extends DCLogic {
   state = {
     step: 'configure',
     activeProduct: 1,
-    configOpen: true,
-    configured: false,
+    configOpen: false,
+    configured: true,
     searchText: 'leuco',
     invVials: '9.5', dispMg: '950', volMl: '95',
+    doseCfg: {},
+    locPicked: false,
     currentDoor: 1, currentBin: 32,
     doorOpen: false,
     dispensedIds: [],
@@ -806,7 +801,48 @@ class Component extends DCLogic {
     }
   };
 
-  get product() { return this.catalog[this.state.activeProduct]; }
+  doorKinds = { 1: 'Physical', 2: 'Physical', 3: 'Virtual' };
+
+  doorMeta(door) {
+    const virtual = this.doorKinds[door] === 'Virtual';
+    return {
+      kind: virtual ? 'VIRTUAL' : 'PHYSICAL',
+      tint: virtual ? '#8B3FD9' : '#5B6B7B',
+      d: virtual
+        ? 'M5 3h14v18H5z M15.6 12.5h.01'
+        : 'M4 3h16v18H4z M4 9h16 M4 15h16 M9.5 6h2 M9.5 12h2 M9.5 18h2'
+    };
+  }
+
+  get product() {
+    const c = this.catalog[this.state.activeProduct];
+    const cfg = this.state.doseCfg[this.state.activeProduct];
+    return cfg ? Object.assign({}, c, { target: cfg.target, doseText: cfg.doseText }) : c;
+  }
+
+  componentDidMount() {
+    try {
+      const raw = localStorage.getItem('mbd-dose-cfg');
+      if (raw) {
+        const doseCfg = JSON.parse(raw);
+        const seed = doseCfg[this.state.activeProduct];
+        this.setState(Object.assign({ doseCfg }, seed ? { invVials: seed.vials, dispMg: seed.mg, volMl: seed.ml } : {}));
+      }
+    } catch (e) {}
+  }
+
+  persistCfg(doseCfg) {
+    try { localStorage.setItem('mbd-dose-cfg', JSON.stringify(doseCfg)); } catch (e) {}
+  }
+
+  cfgInputsFor(id, doseCfg) {
+    const cfg = (doseCfg || this.state.doseCfg)[id];
+    if (cfg) return { invVials: cfg.vials, dispMg: cfg.mg, volMl: cfg.ml };
+    const m = /([\d.]+)\s*vials?\s*\/\s*([\d.]+)\s*mg\s*\/\s*([\d.]+)\s*mL/i.exec(this.catalog[id].doseText || '');
+    return m
+      ? { invVials: m[1], dispMg: m[2], volMl: m[3] }
+      : { invVials: '', dispMg: String(this.catalog[id].target), volMl: '' };
+  }
   get pool() { return this.product.pool; }
   get locations() { return this.product.locations; }
   get target() { return this.product.target; }
@@ -822,18 +858,47 @@ class Component extends DCLogic {
     });
   }
 
+  // Side nav item set as shipped in the Ally UI DS nav (App Side Nav).
+  // `icon` maps to the DS KIT_NAV glyph of the same name; `expandable` draws the chevron.
   navItems = [
-    { label: 'Home', d: 'M4 11l8-7 8 7v9H4z' },
-    { label: 'Dispense', d: 'M4 5h16v6H4z M8 11v8 M16 11v8', active: true },
-    { label: 'Order', d: 'M6 3h12v18H6z M9 8h6 M9 12h6' },
-    { label: 'Restock', d: 'M4 8l8-5 8 5v8l-8 5-8-5z' },
-    { label: 'Audit', d: 'M6 3h9l3 3v15H6z M9 12h6 M9 16h4' },
-    { label: 'Inventory', d: 'M4 7h16v13H4z M4 7l2-4h12l2 4' },
-    { label: 'Formulary', d: 'M5 4h11a3 3 0 013 3v13H8a3 3 0 01-3-3z' },
-    { label: 'Patient', d: 'M12 12a4 4 0 100-8 4 4 0 000 8 M5 20a7 7 0 0114 0' },
-    { label: 'Transfer', d: 'M4 8h13l-3-3 M20 16H7l3 3' },
-    { label: 'Reporting', d: 'M4 20V9 M10 20V4 M16 20v-8 M22 20H2' }
+    { label: 'Dispense', selected: true }, { label: 'Order' }, { label: 'Restock' },
+    { label: 'Audit' }, { label: 'Inventory', expandable: true }, { label: 'Formulary' },
+    { label: 'Patient' }, { label: 'Transfer' }, { label: 'Reporting' },
+    { label: 'Station' }, { label: 'User', expandable: true }
   ];
+
+  // TopNav renders `user` inside its own .topnav-user span, so pass an element
+  // rather than a string to stack the email under the name.
+  topNavUser() {
+    return React.createElement('span', { className: 'topnav-user-stack' },
+      React.createElement('span', { className: 'topnav-user-name' }, 'Jagadeesh Radhakrishnan'),
+      React.createElement('span', { className: 'topnav-user-email' }, 'jagadeesh@allygpo.com')
+    );
+  }
+
+  // Context chips for the DS TopNav, built with the DS's own chip + divider parts.
+  topNavChips() {
+    const NS = window.AllyUIDesignSystem_f878db;
+    if (!NS || !NS.TopNavChip) {
+      if (!this._dsWait) {
+        this._dsWait = setInterval(() => {
+          if (window.AllyUIDesignSystem_f878db) { clearInterval(this._dsWait); this._dsWait = null; this.forceUpdate(); }
+        }, 100);
+      }
+      return null;
+    }
+    const out = [], noop = () => {};
+    const push = (key, iconName, text, live) => {
+      if (out.length) out.push(React.createElement(NS.TopNavDivider, { key: 'd' + key }));
+      out.push(React.createElement(NS.TopNavChip, live ? { key, iconName, onClick: noop } : { key, iconName }, text));
+    };
+    push('org', 'building', 'AIQ Demo Practice', true);
+    push('clinic', 'marker', 'Dev Oncology Clinic-Frisco', true);
+    push('station', 'box', 'Anil-MedOrderStation Station-Virtual', false);
+    return out;
+  }
+
+  componentWillUnmount() { if (this._dsWait) clearInterval(this._dsWait); }
 
   toast(text) {
     const id = this.state.toastSeq + 1;
@@ -870,7 +935,7 @@ class Component extends DCLogic {
   switchTo(loc) {
     const prev = 'Door ' + this.state.currentDoor + ' · Bin ' + this.state.currentBin;
     const hadItems = this.dispensedItems().length > 0;
-    this.setState(s => ({ currentDoor: loc.door, currentBin: loc.bin, locOpen: false, alertOpen: false, pendingLoc: null, sel: [], dirty: false, banner: 0, doorOpen: true, binBaseline: s.dispensedIds, binBaseOverrides: s.overrides }));
+    this.setState(s => ({ currentDoor: loc.door, currentBin: loc.bin, locPicked: true, locOpen: false, alertOpen: false, pendingLoc: null, sel: [], dirty: false, banner: 0, doorOpen: true, binBaseline: s.dispensedIds, binBaseOverrides: s.overrides }));
     this.toast('Door ' + loc.door + ' is unlocked now');
   }
 
@@ -935,17 +1000,17 @@ class Component extends DCLogic {
     const loc = c.locations[0];
     const doorChanged = loc.door !== this.state.currentDoor;
     this.setState(s => ({ skippedProducts: s.skippedProducts.filter(x => x !== id) }));
-    this.setState({
+    this.setState(Object.assign({
       activeProduct: id, dispensedIds: [], sel: [], overrides: {}, editId: null, draft: null,
-      dirty: false, banner: 0, summaryOpen: false, locOpen: false, prodOpen: false, doorOpen: false,
+      dirty: false, banner: 0, summaryOpen: false, locOpen: false, prodOpen: false, doorOpen: false, locPicked: true,
       currentDoor: loc.door, currentBin: loc.bin, binBaseline: [], binBaseOverrides: {}
-    });
+    }, this.cfgInputsFor(id)));
     if (doorChanged) this.toast('Door ' + loc.door + ' is unlocked now');
   }
 
   goToBin(loc) {
     if (loc.door === this.state.currentDoor) {
-      this.setState(s => ({ currentBin: loc.bin, sel: [], dirty: false, banner: 0, locOpen: false, binBaseline: s.dispensedIds, binBaseOverrides: s.overrides }));
+      this.setState(s => ({ currentBin: loc.bin, locPicked: true, sel: [], dirty: false, banner: 0, locOpen: false, binBaseline: s.dispensedIds, binBaseOverrides: s.overrides }));
       return;
     }
     this.selectLocation(loc);
@@ -953,12 +1018,6 @@ class Component extends DCLogic {
 
   dispenseAndContinue() {
     const st = this.state;
-    if (this.totalMg() < this.target) {
-      const next = this.nextLoc(st.dispensedIds);
-      if (next) this.goToBin(next);
-      else this.toast(this.totalMg() + ' of ' + this.target + ' mg picked. The full configured dose must be dispensed before continuing.');
-      return;
-    }
     let running = this.totalMg();
     const accepted = [];
     st.sel.forEach(id => {
@@ -968,12 +1027,10 @@ class Component extends DCLogic {
     if (accepted.length < st.sel.length) this.toast('Configured dose reached. Extra serials were not added.');
     const ids = st.dispensedIds.concat(accepted);
     const where = 'Door ' + st.currentDoor + ', Bin ' + st.currentBin;
-    const next = running >= this.target ? null : this.nextLoc(ids);
     this.setState({ dispensedIds: ids, sel: [], dirty: false, banner: accepted.length });
     if (accepted.length) this.toast(accepted.length + (accepted.length === 1 ? ' serial' : ' serials') + ' dispensed in ' + where);
     if (running >= this.target) { this.finish(); return; }
-    if (next) { this.goToBin(next); return; }
-    this.toast(running + ' of ' + this.target + ' mg picked. The full configured dose must be dispensed before continuing.');
+    this.toast(running + ' of ' + this.target + ' mg picked — switch bins from the Location control to complete the dose');
   }
 
   skipAndContinue() {
@@ -1028,14 +1085,14 @@ class Component extends DCLogic {
         source: p.source, door: p.door, bin: p.bin, vials: p.vials, mg: p.mg, ml: p.ml,
         cursor: active ? 'pointer' : 'not-allowed',
         bg: checked ? '#E9F1F8' : (active ? '#FFFFFF' : '#F7F8F9'),
-        fg: active ? '#25282A' : '#9FA9B7',
-        expColor: !active ? '#9FA9B7' : (String(p.exp).indexOf('BUD') === 0 ? '#A36E1E' : '#25282A'),
-        boxBorder: active ? (checked ? '#095192' : '#BCC3CD') : '#DADEE3',
+        fg: active ? '#25282A' : '#5B6B7B',
+        expColor: !active ? '#5B6B7B' : (String(p.exp).indexOf('BUD') === 0 ? '#A36E1E' : '#25282A'),
+        boxBorder: active ? (checked ? '#095192' : '#87919B') : '#DADEE3',
         boxBg: checked ? '#095192' : '#FFFFFF',
         checkOpacity: checked ? 1 : 0,
         onToggle: active ? () => this.setState(s => ({ sel: s.sel.includes(p.id) ? s.sel.filter(x => x !== p.id) : [...s.sel, p.id] })) : () => {},
-        addBorder: active ? '#095192' : '#DADEE3',
-        addColor: active ? '#095192' : '#9FA9B7',
+        addBorder: active ? '#095192' : '#87919B',
+        addColor: active ? '#095192' : '#5B6B7B',
         onAdd: active ? e => { e.stopPropagation(); this.addIds([p.id]); } : e => { e.stopPropagation(); this.toast('Switch to Door ' + p.door + ' · Bin ' + p.bin + ' to dispense this serial'); }
       };
     });
@@ -1054,7 +1111,7 @@ class Component extends DCLogic {
     const doseWillBeMet = projected >= prod.target;
     const endsRun = isLastProduct && doseWillBeMet;
     const skipEndsRun = isLastProduct && !this.nextLoc(st.dispensedIds);
-    const canDispense = !editing && (complete || !lastBin);
+    const canDispense = !editing && doseWillBeMet;
     const canSkip = !editing && dispensed.length === 0 && Object.keys(st.overrides).length === 0;
 
     const inBin = p => p.door === st.currentDoor && p.bin === st.currentBin;
@@ -1128,13 +1185,18 @@ class Component extends DCLogic {
       const dose = usedDoses[l.door + '-' + l.bin];
       return {
         door: l.door, bin: l.bin, size: l.size, expiration: l.expiration,
-        inventory: l.inventory,
+        inventory: l.inventory + ' vials',
+        doorKind: this.doorMeta(l.door).kind,
+        doorTint: this.doorMeta(l.door).tint,
+        doorIconD: this.doorMeta(l.door).d,
         dose: dose ? dose + ' mg' : '—',
         bg: isCurrent ? '#F8FAFC' : '#FFFFFF',
-        action: isCurrent ? 'Current bin' : 'Select',
-        actionColor: isCurrent ? '#9FA9B7' : '#095192',
-        actionCursor: isCurrent ? 'default' : 'pointer',
-        onSelect: isCurrent ? () => {} : () => this.selectLocation(l)
+        action: isCurrent && st.locPicked ? 'Current bin' : 'Select',
+        actionColor: isCurrent && st.locPicked ? '#9FA9B7' : '#095192',
+        actionCursor: isCurrent && st.locPicked ? 'default' : 'pointer',
+        onSelect: isCurrent
+          ? (st.locPicked ? () => {} : () => this.setState({ locPicked: true, locOpen: false, doorOpen: true }, () => this.toast('Door ' + l.door + ' is unlocked now')))
+          : () => this.selectLocation(l)
       };
     });
 
@@ -1194,12 +1256,13 @@ class Component extends DCLogic {
     const currentLoc = this.locations.find(l => l.door === st.currentDoor && l.bin === st.currentBin);
 
     return {
-      rail: this.navItems.map(n => ({
-        label: n.label, d: n.d,
-        color: n.active ? '#FFFFFF' : '#BFD5E8',
-        bg: n.active ? '#073C6E' : 'transparent',
-        mark: n.active ? '#FFFFFF' : 'transparent'
+      navVersion: 'V 1.0',
+      navRail: this.navItems.map(n => ({
+        label: n.label, icon: n.label,
+        selected: !!n.selected, expandable: !!n.expandable
       })),
+      topUser: this.topNavUser(),
+      topChips: this.topNavChips(),
       prodName: prod.name, prodUpper: prod.upper, prodSub: prod.sub, prodNdc: prod.ndc,
       prodDoseType: prod.doseType, prodSource: prod.source, prodMedOrder: prod.medOrder,
       prodInvType: prod.invType, prodRoute: prod.route, prodDoseText: prod.doseText,
@@ -1224,7 +1287,11 @@ class Component extends DCLogic {
       nothingConfigured: !st.configured,
       continueBg: st.configured ? '#095192' : '#9FA9B7',
       continueCursor: st.configured ? 'pointer' : 'not-allowed',
-      onGoToScan: () => { if (st.configured) this.setState({ step: 'scan' }); },
+      onGoToScan: () => {
+        if (!st.configured) return;
+        const pickFirst = this.locations.length > 1;
+        this.setState({ step: 'scan', locOpen: pickFirst, locPicked: !pickFirst, doorOpen: false });
+      },
       onRemoveConfigured: () => this.setState({ configured: false, configOpen: false }),
       onEditDose: () => this.setState({ configOpen: true }),
 
@@ -1240,19 +1307,45 @@ class Component extends DCLogic {
       onVolMl: e => this.setState({ volMl: e.target.value }),
       onClearConfig: () => this.setState({ invVials: '', dispMg: '', volMl: '' }),
       onCloseConfig: () => this.setState({ configOpen: false }),
-      onSaveConfig: () => this.setState({ configOpen: false, configured: true }),
+      onSaveConfig: () => {
+        const mg = parseFloat(st.dispMg);
+        if (!(mg > 0)) { this.toast('Enter a dispense amount in mg before saving'); return; }
+        const num = v => { const n = parseFloat(v); return isFinite(n) ? String(n) : null; };
+        const vials = num(st.invVials), ml = num(st.volMl);
+        const doseText = [vials ? vials + ' vials' : null, mg + ' mg', ml ? ml + ' mL' : null].filter(Boolean).join(' / ');
+        const entry = { vials: st.invVials, mg: st.dispMg, ml: st.volMl, target: mg, doseText: doseText };
+        const doseCfg = Object.assign({}, st.doseCfg, { [st.activeProduct]: entry });
+        this.persistCfg(doseCfg);
+        this.setState({ configOpen: false, configured: true, doseCfg: doseCfg });
+      },
       onBackToConfigure: () => this.setState({ step: 'configure', configOpen: false, kb: false }),
+      onEditDoseFromScan: () => this.setState(Object.assign({ step: 'configure', configOpen: true, kb: false }, this.cfgInputsFor(st.activeProduct))),
 
       currentDoor: st.currentDoor,
       currentBin: st.currentBin,
       currentBinInventory: currentLoc ? currentLoc.inventory : 0,
+      locPicked: st.locPicked,
+      needsLocation: !st.locPicked,
+      scanDisabled: !st.locPicked,
+      scanCursor: st.locPicked ? 'pointer' : 'not-allowed',
+      scanFieldBg: st.locPicked ? '#FFFFFF' : '#F3F5F7',
+      scanGlyph: st.locPicked ? '#8A949E' : '#BCC3CD',
+      scanBtnBg: st.locPicked ? '#095192' : '#9FA9B7',
+      scanPlaceholder: 'Scan or type serial number',
+      onAddManually: () => { if (!st.locPicked) this.toast('Select a dispense location first'); },
+      currentDoorKind: this.doorMeta(st.currentDoor).kind,
+      currentDoorTint: this.doorMeta(st.currentDoor).tint,
+      currentDoorIconD: this.doorMeta(st.currentDoor).d,
+      doorLabel: st.locPicked ? String(st.currentDoor) : '--',
+      binLabel: st.locPicked ? String(st.currentBin) : '--',
+      inventoryLabel: st.locPicked ? (currentLoc ? currentLoc.inventory : 0) + ' vials' : '--',
       onToggleDoor: () => { this.setState({ doorOpen: true }); this.toast('Door ' + st.currentDoor + ' is unlocked now'); },
 
       scanText: st.scanText,
       onScanChange: e => this.setState({ scanText: e.target.value }),
       onScanFocus: () => {},
       onScanKey: e => { if (e.key === 'Enter') this.submitScan(); },
-      onScanSubmit: () => this.submitScan(),
+      onScanSubmit: () => { if (!st.locPicked) { this.toast('Select a dispense location first'); return; } this.submitScan(); },
       kbOpen: st.kb,
       kbRows,
       onHideKb: () => this.setState({ kb: false }),
@@ -1262,8 +1355,8 @@ class Component extends DCLogic {
       dispensedCount: this.products.filter(p => statusFor(p) === 'Dispensed').length,
       dispensedSummary: dispensed.length + ' serial' + (dispensed.length === 1 ? '' : 's') + ' · ' + totalMg + ' mg of ' + prod.target + ' mg',
       dispensedItemCount: dispensed.filter(inBin).length,
-      hasDispensed: dispensed.length > 0,
-      noDispensed: dispensed.length === 0,
+      hasDispensed: st.locPicked && dispensed.length > 0,
+      noDispensed: st.locPicked && dispensed.length === 0,
       dispensedRows,
       grid: '52px minmax(0, 1.5fr) minmax(0, 0.7fr) minmax(0, 1.4fr) minmax(0, 0.8fr) minmax(0, 0.8fr) minmax(0, 0.9fr) minmax(0, 0.9fr) minmax(0, 0.7fr) minmax(0, 0.9fr) minmax(0, 1.4fr)',
 
@@ -1281,7 +1374,7 @@ class Component extends DCLogic {
         }));
       },
       suggestedCount: suggested.length,
-      suggestedOpen: st.suggestedOpen,
+      suggestedOpen: st.locPicked && st.suggestedOpen,
       hideLabel: st.suggestedOpen ? 'Hide all' : 'Show all',
       hideIcon: st.suggestedOpen ? 'M6 15l6-6 6 6' : 'M6 9l6 6 6-6',
       onToggleSuggested: () => this.setState(s => ({ suggestedOpen: !s.suggestedOpen })),
@@ -1298,8 +1391,8 @@ class Component extends DCLogic {
       locationCount: this.locations.length,
       multiBin,
       locCursor: multiBin ? 'pointer' : 'default',
-      locValueColor: multiBin ? '#095192' : '#5B6B7B',
-      footerLocationLabel: guidedPos >= 0 ? (guidedPos + 1) + '/' + this.locations.length : 'Select location',
+      locValueColor: !st.locPicked ? '#8B3FD9' : (multiBin ? '#095192' : '#5B6B7B'),
+      footerLocationLabel: st.locPicked && guidedPos >= 0 ? (guidedPos + 1) + '/' + this.locations.length : 'Select location',
       footerProductLabel: (this.products.findIndex(p => p.id === st.activeProduct) + 1) + '/' + this.products.length,
       onOpenLocations: () => { if (multiBin) this.setState({ locOpen: true }); },
       onCloseLocations: () => this.setState({ locOpen: false }),
@@ -1323,17 +1416,21 @@ class Component extends DCLogic {
       onCloseAlert: () => this.setState({ alertOpen: false }),
       onCloseDoorAndSwitch: () => { const loc = st.pendingLoc; this.setState({ doorOpen: false }); if (loc) this.switchTo(loc); else this.setState({ alertOpen: false }); },
 
-      dispenseLabel: complete ? (isLastProduct ? 'DISPENSE & VIEW SUMMARY' : 'DISPENSE & CONTINUE') : (lastBin ? 'DISPENSE & CONTINUE' : 'NEXT BIN'),
+      dispenseLabel: doseWillBeMet && isLastProduct ? 'DISPENSE & VIEW SUMMARY' : 'DISPENSE & CONTINUE',
       dispenseBtnBg: canDispense ? '#095192' : '#9FA9B7',
       dispenseBtnBorder: canDispense ? '#095192' : '#9FA9B7',
       dispenseBtnColor: '#FFFFFF',
       dispenseBtnCursor: canDispense ? 'pointer' : 'not-allowed',
-      dispenseIconVisible: complete,
+      dispenseIconVisible: doseWillBeMet,
       skipLabel: isLastProduct ? 'SKIP & VIEW SUMMARY' : 'SKIP & CONTINUE',
       skipBtnColor: canSkip ? '#095192' : '#9FB4CE',
       skipBtnBorder: canSkip ? '#095192' : '#C9D5E3',
       skipBtnCursor: canSkip ? 'pointer' : 'not-allowed',
-      onDispense: () => { if (canDispense) this.dispenseAndContinue(); },
+      onDispense: () => {
+        if (canDispense) { this.dispenseAndContinue(); return; }
+        if (editing) { this.toast('Save or cancel the row you are editing first'); return; }
+        this.toast(projected + ' of ' + this.target + ' mg picked — switch bins from the Location control to complete the dose');
+      },
       onSkip: () => { if (canSkip) this.skipAndContinue(); },
       skipAskOpen: st.skipAskOpen,
       skipAskName: prod.upper,
@@ -1355,7 +1452,7 @@ class Component extends DCLogic {
       usedLocationCount: Object.keys(usedDoses).length,
       summaryPrimaryLabel: nextId ? 'Next: ' + this.catalog[nextId].name.split(' ')[0] : 'Done',
       onCloseSummary: () => { if (nextId) this.openProduct(nextId); else this.setState({ summaryOpen: false }); },
-      onRestart: () => this.setState({ step: 'configure', activeProduct: 1, overrides: {}, editId: null, draft: null, configOpen: true, configured: false, currentDoor: 1, currentBin: 32, doorOpen: false, dispensedIds: [], sel: [], banner: 0, summaryOpen: false, kb: false, scanText: '', invVials: '9.5', dispMg: '950', volMl: '95', doneProducts: [], skippedProducts: [] }),
+      onRestart: () => this.setState(Object.assign({ step: 'configure', activeProduct: 1, overrides: {}, editId: null, draft: null, configOpen: true, configured: false, currentDoor: 1, currentBin: 32, doorOpen: false, dispensedIds: [], sel: [], banner: 0, summaryOpen: false, kb: false, scanText: '', doneProducts: [], skippedProducts: [] }, this.cfgInputsFor(1))),
 
       toasts: st.toasts.map(t => ({ text: t.text, onClose: () => this.setState(s => ({ toasts: s.toasts.filter(x => x.id !== t.id) })) }))
     };
