@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "prototype",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "4173"],
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["/Users/ideas2it/Downloads/Multi Bin - Dispense/.claude/static-server.js"],
       "port": 4173
     }
   ]
