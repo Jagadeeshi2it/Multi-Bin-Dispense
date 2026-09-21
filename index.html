@@ -192,7 +192,12 @@
             </span>
             <span style="color: #5B6B7B; margin-left: 8px">Bin</span> {{ binLabel }}
           </div>
-          <div style="font-size: 16px; margin-bottom: 10px"><span style="color: #5B6B7B">Inventory</span> &nbsp;{{ inventoryLabel }}</div>
+          <div style="font-size: 16px; margin-bottom: 10px"><span style="color: #5B6B7B">Inventory</span> &nbsp;<sc-if value="{{ invPlain }}" hint-placeholder-val="{{ true }}">{{ inventoryLabel }}</sc-if><sc-if value="{{ invIsLink }}" hint-placeholder-val="{{ false }}"><span style="position: relative; display: inline-block"><span onClick="{{ onToggleInvPop }}" style="color: #095192; font-weight: 600; text-decoration: underline; text-underline-offset: 2px; cursor: pointer">{{ inventoryLabel }}</span><sc-if value="{{ invPopOpen }}" hint-placeholder-val="{{ false }}"><span onClick="{{ onCloseInvPop }}" style="position: fixed; inset: 0; z-index: 11; display: block"></span><span style="position: absolute; top: calc(100% + 8px); left: 0; z-index: 12; display: block; min-width: 210px; background: #FFFFFF; border: 1px solid #E3E8ED; border-radius: 8px; box-shadow: 0 8px 24px rgba(11,42,74,0.16); padding: 6px 0; text-align: left">
+            <span style="display: block; padding: 8px 14px 6px; font-size: 12px; font-weight: 600; letter-spacing: 0.5px; color: #5B6B7B">BINS IN THIS DOOR</span>
+            <sc-for list="{{ binBreakdown }}" as="b" hint-placeholder-count="2">
+              <span style="display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 8px 14px; font-size: 15px; color: #25282A"><span>{{ b.bin }}</span><span style="font-weight: 600">{{ b.vials }}</span></span>
+            </sc-for>
+          </span></sc-if></span></sc-if></div>
         </div>
         <div>
           <div style="font-size: 16px"><span style="color: #5B6B7B">Med Order</span> &nbsp;{{ prodMedOrder }}</div>
@@ -304,9 +309,12 @@
         </sc-if>
 
         <sc-if value="{{ noDispensed }}" hint-placeholder-val="{{ true }}">
-          <div style="margin: 16px 24px 0; border: 1px solid #E3E8ED; border-radius: 8px; background: #F8FAFC; padding: 14px 16px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap">
-            <span style="font-size: 17px; font-weight: 600">Items to dispense</span>
-            <span style="font-size: 14px; color: #5B6B7B">Scan or select items to add them to the list</span>
+          <div style="margin-top: 16px; padding: 10px 24px 12px; border-bottom: 1px solid #E3E8ED; display: flex; align-items: center; gap: 12px; flex-wrap: wrap">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#008774" stroke-width="1.7" style="flex: 0 0 17px"><path d="M12 21a9 9 0 100-18 9 9 0 000 18M8.4 12.2l2.5 2.5 4.7-5.1"></path></svg>
+            <span style="font-size: 17px; font-weight: 600">Items to Dispense ({{ dispensedItemCount }})</span>
+          </div>
+          <div style="margin: 16px 24px; border: 1px dashed #D8D8D8; border-radius: 4px; padding: 32px 16px; display: flex; align-items: center; justify-content: center; text-align: center">
+            <span style="font-size: 16px; line-height: 24px; color: #5B6B7B">Scan serial items from the bin to add them for dispensing</span>
           </div>
         </sc-if>
         <sc-if value="{{ needsLocation }}" hint-placeholder-val="{{ false }}">
@@ -403,7 +411,7 @@
         </div>
         <div style="flex: 1; min-width: 12px"></div>
         <div style="display: flex; align-items: center; gap: 12px; padding: 10px 20px; flex-wrap: wrap">
-          <div onClick="{{ onBackToConfigure }}" style="padding: 11px 20px; border: 1px solid #095192; color: #095192; border-radius: 4px; font-size: 15px; font-weight: 600; cursor: pointer; text-transform: uppercase">Cancel</div>
+          <div onClick="{{ onCancelDispense }}" style="padding: 11px 20px; border: 1px solid {{ cancelBtnBorder }}; color: {{ cancelBtnColor }}; border-radius: 4px; font-size: 15px; font-weight: 600; cursor: {{ cancelBtnCursor }}; text-transform: uppercase">Cancel</div>
           <div onClick="{{ onSkip }}" style="padding: 11px 20px; border: 1px solid {{ skipBtnBorder }}; color: {{ skipBtnColor }}; border-radius: 4px; font-size: 15px; font-weight: 600; letter-spacing: 0.4px; cursor: {{ skipBtnCursor }}; white-space: nowrap; text-transform: uppercase">{{ skipLabel }}</div>
           <div onClick="{{ onDispense }}" style="padding: 11px 20px; display: flex; align-items: center; gap: 9px; border-radius: 4px; font-size: 15px; font-weight: 600; letter-spacing: 0.4px; white-space: nowrap; background: {{ dispenseBtnBg }}; border: 1px solid {{ dispenseBtnBorder }}; color: {{ dispenseBtnColor }}; cursor: {{ dispenseBtnCursor }}; text-transform: uppercase">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{ dispenseBtnColor }}" stroke-width="1.7"><path d="M12 21a9 9 0 100-18 9 9 0 000 18M8.4 12.2l2.5 2.5 4.7-5.1"></path></svg>
@@ -629,6 +637,23 @@
     </div>
   </sc-if>
 
+  <sc-if value="{{ cancelAskOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position: absolute; inset: 0; background: rgba(11,42,74,0.28); z-index: 51; display: flex; align-items: center; justify-content: center; padding: 24px">
+      <div style="width: 600px; max-width: 100%; background: #FFFFFF; border-radius: 4px; box-shadow: 0 20px 48px rgba(11,42,74,0.24); padding: 22px 28px 24px">
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 16px">
+          <div style="font-size: 22px; font-weight: 600">Are you sure?</div>
+          <svg onClick="{{ onCancelAskNo }}" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5B6B7B" stroke-width="1.6" style="cursor: pointer; flex: 0 0 22px"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+        </div>
+        <div style="font-size: 17px; color: #25282A; margin-top: 14px; line-height: 1.55; max-width: 500px; text-wrap: pretty">There are some products that still need to be dispensed. If you close any remaining products will be ignored.</div>
+        <div style="height: 32px"></div>
+        <div style="display: flex; justify-content: flex-end; gap: 12px">
+          <div onClick="{{ onCancelAskNo }}" style="padding: 13px 22px; border: 1px solid #095192; color: #095192; border-radius: 4px; font-size: 15px; font-weight: 600; letter-spacing: 0.4px; cursor: pointer; text-transform: uppercase">NO, STAY</div>
+          <div onClick="{{ onCancelAskYes }}" style="padding: 13px 22px; background: #095192; border: 1px solid #095192; color: #FFFFFF; border-radius: 4px; font-size: 15px; font-weight: 600; letter-spacing: 0.4px; cursor: pointer; text-transform: uppercase">YES, CONTINUE</div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
   <!-- SUMMARY MODAL -->
   <sc-if value="{{ summaryOpen }}" hint-placeholder-val="{{ false }}">
     <div style="position: absolute; inset: 0; background: rgba(11,42,74,0.28); z-index: 52; display: flex; align-items: center; justify-content: center; padding: 24px">
@@ -672,6 +697,7 @@ class Component extends DCLogic {
     locPicked: false,
     currentDoor: 1, currentBin: 32,
     doorOpen: false,
+    invPopOpen: false,
     dispensedIds: [],
     sel: [],
     banner: 0,
@@ -687,6 +713,7 @@ class Component extends DCLogic {
     pendingLoc: null,
     summaryOpen: false,
     skipAskOpen: false,
+    cancelAskOpen: false,
     summaryKind: 'done',
     kb: false,
     scanText: '',
@@ -1065,8 +1092,9 @@ class Component extends DCLogic {
   demoAddNextSerial() {
     const st = this.state;
     const remaining = this.target - this.totalMg();
+    const multi = this.locations.filter(l => l.door === st.currentDoor).length > 1;
     const inBin = this.pool.filter(p =>
-      p.door === st.currentDoor && p.bin === st.currentBin && !st.dispensedIds.includes(p.id));
+      p.door === st.currentDoor && (multi || p.bin === st.currentBin) && !st.dispensedIds.includes(p.id));
     if (!inBin.length) {
       this.toast('No more serials available in Door ' + st.currentDoor + ' \u00b7 Bin ' + st.currentBin);
       return;
@@ -1127,10 +1155,21 @@ class Component extends DCLogic {
     const skipEndsRun = isLastProduct && !this.nextLoc(st.dispensedIds);
     const canDispense = !editing && doseWillBeMet;
     const canSkip = !editing && dispensed.length === 0 && Object.keys(st.overrides).length === 0;
+    /* Cancel is only available once nothing is staged, so leaving can never
+       silently discard scanned serials. */
+    const canCancel = !editing && dispensed.length === 0;
+    const productsLeft = this.products.filter(x =>
+      !st.doneProducts.includes(x.id) && !st.skippedProducts.includes(x.id)).length;
 
-    const inBin = p => p.door === st.currentDoor && p.bin === st.currentBin;
+    /* Every bin behind one door is reachable once that door is unlocked, so a
+       multi-bin door is treated as a single location: its bins are not switched
+       between, and its inventory is reported as one total. */
+    const doorLocs = this.locations.filter(l => l.door === st.currentDoor);
+    const doorMultiBin = doorLocs.length > 1;
+    const doorVials = doorLocs.reduce((a, l) => a + l.inventory, 0);
+    const inBin = p => p.door === st.currentDoor && (doorMultiBin || p.bin === st.currentBin);
     const dispensedRows = dispensed.slice().sort((a, b) => (inBin(b) ? 1 : 0) - (inBin(a) ? 1 : 0)).map(p => {
-      const can = p.door === st.currentDoor && p.bin === st.currentBin;
+      const can = inBin(p);   // same rule as everywhere else: any bin behind the open door
       const ov = st.overrides[p.id] || {};
       const editing = st.editId === p.id;
       const draft = editing && st.draft ? st.draft : {};
@@ -1187,7 +1226,7 @@ class Component extends DCLogic {
         removeColor: can ? '#D9342B' : '#9FA9B7',
         removeIconColor: can ? '#D9342B' : '#C0C6CE',
         removeCursor: can ? 'pointer' : 'not-allowed',
-        onRemove: can ? () => this.setState(s => ({ dispensedIds: s.dispensedIds.filter(x => x !== p.id), dirty: true, banner: 0 })) : () => this.toast('Switch to Door ' + p.door + ' · Bin ' + p.bin + ' to remove this serial')
+        onRemove: can ? () => this.setState(s => ({ dispensedIds: s.dispensedIds.filter(x => x !== p.id), dirty: true, banner: 0 })) : () => this.toast('Switch to Door ' + p.door + ' to remove this serial')
       };
     });
 
@@ -1351,8 +1390,14 @@ class Component extends DCLogic {
       currentDoorTint: this.doorMeta(st.currentDoor).tint,
       currentDoorIconD: this.doorMeta(st.currentDoor).d,
       doorLabel: st.locPicked ? String(st.currentDoor) : '--',
-      binLabel: st.locPicked ? String(st.currentBin) : '--',
-      inventoryLabel: st.locPicked ? (currentLoc ? currentLoc.inventory : 0) + ' vials' : '--',
+      binLabel: st.locPicked ? (doorMultiBin ? 'Multiple' : String(st.currentBin)) : '--',
+      inventoryLabel: st.locPicked ? doorVials + ' vials' : '--',
+      invIsLink: st.locPicked && doorMultiBin,
+      invPlain: !(st.locPicked && doorMultiBin),
+      invPopOpen: st.invPopOpen && st.locPicked && doorMultiBin,
+      binBreakdown: doorLocs.map(l => ({ bin: 'Bin ' + l.bin, vials: l.inventory + ' vials' })),
+      onToggleInvPop: () => this.setState(x => ({ invPopOpen: !x.invPopOpen })),
+      onCloseInvPop: () => this.setState({ invPopOpen: false }),
       onToggleDoor: () => { this.setState({ doorOpen: true }); this.toast('Door ' + st.currentDoor + ' is unlocked now'); },
 
       scanText: st.scanText,
@@ -1440,6 +1485,21 @@ class Component extends DCLogic {
       dispenseBtnColor: '#FFFFFF',
       dispenseBtnCursor: canDispense ? 'pointer' : 'not-allowed',
       dispenseIconVisible: doseWillBeMet,
+      cancelBtnColor: canCancel ? '#095192' : '#9FB4CE',
+      cancelBtnBorder: canCancel ? '#095192' : '#C9D5E3',
+      cancelBtnCursor: canCancel ? 'pointer' : 'not-allowed',
+      onCancelDispense: () => {
+        if (!canCancel) {
+          this.toast(editing ? 'Save or cancel the row you are editing first'
+                             : 'Remove the scanned serials before cancelling');
+          return;
+        }
+        if (productsLeft > 0) { this.setState({ cancelAskOpen: true }); return; }
+        this.setState({ step: 'configure', configOpen: false, kb: false });
+      },
+      cancelAskOpen: st.cancelAskOpen,
+      onCancelAskNo: () => this.setState({ cancelAskOpen: false }),
+      onCancelAskYes: () => this.setState({ cancelAskOpen: false, step: 'configure', configOpen: false, kb: false }),
       skipLabel: isLastProduct ? 'SKIP & VIEW SUMMARY' : 'SKIP & CONTINUE',
       skipBtnColor: canSkip ? '#095192' : '#9FB4CE',
       skipBtnBorder: canSkip ? '#095192' : '#C9D5E3',
